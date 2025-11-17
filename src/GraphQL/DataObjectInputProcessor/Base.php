@@ -1,0 +1,87 @@
+<?php
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor;
+
+use GraphQL\Type\Definition\ResolveInfo;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
+use OpenDxp\Model\DataObject\ClassDefinition;
+use OpenDxp\Model\DataObject\Concrete;
+use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
+
+class Base
+{
+    use ServiceTrait;
+
+    protected $nodeDef;
+
+    /**
+     * @param array $nodeDef
+     */
+    public function __construct($nodeDef)
+    {
+        $this->nodeDef = $nodeDef;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttribute()
+    {
+        return $this->nodeDef['attributes']['attribute'];
+    }
+
+    /**
+     * @param Concrete|AbstractData $object
+     * @param mixed $newValue
+     * @param array $args
+     * @param array $context
+     *
+     * @throws \Exception
+     */
+    public function process($object, $newValue, $args, $context, ResolveInfo $info)
+    {
+        $attribute = $this->getAttribute();
+
+        Service::setValue($object, $attribute, function ($container, $setter) use ($newValue) {
+            return $container->$setter($newValue);
+        });
+    }
+
+    /**
+     * @param array $nodeDef
+     *
+     * @return mixed
+     */
+    public function getParentProcessor($nodeDef, ClassDefinition $class)
+    {
+        $nodeDefAttributes = $nodeDef['attributes'];
+        $children = $nodeDefAttributes['children'];
+        if (!$children) {
+            return null;
+        }
+
+        $firstChild = $children[0];
+        $firstChildAttributes = $firstChild['attributes'];
+        $service = $this->getGraphQlService();
+
+        $factories = $service->getDataObjectMutationTypeGeneratorFactories();
+
+        if ($firstChild['isOperator']) {
+            //  we only support the simple case with one child
+            $operatorClass = $firstChildAttributes['class'];
+            $typeName = strtolower($operatorClass);
+            $mutationConfigGenerator = $factories->get('typegenerator_mutationoperator_' . $typeName);
+            $config = $mutationConfigGenerator->getGraphQlMutationOperatorConfig($firstChild, $class);
+        } else {
+            $typeName = $firstChildAttributes['dataType'];
+            $mutationConfigGenerator = $factories->get('typegenerator_dataobjectmutationdatatype_' . $typeName);
+            $config = $mutationConfigGenerator->getGraphQlMutationFieldConfig($firstChild, $class);
+        }
+
+        $result = $config['processor'];
+
+        return $result;
+    }
+}

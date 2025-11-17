@@ -1,0 +1,37 @@
+<?php
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType\InputType;
+
+use GraphQL\Type\Definition\InputObjectType;
+use GraphQL\Type\Definition\Type;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
+
+abstract class AbstractRelationInputType extends InputObjectType
+{
+    use ServiceTrait;
+
+    /**
+     * @param array $config
+     * @param array $context
+     */
+    public function __construct(Service $graphQlService, $config, $context = [])
+    {
+        $this->setGraphQLService($graphQlService);
+        $this->build($config);
+        parent::__construct($config);
+    }
+
+    /**
+     * @param array $config
+     */
+    public function build(&$config)
+    {
+        $config['fields'] = [
+            'id' => [
+                'type' => Type::int(),
+            ],
+        ];
+    }
+}

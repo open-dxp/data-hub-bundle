@@ -1,0 +1,61 @@
+<?php
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator;
+
+use GraphQL\Type\Definition\Type;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType\ObjectMetadataType;
+use OpenDxp\Model\DataObject\ClassDefinition;
+use OpenDxp\Model\DataObject\ClassDefinition\Data;
+use OpenDxp\Model\DataObject\ClassDefinition\Data\AdvancedManyToManyObjectRelation;
+
+class ObjectsMetadata extends Base
+{
+    /**
+     * @param string $attribute
+     * @param ClassDefinition|null $class
+     * @param object|null $container
+     *
+     * @return array
+     */
+    public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
+    {
+        /** @var AdvancedManyToManyObjectRelation $fieldDefinition */
+        return $this->enrichConfig($fieldDefinition, $class, $attribute,
+            [
+                'name' => $fieldDefinition->getName(),
+                'type' => $this->getFieldType($fieldDefinition, $class, $container),
+                'resolve' => $this->getResolver($attribute, $fieldDefinition, $class),
+            ],
+            $container
+        );
+    }
+
+    /**
+     * @param AdvancedManyToManyObjectRelation $fieldDefinition
+     * @param ClassDefinition|null $class
+     * @param object|null $container
+     *
+     * @return \GraphQL\Type\Definition\ListOfType
+     */
+    public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
+    {
+        $type = new ObjectMetadataType($this->getGraphQlService(), $fieldDefinition, $class);
+
+        return Type::listOf($type);
+    }
+
+    /**
+     * @param string $attribute
+     * @param Data $fieldDefinition
+     * @param ClassDefinition $class
+     *
+     * @return array
+     */
+    public function getResolver($attribute, $fieldDefinition, $class)
+    {
+        $resolver = new Helper\ObjectsMetadata($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
+
+        return [$resolver, 'resolve'];
+    }
+}

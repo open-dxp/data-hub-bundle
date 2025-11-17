@@ -1,0 +1,64 @@
+<?php
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL\General;
+
+use GraphQL\Type\Definition\ResolveInfo;
+use GraphQL\Type\Definition\UnionType;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
+use OpenDxp\Model\Document;
+
+class AnyDocumentTargetType extends UnionType
+{
+    use ServiceTrait;
+
+    /**
+     * @param array $config
+     */
+    public function __construct(Service $graphQlService, $config = ['name' => 'AnyDocumentTarget'])
+    {
+        $this->setGraphQLService($graphQlService);
+
+        parent::__construct($config);
+    }
+
+    /**
+     *
+     * @throws \Exception
+     */
+    public function getTypes(): array
+    {
+        $types = [];
+
+        $service = $this->getGraphQlService();
+        $documentFolderType = $service->getDocumentTypeDefinition('_document_folder');
+
+        $types[] = $documentFolderType;
+        $documentUnionType = $this->getGraphQlService()->getDocumentTypeDefinition('document');
+        $supportedDocumentTypes = $documentUnionType->getTypes();
+        $types = array_merge($types, $supportedDocumentTypes);
+
+        return $types;
+    }
+
+    public function resolveType($element, $context, ResolveInfo $info)
+    {
+        if ($element) {
+            if ($element['__elementType'] == 'document') {
+                $document = Document::getById($element['id']);
+                if ($document) {
+                    $documentType = $document->getType();
+                    $service = $this->getGraphQlService();
+                    $typeDefinition = $service->getDocumentTypeDefinition('document_' . $documentType);
+
+                    return $typeDefinition;
+                }
+            } else {
+                die('To be done');
+            }
+        }
+
+        return null;
+    }
+}

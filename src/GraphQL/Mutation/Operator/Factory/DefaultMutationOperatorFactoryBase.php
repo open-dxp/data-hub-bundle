@@ -1,0 +1,40 @@
+<?php
+
+declare(strict_types=1);
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Mutation\Operator\Factory;
+
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Operator\OperatorInterface;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
+
+abstract class DefaultMutationOperatorFactoryBase
+{
+    use ServiceTrait;
+
+    /**
+     * @var string
+     */
+    protected $className;
+
+    public function __construct(Service $graphQlService, string $className)
+    {
+        $this->className = $className;
+        $this->setGraphQLService($graphQlService);
+    }
+
+    /**
+     * @param array|null $context
+     *
+     * @return OperatorInterface
+     */
+    public function build(array $configElement = [], $context = null)
+    {
+        /** @var OperatorInterface $operatorImpl */
+        $operatorImpl = new $this->className($this->getGraphQlService());
+        $operatorImpl->setGraphQlService($this->getGraphQlService());
+
+        return $operatorImpl;
+    }
+}

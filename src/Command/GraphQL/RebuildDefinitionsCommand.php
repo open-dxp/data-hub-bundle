@@ -1,0 +1,74 @@
+<?php
+
+
+namespace OpenDxp\Bundle\DataHubBundle\Command\GraphQL;
+
+use OpenDxp\Bundle\DataHubBundle\Configuration;
+use OpenDxp\Console\AbstractCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+class RebuildDefinitionsCommand extends AbstractCommand
+{
+    protected function configure()
+    {
+        $this
+            ->setName('datahub:graphql:rebuild-definitions')
+            ->setDescription('Rebuild GraphQL endpoint definitions')
+            ->addOption(
+                'definitions',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Comma separated list of endpoints'
+            );
+    }
+
+    /**
+     *
+     *
+     * @return int
+     *
+     * @throws \Exception
+     *
+     *@deprecated Use OpenDxp\Bundle\DataHubBundle\Command\Configuration\RebuildWorkspacesCommand instead.
+     *
+     */
+    public function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $included = [];
+        if ($input->getOption('definitions')) {
+            $included = $input->getOption('definitions');
+            $included = explode(',', $included);
+        } else {
+            $list = Configuration::getList();
+            foreach ($list as $configuration) {
+                $endpoint = $configuration->getName();
+                $included[] = $endpoint;
+            }
+        }
+
+        foreach ($included as $endpoint) {
+            $config = Configuration::getByName($endpoint);
+            if (!$config) {
+                $this->output->writeln('<error>Could not find config: ' . $endpoint . '</error>');
+
+                continue;
+            }
+
+            $this->output->writeln('Save config: ' . $endpoint);
+
+            $config->save();
+        }
+
+        $this->output->writeln('done');
+
+        if (defined('Symfony\Component\Console\Command\Command::SUCCESS')) {
+            return Command::SUCCESS;
+        } else {
+            //TODO remove this as soon as support for Symfony 4 gets dropped
+            return 0;
+        }
+    }
+}

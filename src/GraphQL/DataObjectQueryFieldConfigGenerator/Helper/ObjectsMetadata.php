@@ -1,0 +1,85 @@
+<?php
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator\Helper;
+
+use GraphQL\Type\Definition\ResolveInfo;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\BaseDescriptor;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\ElementDescriptor;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
+use OpenDxp\Bundle\DataHubBundle\WorkspaceHelper;
+use OpenDxp\Model\DataObject\ClassDefinition;
+use OpenDxp\Model\DataObject\Data\ObjectMetadata;
+
+class ObjectsMetadata
+{
+    use ServiceTrait;
+
+    /**
+     * @var ClassDefinition\Data
+     */
+    public $fieldDefinition;
+
+    /**
+     * @var ClassDefinition
+     */
+    public $class;
+
+    /**
+     * @var string
+     */
+    public $attribute;
+
+    /**
+     * @param string $attribute
+     * @param ClassDefinition\Data $fieldDefinition
+     * @param ClassDefinition $class
+     */
+    public function __construct(Service $graphQlService, $attribute, $fieldDefinition, $class)
+    {
+        $this->fieldDefinition = $fieldDefinition;
+        $this->class = $class;
+        $this->attribute = $attribute;
+        $this->setGraphQLService($graphQlService);
+    }
+
+    /**
+     * @param BaseDescriptor|null $value
+     * @param array $args
+     * @param array $context
+     *
+     * @return array|null
+     *
+     * @throws \Exception
+     */
+    public function resolve($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null)
+    {
+        $result = [];
+        $relations = \OpenDxp\Bundle\DataHubBundle\GraphQL\Service::resolveValue($value, $this->fieldDefinition, $this->attribute, $args);
+        if ($relations) {
+            /** @var ObjectMetadata $relation */
+            foreach ($relations as $relation) {
+                $element = $relation->getElement();
+                if (!WorkspaceHelper::checkPermission($element, 'read')) {
+                    continue;
+                }
+
+                $data = [];
+                $elementData = new ElementDescriptor($element);
+                $this->getGraphQlService()->extractData($elementData, $element, $args, $context, $resolveInfo);
+
+                $elementData['__relation'] = $relation;
+                $elementData['__destId'] = $relation->getElement()?->getId();
+                $data['element'] = $elementData;
+                $data['metadata'] = microtime();
+
+                $result[] = $data;
+            }
+
+            return $result;
+        }
+
+        return null;
+    }
+}

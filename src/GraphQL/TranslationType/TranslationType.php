@@ -1,0 +1,44 @@
+<?php
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL\TranslationType;
+
+use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\Type;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\SharedType\JsonType;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
+
+class TranslationType extends ObjectType
+{
+    use ServiceTrait;
+
+    protected string $fieldname;
+
+    /**
+     * @throws \Exception
+     */
+    public function __construct(Service $graphQlService, array $config = ['name' => 'translation', 'fields' => []])
+    {
+        $this->setGraphQLService($graphQlService);
+        $this->build($config);
+        parent::__construct($config);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function build(array &$config)
+    {
+        $config['fields'] = [
+            'key' => Type::string(),
+            'creationDate' => Type::int(),
+            'modificationDate' => Type::int(),
+            'domain' => Type::string(),
+            'type' => Type::string(),
+            'translations' => [
+                'type' => new JsonType(),
+            ],
+        ];
+    }
+}

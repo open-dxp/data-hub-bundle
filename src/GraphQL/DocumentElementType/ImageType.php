@@ -1,0 +1,128 @@
+<?php
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementType;
+
+use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\ResolveInfo;
+use GraphQL\Type\Definition\Type;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\ElementDescriptor;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\SharedType\HotspotCropType;
+use OpenDxp\Model\Asset;
+use OpenDxp\Model\Document\Editable\Image;
+
+class ImageType extends ObjectType
+{
+    protected static $instance;
+
+    /**
+     *
+     * @return ImageType
+     *
+     * @throws \Exception
+     */
+    public static function getInstance(Service $graphQlService)
+    {
+        if (!self::$instance) {
+            $resolver = new \OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\HotspotType();
+            $resolver->setGraphQLService($graphQlService);
+
+            $assetType = $graphQlService->buildAssetType('asset');
+            $hotspotMarkerType = $graphQlService->buildGeneralType('hotspotmarker');
+            $hotspotHotspotType = $graphQlService->buildGeneralType('hotspothotspot');
+
+            $config =
+                [
+                    'name' => 'document_editableImage',
+                    'fields' => [
+                        '_editableType' => [
+                            'type' => Type::string(),
+                            'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                                if ($value instanceof Image) {
+                                    return $value->getType();
+                                }
+
+                                return null;
+                            },
+                        ],
+                        '_editableName' => [
+                            'type' => Type::string(),
+                            'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                                if ($value instanceof Image) {
+                                    return $value->getName();
+                                }
+
+                                return null;
+                            },
+                        ],
+                        'image' => [
+                            'type' => $assetType,
+                            'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) use ($resolver) {
+                                if ($value instanceof Image) {
+                                    $data = $value->getData();
+                                    if (isset($data['id'])) {
+                                        $data = new ElementDescriptor(Asset::getById($data['id']));
+                                        $result = $resolver->resolveImage($data, $args, $context, $resolveInfo);
+
+                                        return $result;
+                                    }
+                                }
+
+                                return null;
+                            },
+                        ],
+                        'alt' => [
+                            'type' => Type::string(),
+                            'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                                if ($value instanceof Image) {
+                                    return $value->getAlt();
+                                }
+
+                                return null;
+                            },
+                        ],
+                        'crop' => [
+                            'type' => HotspotCropType::getInstance(),
+                            'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                                if ($value instanceof Image) {
+                                    return [
+                                        'cropTop' => $value->getCropTop(),
+                                        'cropLeft' => $value->getCropLeft(),
+                                        'cropHeight' => $value->getCropHeight(),
+                                        'cropWidth' => $value->getCropWidth(),
+                                        'cropPercent' => $value->getCropPercent(),
+                                    ];
+                                }
+
+                                return null;
+                            },
+                        ],
+                        'hotspots' => [
+                            'type' => Type::listOf($hotspotHotspotType),
+                            'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                                if ($value instanceof Image) {
+                                    return $value->getHotspots();
+                                }
+
+                                return null;
+                            },
+                        ],
+                        'marker' => [
+                            'type' => Type::listOf($hotspotMarkerType),
+                            'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                                if ($value instanceof Image) {
+                                    return $value->getMarker();
+                                }
+
+                                return null;
+                            },
+                        ],
+                    ],
+                ];
+            self::$instance = new static($config);
+        }
+
+        return self::$instance;
+    }
+}

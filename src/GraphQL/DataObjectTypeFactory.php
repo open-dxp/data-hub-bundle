@@ -1,0 +1,44 @@
+<?php
+
+declare(strict_types=1);
+
+
+namespace OpenDxp\Bundle\DataHubBundle\GraphQL;
+
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
+use OpenDxp\Model\DataObject\ClassDefinition;
+
+class DataObjectTypeFactory
+{
+    use ServiceTrait;
+
+    public static $registry = [];
+
+    protected string $className;
+
+    public function __construct(Service $graphQlService, string $className)
+    {
+        $this->className = $className;
+        $this->setGraphQLService($graphQlService);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function build(string $className, $config = [], $context = [])
+    {
+        if (!isset(self::$registry[$className])) {
+            $class = ClassDefinition::getByName($className);
+            $operatorImpl = new $this->className(
+                $this->getGraphQlService(),
+                $className,
+                $class->getId(),
+                $config,
+                $context
+            );
+            self::$registry[$className] = $operatorImpl;
+        }
+
+        return self::$registry[$className];
+    }
+}
