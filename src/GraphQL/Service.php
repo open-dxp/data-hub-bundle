@@ -26,7 +26,7 @@ use OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Operator\Factory\OperatorFactoryI
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Value\DefaultValue;
 use OpenDxp\Bundle\DataHubBundle\OpenDxpDataHubBundle;
 use OpenDxp\Cache\RuntimeCache;
-use OpenDxp\DataObject\GridColumnConfig\ConfigElementInterface;
+use OpenDxp\Bundle\AdminBundle\DataObject\GridColumnConfig\ConfigElementInterface;
 use OpenDxp\Localization\LocaleServiceInterface;
 use OpenDxp\Model\Asset;
 use OpenDxp\Model\DataObject\AbstractObject;
