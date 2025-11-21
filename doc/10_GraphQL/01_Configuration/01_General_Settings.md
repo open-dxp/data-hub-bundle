@@ -1,9 +1,5 @@
 # General Settings
 
-<div class="image-as-lightbox"></div>
-
-![General Settings](../../img/graphql/general.png)
-
 #### Some Aspects:
 * `Active`: You can temporarily disable the configuration using the checkbox.
 * `SQL Condition (Deprecated)`: You can add a condition all data object queries have to satisfy in addition to 

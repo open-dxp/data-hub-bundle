@@ -18,9 +18,6 @@ technologies into a simple & easy-to-configure system on top of OpenDXP.
 
 The basic configuration of Datahub comes with a GraphQL API, which is described in the next sections of this documentation. To use another configuration, OpenDXP Datahub can be extended with different adapters (see [Further Information](#further-information)).
 
-![Overview](./doc/img/overview.jpg)
-*Sample presentation of Datahub config when choosing the GraphQL endpoint*
-
 A short introduction video of an output channel based on the GraphQL query language can be found [here](./doc/img/graphql/intro.mp4).
 
 ## Features in a Nutshell
@@ -36,13 +33,6 @@ A short introduction video of an output channel based on the GraphQL query langu
 - [GraphQL](./doc/10_GraphQL/README.md) [*default and recommended endpoint*]
 - [Configuration & Deployment](./doc/20_Deployment.md)
 - [Testing](./doc/30_Testing.md)
-
-## Further Information
-On OpenDXP Datahub adapters:
-- [Datahub Simple Rest API](https://pimcore.com/docs/platform/Datahub_Simple_Rest/)
-- [Datahub File Export](https://pimcore.com/docs/platform/Datahub_File_Export/)
-- [Datahub Productsup](https://pimcore.com/docs/platform/Datahub_Productsup/)
-- [Datahub CI Hub](https://pimcore.com/docs/platform/Datahub_CI_Hub/)
 
 ***
 

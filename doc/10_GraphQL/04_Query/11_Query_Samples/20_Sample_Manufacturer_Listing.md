@@ -1,9 +1,5 @@
 # Get Manufacturer Listing
 
-<div class="image-as-lightbox"></div>
-
-![Grid](../../../img/graphql/manufacturer_listing.png)
-
 ### Request
 
 Manufacturer listing with limit 3 and offset 1, sorted by name.
