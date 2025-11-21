@@ -825,11 +825,7 @@ class Service
 
         if ($fieldDefinition->isEmpty($value)) {
             $parent = \OpenDxp\Model\DataObject\Service::hasInheritableParentObject($object);
-            if (!empty($parent)) {
-                if (!($parent instanceof Concrete)) {
-                    $parent = Concrete::getById($parent->getId());
-                }
-
+            if ($parent instanceof Concrete) {
                 return self::getValueForObject($parent, $key, $brickType, $brickKey, $fieldDefinition, $context, $brickDescriptor);
             }
         }
@@ -909,8 +905,8 @@ class Service
                 $subBrickType = $brickContainer->$subBrickGetter();
 
                 if (!$subBrickType) {
-                    /** @var AbstractData $brickClass */
                     $brickClass = 'OpenDxp\\Model\\DataObject\\Objectbrick\\Data\\' . ucfirst($brickType);
+                    /** @var AbstractData $subBrickType */
                     $subBrickType = new $brickClass($object);
                     $subBrickSetter = 'set' . ucfirst($brickType);
                     $brickContainer->$subBrickSetter($subBrickType);
