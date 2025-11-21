@@ -1,6 +1,6 @@
 <?php
 
 return [
-    \Pimcore\Bundle\AdminBundle\PimcoreAdminBundle::class => ['all' => true],
-    \Pimcore\Bundle\DataHubBundle\PimcoreDataHubBundle::class => ['all' => true]
+    \OpenDxp\Bundle\AdminBundle\OpenDxpAdminBundle::class => ['all' => true],
+    \OpenDxp\Bundle\DataHubBundle\OpenDxpDataHubBundle::class => ['all' => true]
 ];
