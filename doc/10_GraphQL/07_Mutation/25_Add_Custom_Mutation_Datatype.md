@@ -8,7 +8,7 @@ Add a section similar to this one to your `services.yml` file.
 
 ```yaml
     opendxp.datahub.graphql.dataobjectmutationtypegenerator_datatype_mycustomdatatype:
-        class: Pimcore\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGenerator\MyCustomDatatype
+        class: OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGenerator\MyCustomDatatype
         tags:
             - { name: opendxp.datahub.graphql.dataobjectmutationtypegenerator, id: typegenerator_dataobjectmutationdatatype_mycustomdatatype }                                    
 ```

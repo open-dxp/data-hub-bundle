@@ -4,9 +4,9 @@ title: GraphQL
 
 # ![GraphQL Icon](../img/graphql/logo_small.png) GraphQL 
 
-<!-- This GraphQL extension of Pimcores Datahub makes Assets and Data Objects available through an organized and easy-to-query GraphQL schema and constitutes a powerful and flexible way to connect Pimcore to other systems or frontend applications. -->
+<!-- This GraphQL extension of OpenDxps Datahub makes Assets and Data Objects available through an organized and easy-to-query GraphQL schema and constitutes a powerful and flexible way to connect OpenDxp to other systems or frontend applications. -->
 
-With [GraphQL](https://graphql.org/) endpoints, Datahub allows integrating Pimcore to other systems 
+With [GraphQL](https://graphql.org/) endpoints, Datahub allows integrating OpenDxp to other systems 
 and services via GraphQL and test them with the integrated 
 [GraphiQL explorer](https://github.com/graphql/graphiql/tree/main/packages/graphiql#readme) tool right away. 
 
@@ -36,7 +36,7 @@ So if your configuration name is blogdemo and your apikey 123456 then your endpo
 Here is a configuration how to [override the standard endpoint](./01_Configuration/15_Customize_Endpoint_URL.md)
 
 ## Queries
-Depending on the configuration, the endpoint provides several queries to fetch data from Pimcore. As 
+Depending on the configuration, the endpoint provides several queries to fetch data from OpenDxp. As 
 Datahub always creates a proper graphQL schema, also have a look at the generated schema to get details
 for the possible queries of a certain endpoint. 
 
@@ -48,7 +48,7 @@ On the following pages certain generic aspects are explained, and a couple of sa
 
 
 ## Mutations
-Depending on the configuration, the endpoint provides several mutations to update data in Pimcore. As 
+Depending on the configuration, the endpoint provides several mutations to update data in OpenDxp. As 
 Datahub always creates a proper graphQL schema, also have a look at the generated schema to get details
 for the possible mutations of a certain endpoint. 
 
@@ -61,7 +61,7 @@ See following pages for a general overview of possible mutations:
 
 ## Hands-On-Testing Using GraphiQL Explorer
 [GraphiQL explorer](https://github.com/graphql/graphiql/tree/main/packages/graphiql#readme) can be opened
-for an endpoint in an iframe within Pimcore or as an additional browser tab. 
+for an endpoint in an iframe within OpenDxp or as an additional browser tab. 
 
 <div class="image-as-lightbox"></div>
 
@@ -74,7 +74,7 @@ see [Events Documentation](./10_Events.md).
 
 
 ## Output Cache
-It is possible to keep a cache of the responses delivered by the endpoint, using the same default cache backend configured for Pimcore (Doctrine, Redis,...). This is specially useful to speed up the endpoint replies when it produces complex responses with many dependencies.
+It is possible to keep a cache of the responses delivered by the endpoint, using the same default cache backend configured for OpenDxp (Doctrine, Redis,...). This is specially useful to speed up the endpoint replies when it produces complex responses with many dependencies.
 
 The cache can be enabled and configured with a configuration entry like this in your `config.yml` file:
 ```yml
@@ -87,7 +87,7 @@ opendxp_data_hub:
 By default the cache is disabled but if it is enabled and you don't specify a value for `output_cache_lifetime`, its default value is set to 30 seconds.
 
 ### Disable Output Cache for a Single Request (Only in DEBUG MODE)
-Just add the parameter `?opendxp_outputfilters_disabled=true` to the URL. This works in a similar way as the [Pimcore's Full Page Cache](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Development_Tools_and_Details/Cache/Full_Page_Cache.html).
+Just add the parameter `?opendxp_outputfilters_disabled=true` to the URL. This works in a similar way as the [OpenDxp's Full Page Cache](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Development_Tools_and_Details/Cache/Full_Page_Cache.html).
 
 ### Customize the Cache Behaviour
 It is possible to customize some behavior of output cache with event listeners. For details 

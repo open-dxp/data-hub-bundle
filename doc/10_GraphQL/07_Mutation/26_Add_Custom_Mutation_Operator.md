@@ -9,7 +9,7 @@ Add a section similar to this one to your `services.yml` file.
 
 ```yaml
   opendxp.datahub.graphql.dataobjectmutationtypegenerator_operator_mycustommutationoperator:
-    class: Pimcore\Bundle\DataHubBundle\GraphQL\DataObjectMutationOperatorConfigGenerator\MyCustomMutationOperator
+    class: OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationOperatorConfigGenerator\MyCustomMutationOperator
     tags:
       - { name: opendxp.datahub.graphql.dataobjectmutationtypegenerator, id: typegenerator_mutationoperator_mycustommutationoperator }                        
 ```
@@ -35,7 +35,7 @@ Note that the namespace in your case would be `opendxp.plugin.datahub.mutationop
 
 :::
 
-Make sure that your extension gets loaded. See [Pimcore Bundles](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Extending_Pimcore/Bundle_Developers_Guide/Pimcore_Bundles/index.html)
+Make sure that your extension gets loaded. See [OpenDxp Bundles](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Extending_OpenDxp/Bundle_Developers_Guide/OpenDxp_Bundles/index.html)
 docs page for further details.
 
 Next thing is to provide the input processor on the server side.

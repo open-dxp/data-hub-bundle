@@ -4,7 +4,7 @@
 The Pimcore team heavily uses (and loves!) GitHub for all of our software management. 
 We use GitHub issues exclusively to track all bugs and features.
 
-* [Open an issue](https://github.com/pimcore/data-hub/issues) here on GitHub. 
+* [Open an issue](https://github.com/open-dxp/data-hub-bundle/issues) here on GitHub. 
 If you can, **please provide a fix and create a pull request (PR) instead**; this will automatically create an issue for you.
 * Report security issues only to security@pimcore.org 
 * Please be patient as not all items will be tested immediately - remember, Pimcore Datahub is open source and free of charge. 
@@ -18,9 +18,9 @@ There are a few necessary steps before we can accept a pull request:
 
 * [Fork us!](https://help.github.com/articles/fork-a-repo/)
 * Select the right branch. main(e.g. 1.x) for features and improvements or latest maintenance branch for bug fixes (e.g. 1.0)
-* Code! Follow the coding standards defined [here](https://github.com/pimcore/data-hub/blob/1.x/.php-cs-fixer.dist.php).
+* Code! Follow the coding standards defined [here](https://github.com/open-dxp/data-hub-bundle/blob/1.x/.php-cs-fixer.dist.php).
 * [Send a pull request](https://help.github.com/articles/using-pull-requests/) from your fork’s branch to our `master` branch.
-* [Sign the CLA](https://cla-assistant.io/pimcore/data-hub) - see also below.
+* [Sign the CLA](https://cla-assistant.io/open-dxp/data-hub-bundle) - see also below.
 
 
 ### Contributor License Agreement

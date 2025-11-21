@@ -71,8 +71,8 @@
 
 ### Fetch Document Page and get processed Wysiwyg editable content
 
-* Field `text` contains the HTML as it is stored in Pimcore for this Wysiwyg editable.
-* Field `frontend` contain the processed HTML where Pimcore Element links are rewritten where necessary.
+* Field `text` contains the HTML as it is stored in OpenDxp for this Wysiwyg editable.
+* Field `frontend` contain the processed HTML where OpenDxp Element links are rewritten where necessary.
 
 ```graphql
 {

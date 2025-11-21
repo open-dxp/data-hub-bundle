@@ -22,7 +22,7 @@
 ## Mutation Modes
 
 There a two modes for document mutations. The Free-form API allows updating single editable content but
-requires lots of Pimcore insight knowledge. The Tree API provides a more intuitive nested approach for
+requires lots of OpenDxp insight knowledge. The Tree API provides a more intuitive nested approach for
 creating and updating documents. 
 
 
@@ -30,7 +30,7 @@ creating and updating documents.
 
 :::info
 
-Important Note: To be able to fully exploit this feature you have to understand Pimcore's [editable naming strategy](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Documents/Editable_Naming_Strategies.html)
+Important Note: To be able to fully exploit this feature you have to understand OpenDxp's [editable naming strategy](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Documents/Editable_Naming_Strategies.html)
 
 :::
 
@@ -75,7 +75,7 @@ See following list for more examples with the free-form API approach:
 
 ### Tree API
 
-If you are not familiar with Pimcore's [editable naming strategy](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Documents/Editable_Naming_Strategies.html)
+If you are not familiar with OpenDxp's [editable naming strategy](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Documents/Editable_Naming_Strategies.html)
 you can also use the nested approach.
 
 ### Sample (Update a Page With an Areablock Using the Nested Approach)

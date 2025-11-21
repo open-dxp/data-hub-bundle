@@ -2,12 +2,12 @@
 
 You can extend the mutation schema and add your custom mutations in the following way.
 
-See [Events and Event Listeners](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Extending_Pimcore/Event_API_and_Event_Manager.html)
-if you need more information on Pimcore's event mechanism. 
+See [Events and Event Listeners](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Extending_OpenDxp/Event_API_and_Event_Manager.html)
+if you need more information on OpenDxp's event mechanism. 
 
 ```php
-\Pimcore::getEventDispatcher()->addListener(\Pimcore\Bundle\DataHubBundle\Event\GraphQL\MutationEvents::PRE_BUILD,
-    function (\Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\MutationTypeEvent $event) {
+\OpenDxp::getEventDispatcher()->addListener(\OpenDxp\Bundle\DataHubBundle\Event\GraphQL\MutationEvents::PRE_BUILD,
+    function (\OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\MutationTypeEvent $event) {
         $config = $event->getConfig();
 
         $opName = "performCustomMutation";

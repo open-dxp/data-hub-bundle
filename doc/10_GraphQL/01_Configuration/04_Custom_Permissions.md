@@ -5,9 +5,9 @@ When creating custom queries or creating other custom extensions to Datahub, it 
 ## Adding Custom Permissions 
 
 If you want to create custom permissions, you can create an event-listener for the event 
-`Pimcore\Bundle\DataHubBundle\ConfigEvents::SPECIAL_ENTITIES` and add them as follows. 
+`OpenDxp\Bundle\DataHubBundle\ConfigEvents::SPECIAL_ENTITIES` and add them as follows. 
 
-The EventListener adds a new Entity of type `Pimcore\Bundle\DataHubBundle\Model\SpecialEntitySetting` 
+The EventListener adds a new Entity of type `OpenDxp\Bundle\DataHubBundle\Model\SpecialEntitySetting` 
 with the corresponding permissions it allows:
 
  - Read Possible: defines if `read` checkbox is available
@@ -24,9 +24,9 @@ with the corresponding permissions it allows:
  
 ```php
 
-use Pimcore\Bundle\DataHubBundle\ConfigEvents;
-use Pimcore\Bundle\DataHubBundle\Event\Config\SpecialEntitiesEvent;
-use Pimcore\Bundle\DataHubBundle\Model\SpecialEntitySetting;
+use OpenDxp\Bundle\DataHubBundle\ConfigEvents;
+use OpenDxp\Bundle\DataHubBundle\Event\Config\SpecialEntitiesEvent;
+use OpenDxp\Bundle\DataHubBundle\Model\SpecialEntitySetting;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class GraphQlCustomListener implements EventSubscriberInterface

@@ -35,7 +35,7 @@ opendxp_data_hub:
 ## Workspace Settings
 
 Defines workspaces for data that should be accessible via the endpoint.
-The definition is similar to Pimcore user [workspace permissions](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Administration_of_Pimcore/Users_and_Roles.html) 
+The definition is similar to OpenDxp user [workspace permissions](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Administration_of_Pimcore/Users_and_Roles.html) 
 
 :::warning
 

@@ -10,7 +10,7 @@ Add a section similar to this one to your `services.yml` file.
 
 ```yaml
     opendxp.datahub.graphql.querytypegenerator_operator_mycustomoperator:
-        class: Pimcore\Bundle\DataHubBundle\GraphQL\QueryOperatorConfigGenerator\MyCustomOperator
+        class: OpenDxp\Bundle\DataHubBundle\GraphQL\QueryOperatorConfigGenerator\MyCustomOperator
         tags:
             - { name: opendxp.datahub.graphql.dataobjectquerytypegenerator, id: typegenerator_queryoperator_mycustomoperator }                        
 ```
@@ -31,7 +31,7 @@ Note that the namespace would be `opendxp.plugin.datahub.operator.mycustomoperat
 
 :::
 
-Make sure, that your extension gets loaded. See [Pimcore Bundles](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Extending_Pimcore/Bundle_Developers_Guide/Pimcore_Bundles/index.html)
+Make sure, that your extension gets loaded. See [OpenDxp Bundles](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Extending_OpenDxp/Bundle_Developers_Guide/OpenDxp_Bundles/index.html)
 docs page for further details.
 
 Next thing is to provide the server-side implementation.
@@ -42,9 +42,9 @@ In most cases we use the `DefaultOperatorFactory` for that:
 
 ```yaml
     opendxp.datahub.graphql.dataobjectqueryoperator.factory.mycustomoperator:
-        class: Pimcore\Bundle\DataHubBundle\GraphQL\Query\Operator\Factory\DefaultOperatorFactory
+        class: OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Operator\Factory\DefaultOperatorFactory
         arguments:
-            $className: Pimcore\Bundle\DataHubBundle\GraphQL\Query\Operator\MyCustomOperator
+            $className: OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Operator\MyCustomOperator
         tags:
             - { name: opendxp.datahub.graphql.dataobjectqueryoperator_factory, id: mycustomoperator }
 ```

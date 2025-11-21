@@ -1,6 +1,6 @@
 # Basic Principle
 
-Pimcore Datahub allows defining multiple endpoints that allow data delivery and consumption. These endpoints are configured via so called configurations that can be added in the Pimcore admin user interface: 
+OpenDxp Datahub allows defining multiple endpoints that allow data delivery and consumption. These endpoints are configured via so called configurations that can be added in the OpenDxp admin user interface: 
 
 ## Adding a New Configuration
 

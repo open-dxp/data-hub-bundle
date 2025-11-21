@@ -1,6 +1,6 @@
 # Operators
 
-Operators allow to modify and transform the data before it is delivered to the endpoint or stored in Pimcore,
+Operators allow to modify and transform the data before it is delivered to the endpoint or stored in OpenDxp,
 depending on whether they are used in a query or a mutation.
 
 <div class="image-as-lightbox"></div>
