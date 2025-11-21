@@ -16,7 +16,7 @@
 namespace DataHubBundle\Tests\Test;
 
 use Codeception\Test\Unit;
-use Pimcore\Tests\Support\Util\TestHelper;
+use OpenDxp\Tests\Support\Util\TestHelper;
 
 abstract class TestCase extends Unit
 {
@@ -50,6 +50,6 @@ abstract class TestCase extends Unit
             }
         }
 
-        \Pimcore::collectGarbage();
+        \OpenDxp::collectGarbage();
     }
 }

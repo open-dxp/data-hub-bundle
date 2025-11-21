@@ -13,10 +13,10 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace Pimcore\Bundle\DataHubBundle\Tests\Controller;
+namespace OpenDxp\Bundle\DataHubBundle\Tests\Controller;
 
 use Codeception\Test\Unit;
-use Pimcore\Bundle\DataHubBundle\Configuration;
+use OpenDxp\Bundle\DataHubBundle\Configuration;
 use Symfony\Component\HttpFoundation\Request;
 
 class CheckConsumerPermissionsServiceTest extends Unit
@@ -35,7 +35,7 @@ class CheckConsumerPermissionsServiceTest extends Unit
         $request = new Request();
 
         // System under Test
-        $sut = new \Pimcore\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
+        $sut = new \OpenDxp\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
         // Act
         $result = $sut->performSecurityCheck($request, $configuration);
         // Assert
@@ -54,7 +54,7 @@ class CheckConsumerPermissionsServiceTest extends Unit
         $request = new Request(['apikey' => 'wrong_key']);
 
         // System under Test
-        $sut = new \Pimcore\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
+        $sut = new \OpenDxp\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
         // Act
         $result = $sut->performSecurityCheck($request, $configuration);
         //Assert
@@ -73,7 +73,7 @@ class CheckConsumerPermissionsServiceTest extends Unit
         $request = new Request(['apikey' => self::CORRECT_API_KEY]);
 
         // System under Test
-        $sut = new \Pimcore\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
+        $sut = new \OpenDxp\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
         // Act
         $result = $sut->performSecurityCheck($request, $configuration);
         // Assert
@@ -93,7 +93,7 @@ class CheckConsumerPermissionsServiceTest extends Unit
         $request->headers->set('apikey', self::CORRECT_API_KEY);
 
         // System under Test
-        $sut = new \Pimcore\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
+        $sut = new \OpenDxp\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
         // Act
         $result = $sut->performSecurityCheck($request, $configuration);
         // Assert
@@ -112,7 +112,7 @@ class CheckConsumerPermissionsServiceTest extends Unit
         $request = new Request();
         $request->headers->set('X-API-Key', self::CORRECT_API_KEY);
         // System under Test
-        $sut = new \Pimcore\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
+        $sut = new \OpenDxp\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
         // Act
         $result = $sut->performSecurityCheck($request, $configuration);
         // Assert
@@ -131,7 +131,7 @@ class CheckConsumerPermissionsServiceTest extends Unit
         $request = new Request(['apikey', 'wrong_key']);
         $request->headers->set('apikey', self::CORRECT_API_KEY);
         // System under Test
-        $sut = new \Pimcore\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
+        $sut = new \OpenDxp\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService();
         // Act
         $result = $sut->performSecurityCheck($request, $configuration);
         // Assert

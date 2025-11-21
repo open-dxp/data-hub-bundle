@@ -13,11 +13,11 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace Pimcore\Tests\Model\DataObject;
+namespace OpenDxp\Tests\Model\DataObject;
 
-use Pimcore\Bundle\DataHubBundle\Configuration;
-use Pimcore\Tests\Support\Helper\DataType\TestDataHelper;
-use Pimcore\Tests\Support\Test\ModelTestCase;
+use OpenDxp\Bundle\DataHubBundle\Configuration;
+use OpenDxp\Tests\Support\Helper\DataType\TestDataHelper;
+use OpenDxp\Tests\Support\Test\ModelTestCase;
 
 /**
  * Class ListingTest

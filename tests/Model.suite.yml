@@ -2,7 +2,7 @@ actor: ModelTester
 modules:
     enabled:
         - \DataHubBundle\Tests\Helper\Model
-        - \Pimcore\Tests\Support\Helper\Pimcore:
+        - \OpenDxp\Tests\Support\Helper\OpenDxp:
               connect_db: true
               cache_router: false
-        - \Pimcore\Tests\Support\Helper\ClassManager
+        - \OpenDxp\Tests\Support\Helper\ClassManager

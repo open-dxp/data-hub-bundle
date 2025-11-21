@@ -13,14 +13,14 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace Pimcore\Bundle\DataHubBundle\Tests\GraphQL;
+namespace OpenDxp\Bundle\DataHubBundle\Tests\GraphQL;
 
 use Codeception\Test\Unit;
-use Pimcore\Bundle\DataHubBundle\GraphQL\Resolver\QueryType;
-use Pimcore\Bundle\DataHubBundle\GraphQL\Resolver\TranslationListing;
-use Pimcore\Bundle\DataHubBundle\GraphQL\Service;
-use Pimcore\Model\Translation;
-use Pimcore\Tool;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\QueryType;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\TranslationListing;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use OpenDxp\Model\Translation;
+use OpenDxp\Tool;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ResolveTest extends Unit
@@ -29,7 +29,7 @@ class ResolveTest extends Unit
 
     protected function setUp(): void
     {
-        $this->service = \Pimcore::getContainer()->get("Pimcore\Bundle\DataHubBundle\GraphQL\Service");
+        $this->service = \OpenDxp::getContainer()->get("OpenDxp\Bundle\DataHubBundle\GraphQL\Service");
         $this->addTranslations();
     }
 

@@ -14,7 +14,7 @@
         "fieldtype": "panel",
         "layout": null,
         "border": false,
-        "name": "pimcore_root",
+        "name": "opendxp_root",
         "type": null,
         "region": null,
         "title": null,
