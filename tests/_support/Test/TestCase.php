@@ -13,7 +13,7 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace DataHubBundle\Tests\Test;
+namespace OpenDxp\Bundle\DataHubBundle\Tests\Test;
 
 use Codeception\Test\Unit;
 use OpenDxp\Tests\Support\Util\TestHelper;

@@ -1,7 +1,7 @@
 actor: ModelTester
 modules:
     enabled:
-        - \DataHubBundle\Tests\Helper\Model
+        - \OpenDxp\Bundle\DataHubBundle\Tests\Helper\Model
         - \OpenDxp\Tests\Support\Helper\OpenDxp:
               connect_db: true
               cache_router: false

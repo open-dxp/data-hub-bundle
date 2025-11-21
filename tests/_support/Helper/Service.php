@@ -13,7 +13,7 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace OpenDxp\Bundle\OpenDxpDataHubBundle\Tests\Helper;
+namespace OpenDxp\Bundle\DataHubBundle\Tests\Helper;
 
 use OpenDxp\Tests\Support\Helper\Model;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
