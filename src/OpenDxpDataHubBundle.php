@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Pimcore
+ * OpenDXP
  *
- * This source file is available under two different licenses:
- * - GNU General Public License version 3 (GPLv3)
- * - Pimcore Commercial License (PCL)
+ * This source file is licensed under the GNU General Public License version 3 (GPLv3).
+ *
  * Full copyright and license information is available in
  * LICENSE.md which is distributed with this source code.
  *
- * @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
- * @license    http://www.pimcore.org/license     GPLv3 and PCL
+ * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle;
@@ -36,7 +36,9 @@ class OpenDxpDataHubBundle extends AbstractOpenDxpBundle implements OpenDxpBundl
     use PackageVersionTrait;
 
     public const string RUNTIME_CONTEXT_KEY = 'datahub_context';
+
     public const int NOT_ALLOWED_POLICY_EXCEPTION = 1;
+
     public const int NOT_ALLOWED_POLICY_NULL = 2;
 
     //TODO decide whether we want to return null here or throw an exception (maybe make this configurable?)
