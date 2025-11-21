@@ -42,11 +42,6 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
     private static $_config = null;
 
     /**
-     * @deprecated Will be removed in Pimcore 11
-     */
-    private const LEGACY_FILE = 'datahub-configurations.php';
-
-    /**
      * @deprecated Will be removed as soon as Pimcore 10.6 isn´t supported anymore.
      */
     public const CONFIG_PATH = OPENDXP_CONFIGURATION_DIRECTORY . '/data_hub';

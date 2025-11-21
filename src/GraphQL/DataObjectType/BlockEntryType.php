@@ -17,6 +17,8 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
+use OpenDxp\Bundle\DataHubBundle\DependencyInjection\ContainerAwareInterface;
+use OpenDxp\Bundle\DataHubBundle\DependencyInjection\ContainerAwareTrait;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\BlockDescriptor;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Helper;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
@@ -25,7 +27,7 @@ use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
 use OpenDxp\Model\DataObject\Fieldcollection\Definition;
 
-class BlockEntryType extends ObjectType
+class BlockEntryType extends ObjectType implements ContainerAwareInterface
 {
     /**
      * @var static|null
@@ -33,6 +35,7 @@ class BlockEntryType extends ObjectType
     protected static $instance;
 
     use ServiceTrait;
+    use ContainerAwareTrait;
 
     /** @var ClassDefinition */
     protected $class;

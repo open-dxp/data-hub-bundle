@@ -16,6 +16,7 @@
 namespace OpenDxp\Bundle\DataHubBundle;
 
 use OpenDxp\Bundle\AdminBundle\OpenDxpAdminBundle;
+use OpenDxp\Bundle\DataHubBundle\DependencyInjection\Compiler\ContainerAwarePass;
 use OpenDxp\Bundle\DataHubBundle\DependencyInjection\Compiler\CustomDocumentTypePass;
 use OpenDxp\Bundle\DataHubBundle\DependencyInjection\Compiler\ImportExportLocatorsPass;
 use OpenDxp\Bundle\DataHubBundle\DependencyInjection\OpenDxpDataHubExtension;
@@ -45,6 +46,7 @@ class OpenDxpDataHubBundle extends AbstractOpenDxpBundle implements OpenDxpBundl
 
     public function build(ContainerBuilder $container)
     {
+        $container->addCompilerPass(new ContainerAwarePass());
         $container->addCompilerPass(new ImportExportLocatorsPass());
         $container->addCompilerPass(new CustomDocumentTypePass());
     }
