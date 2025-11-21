@@ -1,15 +1,22 @@
----
-title: Datahub
----
-# Pimcore Datahub
+# OpenDXP Datahub
 
-[<img src="https://sonarcloud.io/images/project_badges/sonarcloud-light.svg" alt="SonarQube Cloud" height="30" />](https://sonarcloud.io/summary/new_code?id=pimcore_data-hub)
+***
 
+## Disclaimer
 
-Pimcore Datahub (data delivery and consumption platform) integrates different input & output channel
-technologies into a simple & easy-to-configure system on top of Pimcore.
+> OpenDXP is a community-driven fork based on the Pimcore® Community Edition (GPLv3).  
+> OpenDXP is independent and maintained by its community and contributors.
+> It is not affiliated with, endorsed by, or sponsored by Pimcore GmbH.   
+> Original credits: [Pimcore GmbH](https://www.pimcore.com)
 
-The basic configuration of Datahub comes with a GraphQL API, which is described in the next sections of this documentation. To use another configuration, Pimcore Datahub can be extended with different adapters (see [Further Information](#further-information)).
+**OpenDXP DataHub Bundle is based on the Pimcore® Community Edition and remains licensed under GPLv3.**
+
+***
+
+OpenDXP Datahub (data delivery and consumption platform) integrates different input & output channel
+technologies into a simple & easy-to-configure system on top of OpenDXP.
+
+The basic configuration of Datahub comes with a GraphQL API, which is described in the next sections of this documentation. To use another configuration, OpenDXP Datahub can be extended with different adapters (see [Further Information](#further-information)).
 
 ![Overview](./doc/img/overview.jpg)
 *Sample presentation of Datahub config when choosing the GraphQL endpoint*
@@ -18,7 +25,7 @@ A short introduction video of an output channel based on the GraphQL query langu
 
 ## Features in a Nutshell
 - Easy-to-configure interface layer for data delivery and consumption
-- Tool of choice to connect Pimcore to any other systems and applications besides internal PHP API - whether they are backend applications like ERP systems or frontend applications like your storefront
+- Tool of choice to connect OpenDXP to any other systems and applications besides internal PHP API - whether they are backend applications like ERP systems or frontend applications like your storefront
 - Multiple endpoints definition for different use cases and target/source systems
 - Central and easy-to-use GUI to transform and prepare data for defined endpoints
 - To-be-exposed data restriction to endpoints by defining workspaces and schemas.
@@ -31,12 +38,37 @@ A short introduction video of an output channel based on the GraphQL query langu
 - [Testing](./doc/30_Testing.md)
 
 ## Further Information
-On Pimcore Datahub adapters:
+On OpenDXP Datahub adapters:
 - [Datahub Simple Rest API](https://pimcore.com/docs/platform/Datahub_Simple_Rest/)
 - [Datahub File Export](https://pimcore.com/docs/platform/Datahub_File_Export/)
 - [Datahub Productsup](https://pimcore.com/docs/platform/Datahub_Productsup/)
 - [Datahub CI Hub](https://pimcore.com/docs/platform/Datahub_CI_Hub/)
-  
-## Contributions
-As Pimcore Datahub is a community project, any contributions highly appreciated.
-For details see our [Contributing guide](https://github.com/pimcore/data-hub/blob/master/CONTRIBUTING.md).
+
+***
+
+## Upstream Origin & Version Transparency
+This project is a fork of the [Pimcore data-hub (d5619f3 / v1.9.4)](https://github.com/pimcore/data-hub/tree/d5619f34c6c1c0dfdc77230b3e77a4e5e75fa96a), which is © Pimcore GmbH and licensed under GPLv3.
+
+## License
+Licensed under the GNU General Public License v3.0 (GPLv3). For details, please see [LICENSE.md](LICENSE.md).
+
+## Copyright
+© Pimcore GmbH  
+© 2025 OpenDXP Contributors — GPLv3
+
+## Trademarks
+Pimcore® is a registered [trademark](https://www.trademarkelite.com/europe/trademark/trademark-detail/009309841/PIMCORE) of Pimcore GmbH.
+Any use of the Pimcore® mark in this repository is purely descriptive to identify the original upstream project.
+
+***
+
+## Contact
+For inquiries, suggestions, or contributions, feel free to reach us at contact@opendxp.ch.
+
+## About
+OpenDXP is a community-driven project initiated by [DACHCOM.DIGITAL](https://www.dachcom.com/de-ch) (Rheineck, Switzerland) and maintained by its community and contributors.
+OpenDXP is independent and not affiliated with Pimcore GmbH.
+
+The project’s purpose is to preserve and maintain a GPLv3‑licensed codebase for community use.
+
+It is **not positioned as a competitor** to products or services of Pimcore GmbH and does **not** purport to replace or supersede any Pimcore offering.   

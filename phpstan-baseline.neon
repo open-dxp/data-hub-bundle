@@ -6,32 +6,32 @@ parameters:
 			path: src/DependencyInjection/Configuration.php
 
 		-
-			message: "#^Call to static method addConfigLocationWithWriteTargetNodes\\(\\)\\ on an unknown class Pimcore\\\\Bundle\\\\CoreBundle\\\\DependencyInjection\\\\ConfigurationHelper.$#"
+			message: "#^Call to static method addConfigLocationWithWriteTargetNodes\\(\\)\\ on an unknown class OpenDxp\\\\Bundle\\\\CoreBundle\\\\DependencyInjection\\\\ConfigurationHelper.$#"
 			count: 1
 			path: src/DependencyInjection/Configuration.php
 
 		-
-			message: "#^Call to an undefined static method Pimcore\\\\Bundle\\\\CoreBundle\\\\DependencyInjection\\\\ConfigurationHelper\\:\\:getConfigNodeFromSymfonyTree\\(\\)\\.$#"
+			message: "#^Call to an undefined static method OpenDxp\\\\Bundle\\\\CoreBundle\\\\DependencyInjection\\\\ConfigurationHelper\\:\\:getConfigNodeFromSymfonyTree\\(\\)\\.$#"
 			count: 1
-			path: src/DependencyInjection/PimcoreDataHubExtension.php
+			path: src/DependencyInjection/OpenDxpDataHubExtension.php
 
 		-
-			message: "#^Call to an undefined static method Pimcore\\\\Bundle\\\\CoreBundle\\\\DependencyInjection\\\\ConfigurationHelper\\:\\:getSymfonyConfigFiles\\(\\)\\.$#"
+			message: "#^Call to an undefined static method OpenDxp\\\\Bundle\\\\CoreBundle\\\\DependencyInjection\\\\ConfigurationHelper\\:\\:getSymfonyConfigFiles\\(\\)\\.$#"
 			count: 1
-			path: src/DependencyInjection/PimcoreDataHubExtension.php
+			path: src/DependencyInjection/OpenDxpDataHubExtension.php
 
 		-
-			message: "#^Call to an undefined static method Pimcore\\\\Config\\\\LocationAwareConfigRepository\\:\\:getStorageConfigurationCompatibilityLayer\\(\\)\\.$#"
+			message: "#^Call to an undefined static method OpenDxp\\\\Config\\\\LocationAwareConfigRepository\\:\\:getStorageConfigurationCompatibilityLayer\\(\\)\\.$#"
 			count: 1
 			path: src/Configuration/Dao.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\AssetType\\\\AssetFolderType has an unused parameter \\$config\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\AssetType\\\\AssetFolderType has an unused parameter \\$config\\.$#"
 			count: 1
 			path: src/GraphQL/AssetType/AssetFolderType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\AssetType\\\\AssetInputType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\AssetType\\\\AssetInputType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/AssetType/AssetInputType.php
 
@@ -41,7 +41,7 @@ parameters:
 			path: src/GraphQL/AssetType/AssetTreeType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\AssetType\\\\AssetType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\AssetType\\\\AssetType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/AssetType/AssetType.php
 
@@ -76,7 +76,7 @@ parameters:
 			path: src/GraphQL/ClassificationstoreFeatureType/StringType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\ClassificationstoreType\\\\Group has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\ClassificationstoreType\\\\Group has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/ClassificationstoreType/Group.php
 
@@ -86,37 +86,37 @@ parameters:
 			path: src/GraphQL/DataObjectMutationFieldConfigGenerator/Fieldcollections.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getFieldDefinition\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getFieldDefinition\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectQueryFieldConfigGenerator/Block.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getOwnerClassId\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getOwnerClassId\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectQueryFieldConfigGenerator/Helper/ReverseManyToManyObjects.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getOwnerFieldName\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getOwnerFieldName\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectQueryFieldConfigGenerator/Helper/ReverseManyToManyObjects.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getAssetsAllowed\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getAssetsAllowed\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/AbstractRelationsType.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getClasses\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getClasses\\(\\)\\.$#"
 			count: 2
 			path: src/GraphQL/DataObjectType/AbstractRelationsType.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getDocumentsAllowed\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getDocumentsAllowed\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/AbstractRelationsType.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getObjectsAllowed\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\\\Data\\:\\:getObjectsAllowed\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/AbstractRelationsType.php
 
@@ -126,7 +126,7 @@ parameters:
 			path: src/GraphQL/DataObjectType/AbstractRelationsType.php
 
 		-
-			message: "#^Instanceof between Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition and Pimcore\\\\Model\\\\DataObject\\\\Fieldcollection\\\\Definition will always evaluate to false\\.$#"
+			message: "#^Instanceof between OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition and OpenDxp\\\\Model\\\\DataObject\\\\Fieldcollection\\\\Definition will always evaluate to false\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/BlockEntryType.php
 
@@ -136,7 +136,7 @@ parameters:
 			path: src/GraphQL/DataObjectType/BlockEntryType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\ElementDescriptorInputType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\ElementDescriptorInputType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/ElementDescriptorInputType.php
 
@@ -151,7 +151,7 @@ parameters:
 			path: src/GraphQL/DataObjectType/GeoboundsType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\GeopointInputType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\GeopointInputType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/GeopointInputType.php
 
@@ -161,12 +161,12 @@ parameters:
 			path: src/GraphQL/DataObjectType/GeopointType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\HotspotType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\HotspotType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/HotspotType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\InputType\\\\AbstractRelationInputType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\InputType\\\\AbstractRelationInputType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/InputType/AbstractRelationInputType.php
 
@@ -186,22 +186,22 @@ parameters:
 			path: src/GraphQL/DataObjectType/MergeType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\ObjectFolderType has an unused parameter \\$config\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\ObjectFolderType has an unused parameter \\$config\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/ObjectFolderType.php
 
 		-
-			message: "#^Instanceof between Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\|null and Pimcore\\\\Model\\\\DataObject\\\\Fieldcollection\\\\Definition will always evaluate to false\\.$#"
+			message: "#^Instanceof between OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\|null and OpenDxp\\\\Model\\\\DataObject\\\\Fieldcollection\\\\Definition will always evaluate to false\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/ObjectMetadataType.php
 
 		-
-			message: "#^Instanceof between Pimcore\\\\Model\\\\DataObject\\\\ClassDefinition\\|null and Pimcore\\\\Model\\\\DataObject\\\\Objectbrick\\\\Definition will always evaluate to false\\.$#"
+			message: "#^Instanceof between OpenDxp\\\\Model\\\\DataObject\\\\ClassDefinition\\|null and OpenDxp\\\\Model\\\\DataObject\\\\Objectbrick\\\\Definition will always evaluate to false\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/ObjectMetadataType.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Model\\\\DataObject\\\\AbstractObject\\:\\:getClass\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Model\\\\DataObject\\\\AbstractObject\\:\\:getClass\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/ObjectTreeType.php
 
@@ -211,12 +211,12 @@ parameters:
 			path: src/GraphQL/DataObjectType/ObjectTreeType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\PimcoreObjectType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\OpenDxpObjectType has an unused parameter \\$context\\.$#"
 			count: 1
-			path: src/GraphQL/DataObjectType/PimcoreObjectType.php
+			path: src/GraphQL/DataObjectType/OpenDxpObjectType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\QuantityValueType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\QuantityValueType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/QuantityValueType.php
 
@@ -226,12 +226,12 @@ parameters:
 			path: src/GraphQL/DataObjectType/QuantityValueUnitType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\UrlSlugType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectType\\\\UrlSlugType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DataObjectType/UrlSlugType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentElementType\\\\AreablockDataInputType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentElementType\\\\AreablockDataInputType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentElementType/AreablockDataInputType.php
 
@@ -301,7 +301,7 @@ parameters:
 			path: src/GraphQL/DocumentElementType/RelationsType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentElementType\\\\ScheduledblockDataInputType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentElementType\\\\ScheduledblockDataInputType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentElementType/ScheduledblockDataInputType.php
 
@@ -336,37 +336,37 @@ parameters:
 			path: src/GraphQL/DocumentElementType/WysiwygType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\DocumentFolderType has an unused parameter \\$config\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\DocumentFolderType has an unused parameter \\$config\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentType/DocumentFolderType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\DocumentLinkInputType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\DocumentLinkInputType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentType/DocumentLinkInputType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\DocumentPageInputType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\DocumentPageInputType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentType/DocumentPageInputType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\EmailType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\EmailType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentType/EmailType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\HardlinkType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\HardlinkType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentType/HardlinkType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\LinkType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\LinkType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentType/LinkType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\PageSnippetType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DocumentType\\\\PageSnippetType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/DocumentType/PageSnippetType.php
 
@@ -386,17 +386,17 @@ parameters:
 			path: src/GraphQL/General/AnyTargetType.php
 
 		-
-			message: "#^Constructor of class Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\General\\\\FolderType has an unused parameter \\$context\\.$#"
+			message: "#^Constructor of class OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\General\\\\FolderType has an unused parameter \\$context\\.$#"
 			count: 1
 			path: src/GraphQL/General/FolderType.php
 
 		-
-			message: "#^Static property Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\Mutation\\\\MutationType\\:\\:\\$documentElementTypes \\(array\\) does not accept GraphQL\\\\Type\\\\Definition\\\\InputObjectType\\.$#"
+			message: "#^Static property OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\Mutation\\\\MutationType\\:\\:\\$documentElementTypes \\(array\\) does not accept GraphQL\\\\Type\\\\Definition\\\\InputObjectType\\.$#"
 			count: 1
 			path: src/GraphQL/Mutation/MutationType.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\Query\\\\Operator\\\\OperatorInterface\\:\\:setGraphQlService\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\Query\\\\Operator\\\\OperatorInterface\\:\\:setGraphQlService\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/Mutation/Operator/Factory/DefaultMutationOperatorFactoryBase.php
 
@@ -406,17 +406,17 @@ parameters:
 			path: src/GraphQL/PropertyType/ObjectsType.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectMutationFieldConfigGeneratorInterface\\:\\:getGraphQlMutationFieldConfig\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectMutationFieldConfigGeneratorInterface\\:\\:getGraphQlMutationFieldConfig\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/Service.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectQueryFieldConfigGeneratorInterface\\:\\:getGraphQlOperatorConfig\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectQueryFieldConfigGeneratorInterface\\:\\:getGraphQlOperatorConfig\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/Service.php
 
 		-
-			message: "#^Call to an undefined method Pimcore\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectQueryFieldConfigGeneratorInterface\\:\\:getGraphQlQueryOperatorConfig\\(\\)\\.$#"
+			message: "#^Call to an undefined method OpenDxp\\\\Bundle\\\\DataHubBundle\\\\GraphQL\\\\DataObjectQueryFieldConfigGeneratorInterface\\:\\:getGraphQlQueryOperatorConfig\\(\\)\\.$#"
 			count: 1
 			path: src/GraphQL/Service.php
 
