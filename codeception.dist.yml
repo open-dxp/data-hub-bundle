@@ -1,4 +1,4 @@
-namespace: DataHubBundle\Tests
+namespace: OpenDxp\Bundle\DataHubBundle\Tests
 actor: Tester
 paths:
     tests: tests
