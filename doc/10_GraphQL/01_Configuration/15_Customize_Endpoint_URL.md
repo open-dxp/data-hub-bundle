@@ -20,10 +20,10 @@ Here is a configuration example showing how to override the standard endpoint:
 # Changing URL to the explorer environement
 admin_opendxpdatahub_config:
   path: /opendxp-datahub-webservices-my-endpoint/explorer/{clientname}
-  defaults: { _controller: Pimcore\Bundle\DataHubBundle\Controller\GraphQLExplorerController::explorerAction }
+  defaults: { _controller: OpenDxp\Bundle\DataHubBundle\Controller\GraphQLExplorerController::explorerAction }
 
 # Changing endoint URL
 admin_opendxpdatahub_webservice:
   path: /opendxp-graphql-webservices-my-endpoint/{clientname}
-  defaults: { _controller: Pimcore\Bundle\DataHubBundle\Controller\WebserviceController::webonyxAction }
+  defaults: { _controller: OpenDxp\Bundle\DataHubBundle\Controller\WebserviceController::webonyxAction }
 ```

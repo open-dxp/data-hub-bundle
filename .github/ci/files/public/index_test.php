@@ -12,13 +12,13 @@
  * @license    http://www.pimcore.org/license     GPLv3 and PEL
  */
 
-use Pimcore\Tool;
+use OpenDxp\Tool;
 use Symfony\Component\HttpFoundation\Request;
 
 include __DIR__ . "/../vendor/autoload_runtime.php";
 
 return function (array $context) {
-    define('PIMCORE_PROJECT_ROOT', __DIR__ . '/..');
+    define('OPENDXP_PROJECT_ROOT', __DIR__ . '/..');
     define('APP_ENV', 'test');
 
     $request = Request::createFromGlobals();
@@ -27,9 +27,9 @@ return function (array $context) {
 // request stack available yet
     Tool::setCurrentRequest($request);
 
-    \Pimcore\Bootstrap::bootstrap();
+    \OpenDxp\Bootstrap::bootstrap();
     /** @var \Pimcore\Kernel $kernel */
-    $kernel = \Pimcore\Bootstrap::kernel();
+    $kernel = \OpenDxp\Bootstrap::kernel();
 
 // reset current request - will be read from request stack from now on
     Tool::setCurrentRequest(null);

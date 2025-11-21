@@ -9,13 +9,14 @@
  * Full copyright and license information is available in
  * LICENSE.md which is distributed with this source code.
  *
- *  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
- *  @license    http://www.pimcore.org/license     GPLv3 and PCL
+ * @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
+ * @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
 namespace OpenDxp\Bundle\DataHubBundle;
 
 use OpenDxp\Bundle\AdminBundle\OpenDxpAdminBundle;
+use OpenDxp\Bundle\DataHubBundle\DependencyInjection\Compiler\ContainerAwarePass;
 use OpenDxp\Bundle\DataHubBundle\DependencyInjection\Compiler\CustomDocumentTypePass;
 use OpenDxp\Bundle\DataHubBundle\DependencyInjection\Compiler\ImportExportLocatorsPass;
 use OpenDxp\Bundle\DataHubBundle\DependencyInjection\OpenDxpDataHubExtension;
@@ -34,17 +35,16 @@ class OpenDxpDataHubBundle extends AbstractOpenDxpBundle implements OpenDxpBundl
     use BundleAdminClassicTrait;
     use PackageVersionTrait;
 
-    const string RUNTIME_CONTEXT_KEY = 'datahub_context';
-
-    const int NOT_ALLOWED_POLICY_EXCEPTION = 1;
-
-    const int NOT_ALLOWED_POLICY_NULL = 2;
+    public const string RUNTIME_CONTEXT_KEY = 'datahub_context';
+    public const int NOT_ALLOWED_POLICY_EXCEPTION = 1;
+    public const int NOT_ALLOWED_POLICY_NULL = 2;
 
     //TODO decide whether we want to return null here or throw an exception (maybe make this configurable?)
     public static int $notAllowedPolicy = self::NOT_ALLOWED_POLICY_NULL;
 
     public function build(ContainerBuilder $container)
     {
+        $container->addCompilerPass(new ContainerAwarePass());
         $container->addCompilerPass(new ImportExportLocatorsPass());
         $container->addCompilerPass(new CustomDocumentTypePass());
     }

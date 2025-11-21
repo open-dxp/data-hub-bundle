@@ -13,11 +13,11 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace Pimcore\Tests\Test;
+namespace OpenDxp\Tests\Test;
 
 use Codeception\Test\Unit;
-use Pimcore\Tests\Support\Helper\DataType\Calculator;
-use Pimcore\Tests\Support\ModelTester;
+use OpenDxp\Tests\Support\Helper\DataType\Calculator;
+use OpenDxp\Tests\Support\ModelTester;
 
 /**
  * @property ModelTester $tester
@@ -28,7 +28,7 @@ abstract class ModelTestCase extends Unit
     {
         parent::setUp();
 
-        \Pimcore::getContainer()->set('test.calculatorservice', new Calculator());
+        \OpenDxp::getContainer()->set('test.calculatorservice', new Calculator());
 
         if ($this->needsDb()) {
             $this->setUpTestClasses();

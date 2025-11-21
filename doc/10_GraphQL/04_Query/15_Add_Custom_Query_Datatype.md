@@ -9,7 +9,7 @@ To add a type definition, add a section similar to this one to your `services.ym
 
 ```yaml
     opendxp.datahub.graphql.dataobjectquerytypegenerator_datatype_mycustomdatatype:
-        class: Pimcore\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator\MyCustomDatatype
+        class: OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator\MyCustomDatatype
         tags:
             - { name: opendxp.datahub.graphql.dataobjectquerytypegenerator, id: typegenerator_dataobjectquerydatatype_mycustomdatatype }                        
 ```

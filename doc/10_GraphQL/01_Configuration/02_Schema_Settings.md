@@ -34,7 +34,7 @@ Here you can decide if Data Objects for the selected class can be created, updat
 
 :::caution
 
-Be aware that a Data Object deleted from an endpoint will be definitively deleted of Pimcore.
+Be aware that a Data Object deleted from an endpoint will be definitively deleted of OpenDxp.
 
 :::
 

@@ -13,17 +13,17 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace DataHubBundle\Tests\Helper;
+namespace OpenDxp\Bundle\DataHubBundle\Tests\Helper;
 
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
 use Doctrine\DBAL\Exception;
-use Pimcore\Bundle\DataHubBundle\Installer;
-use Pimcore\Tests\Support\Helper\AbstractDefinitionHelper;
-use Pimcore\Tests\Support\Helper\ClassManager;
-use Pimcore\Tests\Support\Helper\Pimcore;
-use Pimcore\Tests\Support\Util\Autoloader;
+use OpenDxp\Bundle\DataHubBundle\Installer;
+use OpenDxp\Tests\Support\Helper\AbstractDefinitionHelper;
+use OpenDxp\Tests\Support\Helper\ClassManager;
+use OpenDxp\Tests\Support\Helper\OpenDxp;
+use OpenDxp\Tests\Support\Util\Autoloader;
 
 class Model extends AbstractDefinitionHelper
 {
@@ -35,12 +35,12 @@ class Model extends AbstractDefinitionHelper
     public function _beforeSuite($settings = []): void
     {
         /** @var Pimcore $pimcoreModule */
-        $pimcoreModule = $this->getModule('\\' . Pimcore::class);
+        $opendxpModule = $this->getModule('\\' . OpenDxp::class);
 
         $this->debug('[DataHub] Running datahub installer');
 
         //create migrations table in order to allow installation - needed for SettingsStoreAware Installer
-        \Pimcore\Db::get()->exec('
+        \OpenDxp\Db::get()->exec('
         create table migration_versions
         (
             version varchar(1024) not null
@@ -53,7 +53,7 @@ class Model extends AbstractDefinitionHelper
         ');
 
         // install datahub bundle
-        $installer = $pimcoreModule->getContainer()->get(Installer::class);
+        $installer = $opendxpModule->getContainer()->get(Installer::class);
         $installer->install();
 
         $this->initializeDefinitions();
@@ -75,7 +75,7 @@ class Model extends AbstractDefinitionHelper
     public function prepareData($class)
     {
         $seeds = [10, 11, 42, 53, 65, 78, 85];
-        $entity = 'Pimcore\Model\DataObject\\'.$class->name;
+        $entity = 'OpenDxp\Model\DataObject\\'.$class->name;
 
         foreach ($seeds as $key => $seed) {
             $object = new $entity();

@@ -13,10 +13,10 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace Pimcore\Bundle\DataHubBundle\Tests\GraphQL\Traits;
+namespace OpenDxp\Bundle\DataHubBundle\Tests\GraphQL\Traits;
 
 use Codeception\Test\Unit;
-use Pimcore\Bundle\DataHubBundle\GraphQL\Traits\ElementIdentificationTrait;
+use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ElementIdentificationTrait;
 
 class TestTrait
 {
@@ -49,7 +49,7 @@ class TestTrait
 
 class ElementIdentificationTraitTest extends Unit
 {
-    const TRAIT_TO_TEST = '\Pimcore\Bundle\DataHubBundle\GraphQL\Traits\ElementIdentificationTrait';
+    const TRAIT_TO_TEST = '\OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ElementIdentificationTrait';
 
     const TEST_TYPE = 'object';
 

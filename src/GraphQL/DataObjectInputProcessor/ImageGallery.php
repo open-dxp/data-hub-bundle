@@ -61,11 +61,7 @@ class ImageGallery extends Base
 
             if (is_array($newValue['images'])) {
                 foreach ($newValue['images'] as $imageValue) {
-                    $hotspotImage = new Hotspotimage($imageValue['id']);
-
-                    if ($hotspotImage instanceof Hotspotimage) {
-                        $hotspotImages[] = $hotspotImage;
-                    }
+                    $hotspotImages[] = new Hotspotimage($imageValue['id']);
                 }
 
                 $newGallery = new \OpenDxp\Model\DataObject\Data\ImageGallery($hotspotImages);

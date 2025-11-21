@@ -23,7 +23,7 @@ use OpenDxp\Model\Asset\Video;
 
 class AssetFieldHelper extends AbstractFieldHelper
 {
-    public function getVideoThumbnail(Asset\Video $asset, string | Video\Thumbnail\Config $thumbNailConfig, string $thumbNailFormat = null): mixed
+    public function getVideoThumbnail(Asset\Video $asset, string | Video\Thumbnail\Config $thumbNailConfig, ?string $thumbNailFormat = null): mixed
     {
         if (isset($thumbNailFormat) && $thumbNailFormat !== 'image') {
             $value = $asset->getThumbnail($thumbNailConfig);
@@ -44,7 +44,7 @@ class AssetFieldHelper extends AbstractFieldHelper
     public function getImageDocumentThumbnail(
         Asset $asset,
         string | Image\Thumbnail\Config $thumbNailConfig,
-        string $thumbNailFormat = null,
+        ?string $thumbNailFormat = null,
         bool $deferred = false
     ): mixed {
         $thumb = null;
@@ -61,11 +61,7 @@ class AssetFieldHelper extends AbstractFieldHelper
             $thumb = $asset->getThumbnail($thumbNailConfig, $deferred);
         }
 
-        if (
-            !($asset instanceof Asset\Video) &&
-            isset($thumb, $thumbNailFormat) &&
-            method_exists($thumb, 'getAsFormat')
-        ) {
+        if (!$asset instanceof Asset\Video && isset($thumb, $thumbNailFormat)) {
             $thumb = $thumb->getAsFormat($thumbNailFormat);
         }
 
@@ -75,7 +71,7 @@ class AssetFieldHelper extends AbstractFieldHelper
     public function getAssetThumbnail(
         Asset $asset,
         string | Image\Thumbnail\Config | Video\Thumbnail\Config $thumbNailConfig,
-        string $thumbNailFormat = null,
+        ?string $thumbNailFormat = null,
         bool $deferred = false
     ): mixed {
         if (($asset instanceof Asset\Video) && (is_string($thumbNailConfig) || $thumbNailConfig instanceof Video\Thumbnail\Config)) {

@@ -40,7 +40,7 @@ The configuration user interface utilizes the `LocationAwareConfigRepository` fo
 Config files (yaml), which are only getting revalidated in debug mode. So if you're changing configs in production you
 won't see any update, because these configs are read only.
 
-Details also see [Pimcore Docs](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Deployment/Configuration_Environments.html#page_Configuration-Storage-Locations-Fallbacks).
+Details also see [OpenDxp Docs](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Deployment/Configuration_Environments.html#page_Configuration-Storage-Locations-Fallbacks).
 
 #### Example
 ```yaml

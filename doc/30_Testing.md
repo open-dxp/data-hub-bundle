@@ -10,7 +10,7 @@ composer install
 vendor/bin/phpstan analyse --memory-limit=-1
 ´´´
 
-### Pimcore context
+### OpenDxp context
 
 ´´´bash
 composer require "phpstan/phpstan:^1.4" --dev

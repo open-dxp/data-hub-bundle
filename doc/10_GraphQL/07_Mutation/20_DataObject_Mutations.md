@@ -21,7 +21,7 @@ Note that for `Create` and `Update` operate you can query the updated data using
 
 ## Supported Mutation Datatypes
 
-Also check out the Pimcore's [data type documentation](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Objects/Object_Classes/Data_Types/index.html).
+Also check out the OpenDxp's [data type documentation](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Objects/Object_Classes/Data_Types/index.html).
 For supported mutation datatypes please check the `DataObjectMutationFieldConfigGenerator` folder in `src/GraphQL/`.
 
 ## Supported Mutation Operators

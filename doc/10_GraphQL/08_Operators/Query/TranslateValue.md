@@ -2,7 +2,7 @@
 
 Translates the values of the selected fields. For translation the default locale is used.
 
-Similar to Pimcore's [Translate Value](https://docs.opendxp.io/docs/core-framework/User_Documentation/DataObjects/Grid_Configuration_Operators/Operators/TranslateValue.html). For a detailed example see [Website Translations](../../04_Query/11_Query_Samples/27_Sample_Translate_Values.md).
+Similar to OpenDxp's [Translate Value](https://docs.opendxp.io/docs/core-framework/User_Documentation/DataObjects/Grid_Configuration_Operators/Operators/TranslateValue.html). For a detailed example see [Website Translations](../../04_Query/11_Query_Samples/27_Sample_Translate_Values.md).
 
 ## Configuration
 
@@ -21,7 +21,7 @@ Similar to Pimcore's [Translate Value](https://docs.opendxp.io/docs/core-framewo
 
 :::info
 
-Note: Make sure to add the translation key to the translations in the Pimcore backend, using the admin domain.
+Note: Make sure to add the translation key to the translations in the OpenDxp backend, using the admin domain.
 
 :::
 

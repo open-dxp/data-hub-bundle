@@ -2,7 +2,7 @@
 
 ## Suppored Data Types
 
-Also check out the Pimcore's [data type documentation](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Objects/Object_Classes/Data_Types/index.html). 
+Also check out the OpenDxp's [data type documentation](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Objects/Object_Classes/Data_Types/index.html). 
 
 * Advanced Many-to-Many Relation
 * Advanced Many-to-Many Object Relation
@@ -147,7 +147,7 @@ Sorting can be applied as query parameters, for example sort by name, descending
 
 #### Filtering
 
-You can use Pimcore's webservice filter logic as described 
+You can use OpenDxp's webservice filter logic as described 
 [here](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Web_Services/Query_Filters.html) 
 for filtering listing requests.
 

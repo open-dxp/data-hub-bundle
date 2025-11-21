@@ -1,7 +1,7 @@
 # Events
 
 Datahub GraphQL events are based on the Symfony event dispatcher, and are triggered during execution of Query and Mutation requests.
-[Read more](https://docs.opendxp.io/docs/core-framework/Extending_OpenDxp/Event_API_and_Event_Manager) about events on Pimcore documentation.
+[Read more](https://docs.opendxp.io/docs/core-framework/Extending_OpenDxp/Event_API_and_Event_Manager) about events on OpenDxp documentation.
 
 All Datahub events are defined as a constant on component classes:
 - [Query](https://github.com/open-dxp/data-hub-bundle/blob/1.x/src/Event/GraphQL/QueryEvents.php)
@@ -35,9 +35,9 @@ services:
 <?php
 
 namespace AppBundle\EventListener;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\ExecutorEvents;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\ExecutorEvent;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\ExecutorResultEvent;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\ExecutorEvents;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\ExecutorEvent;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\ExecutorResultEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class GraphQlSubscriber implements EventSubscriberInterface
@@ -80,9 +80,9 @@ class GraphQlSubscriber implements EventSubscriberInterface
 <?php
 
 namespace AppBundle\EventListener;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\MutationEvents;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\MutationTypeEvent;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\QueryTypeEvent;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\MutationEvents;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\MutationTypeEvent;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\QueryTypeEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class GraphQlSubscriber implements EventSubscriberInterface
@@ -124,9 +124,9 @@ class GraphQlSubscriber implements EventSubscriberInterface
 <?php
 
 namespace AppBundle\EventListener;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\MutationEvents;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\MutationTypeEvent;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\QueryTypeEvent;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\MutationEvents;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\MutationTypeEvent;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\QueryTypeEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use GraphQL\Type\Definition\Type;
 
@@ -186,9 +186,9 @@ class GraphQlSubscriber implements EventSubscriberInterface
 <?php
 
 namespace AppBundle\EventListener;
-use Pimcore\Model\DataObject\Service;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\ListingEvents;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\ListingEvent;
+use OpenDxp\Model\DataObject\Service;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\ListingEvents;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\ListingEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class GraphQlSubscriber implements EventSubscriberInterface
@@ -235,9 +235,9 @@ Uncacheable headers, such as CORS Access-Control-Allow-Origin, are removed from 
 <?php
 
 namespace AppBundle\EventListener;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\OutputCachePreLoadEvent;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\Model\OutputCachePreSaveEvent;
-use Pimcore\Bundle\DataHubBundle\Event\GraphQL\OutputCacheEvents;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\OutputCachePreLoadEvent;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\OutputCachePreSaveEvent;
+use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\OutputCacheEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class GraphqlListener implements EventSubscriberInterface

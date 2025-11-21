@@ -16,7 +16,7 @@
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Operator;
 
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
-use OpenDxp\DataObject\GridColumnConfig\ConfigElementInterface;
+use OpenDxp\Bundle\AdminBundle\DataObject\GridColumnConfig\ConfigElementInterface;
 
 abstract class AbstractOperator implements OperatorInterface
 {

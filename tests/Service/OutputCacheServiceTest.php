@@ -13,7 +13,7 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace Pimcore\Bundle\DataHubBundle\Service;
+namespace OpenDxp\Bundle\DataHubBundle\Service;
 
 use Codeception\Test\Unit;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
@@ -152,13 +152,13 @@ class OutputCacheServiceTest extends Unit
         // Arrange
         $response = new JsonResponse(['data' => 123]);
         $this->sut->method('loadFromCache')->willReturn($response);
-        $this->request->query->set('pimcore_nocache', 'true');
+        $this->request->query->set('opendxp_nocache', 'true');
 
         // Act
         $cacheItem = $this->sut->load($this->request);
 
         // Assert
-        $this->assertTrue(\Pimcore::inDebugMode());
+        $this->assertTrue(\OpenDxp::inDebugMode());
         $this->assertEquals(null, $cacheItem);
     }
 }

@@ -82,7 +82,7 @@ Sorting can be applied as query parameters, for example sort by filename, descen
 
 #### Filtering
 
-You can use Pimcore's webservice filter logic as described 
+You can use OpenDxp's webservice filter logic as described 
 [here](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Web_Services/Query_Filters.html) 
 for filtering listing requests.
 

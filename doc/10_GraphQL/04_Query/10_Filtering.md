@@ -1,6 +1,6 @@
 # Filter Listings
 
-You can use __Pimcore's webservice filter logic__
+You can use __OpenDxp's webservice filter logic__
 as described [here](https://docs.opendxp.io/docs/core-framework/Development_Documentation/Web_Services/Query_Filters.html)
 to filter listing.
 

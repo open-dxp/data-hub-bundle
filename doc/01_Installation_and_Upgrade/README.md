@@ -2,7 +2,7 @@
 
 ## Bundle Installation
 
-To install Pimcore Datahub follow the three steps below:
+To install OpenDxp Datahub follow the three steps below:
 
 1. Install the required dependencies:
 ```bash
@@ -12,12 +12,12 @@ composer require open-dxp/data-hub-bundle
 2. Make sure the bundle is enabled in the `config/bundles.php` file. The following lines should be added:
 
 ```php
-use Pimcore\Bundle\DataHubBundle\PimcoreDataHubBundle;
+use OpenDxp\Bundle\DataHubBundle\OpenDxpDataHubBundle;
 // ...
 
 return [
     // ...
-    PimcoreDataHubBundle::class => ['all' => true],
+    OpenDxpDataHubBundle::class => ['all' => true],
     // ...
 ];
 ```
@@ -25,7 +25,7 @@ return [
 3. Install the bundle:
 
 ```bash
-bin/console opendxp:bundle:install PimcoreDataHubBundle
+bin/console opendxp:bundle:install OpenDxpDataHubBundle
 ```
 
 ## Required Backend User Permission

@@ -13,7 +13,7 @@
  *  @license    http://www.pimcore.org/license     GPLv3 and PCL
  */
 
-namespace DataHubBundle\Tests;
+namespace OpenDxp\Bundle\DataHubBundle\Tests;
 
 /**
  * Inherited Methods

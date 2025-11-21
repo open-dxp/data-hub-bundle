@@ -47,7 +47,7 @@ services:
     #     tags:
     #         - { name: kernel.event_listener, event: pimcore.dataobject.preUpdate, method: onObjectPreUpdate }
 
-    Pimcore\Bundle\DataHubBundle\Installer:
+    OpenDxp\Bundle\DataHubBundle\Installer:
         public: true
         arguments:
-            $bundle: "@=service('kernel').getBundle('PimcoreDataHubBundle')"
+            $bundle: "@=service('kernel').getBundle('OpenDxpDataHubBundle')"

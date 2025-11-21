@@ -26,7 +26,7 @@ use OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Operator\Factory\OperatorFactoryI
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Value\DefaultValue;
 use OpenDxp\Bundle\DataHubBundle\OpenDxpDataHubBundle;
 use OpenDxp\Cache\RuntimeCache;
-use OpenDxp\DataObject\GridColumnConfig\ConfigElementInterface;
+use OpenDxp\Bundle\AdminBundle\DataObject\GridColumnConfig\ConfigElementInterface;
 use OpenDxp\Localization\LocaleServiceInterface;
 use OpenDxp\Model\Asset;
 use OpenDxp\Model\DataObject\AbstractObject;
@@ -254,7 +254,7 @@ class Service
      *
      * @return callable(mixed $value, array $args, array $context, \GraphQL\Type\Definition\ResolveInfo $info): mixed
      */
-    public function buildDataObjectDataQueryResolver($attribute, Data $fieldDefinition = null, ClassDefinition $class = null)
+    public function buildDataObjectDataQueryResolver($attribute, ?Data $fieldDefinition = null, ?ClassDefinition $class = null)
     {
         $name = $fieldDefinition->getFieldtype();
         /** @var DataObjectQueryFieldConfigGeneratorInterface $factory */
@@ -269,7 +269,7 @@ class Service
      *
      * @return mixed
      */
-    public function buildDataObjectDataQueryType(Data $fieldDefinition = null, ClassDefinition $class = null, $container = null)
+    public function buildDataObjectDataQueryType(?Data $fieldDefinition = null, ?ClassDefinition $class = null, $container = null)
     {
         $name = $fieldDefinition->getFieldtype();
         /** @var DataObjectQueryFieldConfigGeneratorInterface $factory */
@@ -346,7 +346,7 @@ class Service
      *
      * @return mixed
      */
-    public function buildDataObjectQueryOperatorConfig($typeName, $nodeDef, ClassDefinition $class = null, $container = null, $params = [])
+    public function buildDataObjectQueryOperatorConfig($typeName, $nodeDef, ?ClassDefinition $class = null, $container = null, $params = [])
     {
         $typeName = strtolower($typeName);
         /** @var DataObjectQueryFieldConfigGeneratorInterface $factory */
@@ -366,7 +366,7 @@ class Service
      *
      * @throws \Exception
      */
-    public function buildDataObjectMutationOperatorConfig($typeName, $nodeDef, ClassDefinition $class = null, $container = null, $params = [])
+    public function buildDataObjectMutationOperatorConfig($typeName, $nodeDef, ?ClassDefinition $class = null, $container = null, $params = [])
     {
         $typeName = strtolower($typeName);
 
@@ -388,7 +388,7 @@ class Service
      *
      * @return mixed
      */
-    public function buildDataObjectOperatorQueryType($mode, $typeName, $nodeDef, ClassDefinition $class = null, $container = null, $params = [])
+    public function buildDataObjectOperatorQueryType($mode, $typeName, $nodeDef, ?ClassDefinition $class = null, $container = null, $params = [])
     {
         $typeName = strtolower($typeName);
         /** @var DataObjectQueryFieldConfigGeneratorInterface $factory */
@@ -461,7 +461,7 @@ class Service
      *
      * @return Query\Operator\OperatorInterface
      */
-    public function buildQueryOperator($typeName, $attributes = null, ClassDefinition $class = null, $container = null)
+    public function buildQueryOperator($typeName, $attributes = null, ?ClassDefinition $class = null, $container = null)
     {
         $typeName = strtolower($typeName);
         /** @var OperatorFactoryInterface $factory */
@@ -825,11 +825,7 @@ class Service
 
         if ($fieldDefinition->isEmpty($value)) {
             $parent = \OpenDxp\Model\DataObject\Service::hasInheritableParentObject($object);
-            if (!empty($parent)) {
-                if (!($parent instanceof Concrete)) {
-                    $parent = Concrete::getById($parent->getId());
-                }
-
+            if ($parent instanceof Concrete) {
                 return self::getValueForObject($parent, $key, $brickType, $brickKey, $fieldDefinition, $context, $brickDescriptor);
             }
         }
@@ -909,8 +905,8 @@ class Service
                 $subBrickType = $brickContainer->$subBrickGetter();
 
                 if (!$subBrickType) {
-                    /** @var AbstractData $brickClass */
                     $brickClass = 'OpenDxp\\Model\\DataObject\\Objectbrick\\Data\\' . ucfirst($brickType);
+                    /** @var AbstractData $subBrickType */
                     $subBrickType = new $brickClass($object);
                     $subBrickSetter = 'set' . ucfirst($brickType);
                     $brickContainer->$subBrickSetter($subBrickType);
@@ -1127,7 +1123,7 @@ class Service
      * @param array $args
      * @param array $context
      */
-    public function extractData($data, $target, $args = [], $context = [], ResolveInfo $resolveInfo = null)
+    public function extractData($data, $target, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
         $fieldHelper = null;
         if ($target instanceof Document) {
