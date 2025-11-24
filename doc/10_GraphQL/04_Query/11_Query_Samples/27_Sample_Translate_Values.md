@@ -10,15 +10,6 @@ Operator Config:
 
 ![Operator Config](../../../img/graphql/operator_translated1.png)
 
-Website Translation Grid:
-
-<div class="image-as-lightbox"></div>
-
-![Data](../../../img/graphql/operator_translated2.png) 
-
-The idea in the following example is to use the website translation feature to convert
-the value of the select field into a human-readable representation.
-
 ### Request
 
 ```graphql

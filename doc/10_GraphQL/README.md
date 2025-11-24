@@ -10,8 +10,6 @@ With [GraphQL](https://graphql.org/) endpoints, Datahub allows integrating OpenD
 and services via GraphQL and test them with the integrated 
 [GraphiQL explorer](https://github.com/graphql/graphiql/tree/main/packages/graphiql#readme) tool right away. 
 
-[![Preview](../img/graphql/intro_preview.png)](../img/graphql/intro.mp4)
-
 <div class="image-as-lightbox"></div>
 
 ![Explorer](../img/graphql/iexplorer.png)

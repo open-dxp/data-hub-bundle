@@ -49,7 +49,7 @@ include $opendxpTestsSupportDir . '/Util/Autoloader.php';
 
 //error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_WARNING);
 
-Autoloader::addNamespace('OpenDxp\Tests', $opendxpTestsSupportDir); //Pimcore 10 BC layer
+Autoloader::addNamespace('OpenDxp\Tests', $opendxpTestsSupportDir); // BC layer
 Autoloader::addNamespace('OpenDxp\Tests\Support', $opendxpTestsSupportDir);
 Autoloader::addNamespace('OpenDxp\Model\DataObject', OPENDXP_CLASS_DIRECTORY . '/DataObject');
 Autoloader::addNamespace('OpenDxp\Bundle\DataHubBundle\Tests', __DIR__);
