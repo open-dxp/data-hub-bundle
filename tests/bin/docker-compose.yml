@@ -12,8 +12,8 @@ services:
 
     php:
         #user: '1000:1000' # set to your uid:gid
-        #image: open-dxp/opendxp:PHP8.1-fpm-debug
-        image: open-dxp/opendxp:PHP8.1-fpm
+        #image: opendxp/opendxp:php8.4-debug-latest
+        image: opendxp/opendxp:php8.4-latest
         environment:
             PHP_IDE_CONFIG: "serverName=localhost"
             COMPOSER_HOME: /var/www/html
