@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver;
 
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
@@ -157,7 +158,6 @@ class QueryType
      * @throws ClientSafeException
      *
      * @deprecated args['path'] will no longer be supported by Release 1.0. Use args['fullpath'] instead.
-     *
      */
     public function resolveDocumentGetter($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -223,12 +223,12 @@ class QueryType
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveTranslationGetter(mixed $value = null, array $args = [], array $context = [], ?ResolveInfo $resolveInfo = null): array
     {
         if (empty($args['key'])) {
-            throw new \Exception('Argument key is mandatory');
+            throw new Exception('Argument key is mandatory');
         }
 
         $domain = 'messages';
@@ -383,7 +383,7 @@ class QueryType
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveListing($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {

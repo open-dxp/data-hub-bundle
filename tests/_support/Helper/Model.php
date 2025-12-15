@@ -9,7 +9,7 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
@@ -24,6 +24,7 @@ use OpenDxp\Tests\Support\Helper\AbstractDefinitionHelper;
 use OpenDxp\Tests\Support\Helper\ClassManager;
 use OpenDxp\Tests\Support\Helper\OpenDxp;
 use OpenDxp\Tests\Support\Util\Autoloader;
+use stdClass;
 
 class Model extends AbstractDefinitionHelper
 {
@@ -68,7 +69,7 @@ class Model extends AbstractDefinitionHelper
     }
 
     /**
-     * @param \stdClass $class
+     * @param stdClass $class
      *
      * @return void
      */

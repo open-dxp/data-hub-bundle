@@ -9,12 +9,14 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\Controller;
 
+use Exception;
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\ConfigEvents;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
 use OpenDxp\Bundle\DataHubBundle\Event\AdminEvents;
@@ -44,7 +46,6 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
 
     /**
      * @param Configuration $configuration
-     *
      */
     private function buildItem($configuration): array
     {
@@ -77,7 +78,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
 
         $event = new GenericEvent($this);
         $event->setArgument('list', $list);
-        \OpenDxp::getEventDispatcher()->dispatch($event, AdminEvents::CONFIGURATION_LIST);
+        OpenDxp::getEventDispatcher()->dispatch($event, AdminEvents::CONFIGURATION_LIST);
         $list = $event->getArgument('list');
 
         $tree = [];
@@ -138,7 +139,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
 
             $config = Configuration::getByName($name);
             if (!$config instanceof Configuration) {
-                throw new \Exception('Name does not exist.');
+                throw new Exception('Name does not exist.');
             }
             if ($config->isWriteable() === false) {
                 throw new ConfigWriteException();
@@ -152,7 +153,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
             $config->delete();
 
             return $this->json(['success' => true]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
@@ -178,14 +179,14 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
             $config = Configuration::getByName($name);
 
             if ($config instanceof Configuration) {
-                throw new \Exception('Name already exists.');
+                throw new Exception('Name already exists.');
             }
 
             $config = new Configuration($type, $path, $name);
             $config->save();
 
             return $this->json(['success' => true, 'name' => $name]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
@@ -200,13 +201,13 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
 
             $config = Configuration::getByName($name);
             if ($config instanceof Configuration) {
-                throw new \Exception('Name already exists.');
+                throw new Exception('Name already exists.');
             }
 
             $originalName = $request->query->getString('originalName');
             $originalConfig = Configuration::getByName($originalName);
             if (!$originalConfig) {
-                throw new \Exception('Configuration not found');
+                throw new Exception('Configuration not found');
             }
             if ($originalConfig->isWriteable() === false) {
                 throw new ConfigWriteException();
@@ -220,13 +221,13 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
             $originalConfig->save();
 
             return $this->json(['success' => true, 'name' => $name]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     #[Route('/get')]
     public function getAction(Request $request, Service $graphQlService, EventDispatcherInterface $eventDispatcher): JsonResponse
@@ -237,7 +238,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
 
         $configuration = Configuration::getByName($name);
         if (!$configuration) {
-            throw new \Exception('Datahub configuration ' . $name . ' does not exist.');
+            throw new Exception('Datahub configuration ' . $name . ' does not exist.');
         }
         if (!$configuration->isAllowed('read')) {
             throw $this->createAccessDeniedHttpException();
@@ -401,7 +402,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
             }
 
             if ($modificationDate < $savedModificationDate) {
-                throw new \Exception('The configuration was modified during editing, please reload the configuration and make your changes again');
+                throw new Exception('The configuration was modified during editing, please reload the configuration and make your changes again');
             }
 
             $dataDecoded['general']['modificationDate'] = time();
@@ -445,13 +446,13 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
             } else {
                 return $this->json(['success' => false, 'permissionError' => true]);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     #[Route('/get-explorer-url')]
     public function getExplorerUrlAction(RouterInterface $routingService, Request $request): ?JsonResponse
@@ -462,7 +463,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
         if ($url) {
             return $this->json(['explorerUrl' => $url]);
         } else {
-            throw new \Exception('unable to resolve');
+            throw new Exception('unable to resolve');
         }
     }
 
@@ -522,7 +523,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
         $name = $request->query->getString('name');
         $configuration = Configuration::getByName($name);
         if (!$configuration) {
-            throw new \Exception('Datahub configuration ' . $name . ' does not exist.');
+            throw new Exception('Datahub configuration ' . $name . ' does not exist.');
         }
         if (!$configuration->isAllowed('read')) {
             throw $this->createAccessDeniedHttpException();
@@ -559,7 +560,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
             $response->headers->set('Content-Type', 'text/html');
 
             return $response;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->jsonResponse(['success' => false, 'message' => $e->getMessage()]);
         }
     }

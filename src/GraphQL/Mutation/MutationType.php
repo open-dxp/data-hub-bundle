@@ -9,17 +9,19 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Mutation;
 
+use Exception;
 use GraphQL\Type\Definition\EnumType;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\MutationTypeEvent;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\MutationEvents;
@@ -78,7 +80,7 @@ class MutationType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(Service $graphQlService, LocaleServiceInterface $localeService, Factory $modelFactory, EventDispatcherInterface $eventDispatcher, $config = [], $context = [])
     {
@@ -98,7 +100,7 @@ class MutationType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function build(&$config = [], $context = [])
     {
@@ -152,7 +154,7 @@ class MutationType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildUpdateDocumentMutation(&$config, $context, $mutationType, $documentType)
     {
@@ -259,7 +261,7 @@ class MutationType extends ObjectType
                         }
 
                         $className = 'OpenDxp\\Model\\Document\\' . ucfirst($documentType);
-                        $factory = \OpenDxp::getContainer()->get('opendxp.model.factory');
+                        $factory = OpenDxp::getContainer()->get('opendxp.model.factory');
                         /** @var Document $element */
                         $element = $factory->build($className);
 
@@ -509,7 +511,7 @@ class MutationType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildDataObjectMutations(&$config = [], $context = [])
     {
@@ -664,7 +666,7 @@ class MutationType extends ObjectType
                                 'success' => false,
                                 'message' => 'creating failed: Duplicate path',
                             ];
-                        } catch (\Exception $e) {
+                        } catch (Exception $e) {
                             return [
                                 'success' => false,
                                 'message' => 'creating failed: ' . $e->getMessage(),
@@ -782,7 +784,7 @@ class MutationType extends ObjectType
                                 'success' => true,
                                 'message' => '',
                             ];
-                        } catch (\Exception $e) {
+                        } catch (Exception $e) {
                             return [
                                 'success' => false,
                                 'message' => $e->getMessage(),
@@ -908,7 +910,7 @@ class MutationType extends ObjectType
                 if ($tags) {
                     $me->setTags('object', $object->getId(), $tags);
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return [
                     'success' => false,
                     'message' => $e->getMessage(),
@@ -1035,7 +1037,7 @@ class MutationType extends ObjectType
                             'success' => false,
                             'message' => 'saving failed: Duplicate path',
                         ];
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         return [
                             'success' => false,
                             'message' => 'saving failed: ' . $e->getMessage(),
@@ -1062,7 +1064,7 @@ class MutationType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildUpdateAssetMutation(&$config, $context)
     {
@@ -1240,7 +1242,7 @@ class MutationType extends ObjectType
                 $newInstance = new Document\Folder();
                 $newInstance->setKey($args['key']);
             } else {
-                throw new \Exception('ElementType not supported: ' . $elementType);
+                throw new Exception('ElementType not supported: ' . $elementType);
             }
 
             $newInstance->setParentId($parent->getId());
@@ -1331,7 +1333,7 @@ class MutationType extends ObjectType
                         }
 
                         $element->save();
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         return [
                             'success' => false,
                             'message' => $e->getMessage(),
@@ -1415,7 +1417,7 @@ class MutationType extends ObjectType
                                 'success' => true,
                                 'message' => $type . ' ' . $idOrPath . ' deleted',
                             ];
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         $result['message'] = $e->getMessage();
                     }
 
@@ -1485,7 +1487,7 @@ class MutationType extends ObjectType
                             'success' => true,
                             'message' => '',
                         ];
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         return [
                             'success' => false,
                             'message' => $e->getMessage(),

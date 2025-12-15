@@ -9,18 +9,20 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\Controller;
 
+use Exception;
 use GraphQL\Error\DebugFlag;
 use GraphQL\Error\Warning;
 use GraphQL\GraphQL;
 use GraphQL\Server\RequestError;
 use GraphQL\Validator\DocumentValidator;
 use GraphQL\Validator\Rules\DisableIntrospection;
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\ExecutorEvents;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\ExecutorEvent;
@@ -81,10 +83,9 @@ class WebserviceController extends FrontendController
     }
 
     /**
-     *
      * @return JsonResponse
      *
-     * @throws RequestError|\Exception
+     * @throws RequestError|Exception
      */
     public function webonyxAction(
         Service $service,
@@ -143,7 +144,7 @@ class WebserviceController extends FrontendController
             $schema = new \GraphQL\Type\Schema(
                 $schemaConfig
             );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Warning::enable(false);
             $schema = new \GraphQL\Type\Schema(
                 [
@@ -213,13 +214,13 @@ class WebserviceController extends FrontendController
             $this->eventDispatcher->dispatch($exResult, ExecutorEvents::POST_EXECUTE);
             $result = $exResult->getResult();
 
-            if (\OpenDxp::inDebugMode()) {
+            if (OpenDxp::inDebugMode()) {
                 $debug = DebugFlag::INCLUDE_DEBUG_MESSAGE | DebugFlag::INCLUDE_TRACE;
                 $output = $result->toArray($debug);
             } else {
                 $output = $result->toArray();
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $output = [
                 'errors' => [
                     [

@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\Configuration;
 
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
 use OpenDxp\Config;
 use OpenDxp\Model;
@@ -48,7 +49,7 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
 
     public function configure(): void
     {
-        $config = \OpenDxp::getContainer()->getParameter('opendxp_data_hub');
+        $config = OpenDxp::getContainer()->getParameter('opendxp_data_hub');
 
         $storageConfig = $config['config_location']['data_hub'];
 
@@ -108,7 +109,6 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
      * gets a configuration by name.
      *
      * @param string $name
-     *
      */
     public function loadByName($name)
     {
@@ -133,7 +133,6 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
      * TODO: remove this static function and rename "loadByName" to "getByName"
      *
      * @param string $name
-     *
      */
     public static function getByName($name)
     {
@@ -148,13 +147,11 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
     }
 
     /**
-     *
      * @return int
      *
      *@deprecated will be removed with pimcore 11
      *
      * get latest modification date of configuration file.
-     *
      */
     public static function getConfigModificationDate()
     {
@@ -197,7 +194,6 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
 
     /**
      * get the list of configurations.
-     *
      */
     public function loadList(): array
     {
@@ -219,8 +215,6 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
      * get the list of configurations.
      *
      * TODO: remove this static function and rename "loadList" to "getList"
-     *
-     *
      */
     public static function getList(): array
     {

@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\ClassificationstoreFeatureType;
 
+use Exception;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\FeatureDescriptor;
@@ -26,10 +27,9 @@ class QuantityValueType extends ObjectType
     protected static $instance = [];
 
     /**
-     *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function getInstance(Service $service, string $name, string $innerType, string $fieldname)
     {

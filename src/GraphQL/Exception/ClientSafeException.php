@@ -9,15 +9,16 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Exception;
 
+use Exception;
 use GraphQL\Error\ClientAware;
 
-class ClientSafeException extends \Exception implements ClientAware
+class ClientSafeException extends Exception implements ClientAware
 {
     public function isClientSafe(): bool
     {

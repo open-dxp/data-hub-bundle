@@ -9,16 +9,17 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL;
 
-abstract class BaseDescriptor extends \ArrayObject
+use ArrayObject;
+
+abstract class BaseDescriptor extends ArrayObject
 {
     /**
-     *
      * ElementDescriptor constructor - an ElementDescriptor describes something that implements
      * the OpenDxp\Model\Element\ElementInterface
      */

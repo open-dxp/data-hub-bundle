@@ -9,7 +9,7 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
@@ -25,6 +25,7 @@ use OpenDxp\Event\Model\DataObjectEvent;
 use OpenDxp\Event\Model\DocumentEvent;
 use OpenDxp\Model\Element\ValidationException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Throwable;
 
 class DataChangeListener implements EventSubscriberInterface
 {
@@ -41,7 +42,6 @@ class DataChangeListener implements EventSubscriberInterface
     }
 
     /**
-     *
      * @throws ValidationException
      */
     public function onObjectUpdate(DataObjectEvent $e)
@@ -57,7 +57,6 @@ class DataChangeListener implements EventSubscriberInterface
     }
 
     /**
-     *
      * @throws ValidationException
      */
     public function onObjectDelete(DataObjectEvent $e)
@@ -68,7 +67,6 @@ class DataChangeListener implements EventSubscriberInterface
     }
 
     /**
-     *
      * @throws ValidationException
      */
     public function onDocumentUpdate(DocumentEvent $e)
@@ -84,7 +82,6 @@ class DataChangeListener implements EventSubscriberInterface
     }
 
     /**
-     *
      * @throws ValidationException
      */
     public function onDocumentDelete(DocumentEvent $e)
@@ -95,7 +92,6 @@ class DataChangeListener implements EventSubscriberInterface
     }
 
     /**
-     *
      * @throws ValidationException
      */
     public function onAssetUpdate(AssetEvent $e)
@@ -111,7 +107,6 @@ class DataChangeListener implements EventSubscriberInterface
     }
 
     /**
-     *
      * @throws ValidationException
      */
     public function onAssetDelete(AssetEvent $e)
@@ -140,7 +135,7 @@ class DataChangeListener implements EventSubscriberInterface
         foreach ($configList as $configurationEntity) {
             try {
                 $entity = WorkspaceHelper::modifyWorkspaceRowByType($configurationEntity, $dataType, $modificationType, $searchValue, $replaceValue);
-            } catch (\Throwable $e) {
+            } catch (Throwable $e) {
                 throw new ValidationException(sprintf('Could not modify workspace row: %s', $e->getMessage()), 0, $e);
             }
 
@@ -150,7 +145,7 @@ class DataChangeListener implements EventSubscriberInterface
 
             try {
                 $entity->save();
-            } catch (\Throwable $e) {
+            } catch (Throwable $e) {
                 throw new ValidationException(sprintf('Could not save configuration: %s', $e->getMessage()), 0, $e);
             }
         }

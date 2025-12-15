@@ -9,12 +9,14 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\Controller;
 
+use DateTime;
+use Exception;
 use OpenDxp\Bundle\DataHubBundle\Service\CheckConsumerPermissionsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,9 +25,7 @@ use Symfony\Component\Routing\RouterInterface;
 class GraphQLExplorerController extends AbstractController
 {
     /**
-     *
-     *
-     * @throws \Exception
+     * @throws Exception
      */
     public function explorerAction(RouterInterface $routingService, Request $request): \Symfony\Component\HttpFoundation\Response
     {
@@ -36,7 +36,7 @@ class GraphQLExplorerController extends AbstractController
         $url = $routingService->generate('admin_opendxpdatahub_webservice', ['clientname' => $clientName]);
 
         if (!$url) {
-            throw new \Exception('unable to resolve');
+            throw new Exception('unable to resolve');
         }
 
         if ($urlParams) {
@@ -49,7 +49,7 @@ class GraphQLExplorerController extends AbstractController
         ]);
 
         $response->setPublic();
-        $response->setExpires(new \DateTime('tomorrow'));
+        $response->setExpires(new DateTime('tomorrow'));
 
         return $response;
     }

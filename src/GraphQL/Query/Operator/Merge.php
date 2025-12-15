@@ -9,14 +9,16 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Operator;
 
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Model\Element\ElementInterface;
+use stdClass;
 
 /**
  * @deprecated will be removed in Data Hub 2
@@ -40,13 +42,13 @@ class Merge extends AbstractOperator
     /**
      * @param ElementInterface|null $element
      *
-     * @return \stdClass
+     * @return stdClass
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getLabeledValue($element, ?ResolveInfo $resolveInfo = null)
     {
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->label = $this->label;
         $result->isArrayType = true;
 

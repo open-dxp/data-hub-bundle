@@ -10,12 +10,15 @@ declare(strict_types=1);
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL;
 
+use ArrayObject;
+use Closure;
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\AdminBundle\DataObject\GridColumnConfig\ConfigElementInterface;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
@@ -364,7 +367,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildDataObjectMutationOperatorConfig($typeName, $nodeDef, ?ClassDefinition $class = null, $container = null, $params = [])
     {
@@ -403,7 +406,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildGeneralType($typeName)
     {
@@ -419,7 +422,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildDataObjectType(string $className, $config = [], $context = [])
     {
@@ -433,7 +436,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildAssetType($typeName)
     {
@@ -444,7 +447,7 @@ class Service
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildTranslationType(string $typeName): mixed
     {
@@ -478,7 +481,7 @@ class Service
      *
      * @return DefaultValue|Query\Operator\OperatorInterface
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildValueResolverFromAttributes($nodeConfig)
     {
@@ -586,7 +589,7 @@ class Service
      */
     public function getElementFromArrayObject($value)
     {
-        if ($value instanceof \ArrayObject) {
+        if ($value instanceof ArrayObject) {
             $value = $value->getArrayCopy();
             if (isset($value['__elementType'])) {
                 $value = \OpenDxp\Model\Element\Service::getElementById($value['__elementType'], $value['id']);
@@ -698,7 +701,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAssetTypeDefinition($typeName)
     {
@@ -714,7 +717,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getClassificationStoreTypeDefinition($typeName)
     {
@@ -730,7 +733,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getDataObjectTypeDefinition($typeName)
     {
@@ -746,7 +749,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getDocumentTypeDefinition($typeName)
     {
@@ -762,7 +765,7 @@ class Service
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getPropertyTypeDefinition($typeName)
     {
@@ -836,11 +839,11 @@ class Service
     /**
      * @param Concrete|null $object
      * @param string $attribute
-     * @param \Closure $callback
+     * @param Closure $callback
      *
      * @return mixed result of the callback
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function setValue($object, $attribute, $callback)
     {
@@ -1069,7 +1072,6 @@ class Service
      *
      * @param object $container
      * @param string $fieldName
-     *
      */
     private static function isLocalizedField($container, $fieldName): bool
     {
@@ -1140,7 +1142,6 @@ class Service
     }
 
     /**
-     *
      * @return bool
      */
     public function querySchemaEnabled(string $type)

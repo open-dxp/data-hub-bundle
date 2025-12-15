@@ -10,12 +10,13 @@ declare(strict_types=1);
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator;
 
+use Exception;
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
 
@@ -35,8 +36,7 @@ class Hotspotimage extends Base
      *
      * @return array
      *
-     *@throws \Exception
-     *
+     *@throws Exception
      */
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
@@ -56,7 +56,7 @@ class Hotspotimage extends Base
      *
      * @return mixed
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {

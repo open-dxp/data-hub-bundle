@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver;
 
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\UnionType;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\ElementDescriptor;
@@ -52,7 +53,7 @@ class Element
      *
      * @return array|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveTag($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -107,7 +108,7 @@ class Element
      *
      * @return ElementDescriptor|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveParent($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -129,7 +130,7 @@ class Element
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveChildren($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -150,7 +151,7 @@ class Element
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveSiblings($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -187,7 +188,7 @@ class Element
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function extractMultipleElements($elements, $args, $context, $resolveInfo)
     {
@@ -209,7 +210,7 @@ class Element
      *
      * @return ElementDescriptor|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function extractSingleElement($element, $args, $context, $resolveInfo)
     {

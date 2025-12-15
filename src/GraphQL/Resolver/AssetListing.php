@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver;
 
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\ListingEvents;
@@ -29,6 +30,7 @@ use OpenDxp\Db;
 use OpenDxp\Model\Asset;
 use OpenDxp\Model\Element\ElementInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use function json_decode;
 
 class AssetListing
 {
@@ -81,7 +83,7 @@ class AssetListing
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveListing($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -158,7 +160,7 @@ class AssetListing
         }
 
         if (isset($args['filter'])) {
-            $filter = \json_decode($args['filter'], false);
+            $filter = json_decode($args['filter'], false);
             if (!$filter) {
                 throw new ClientSafeException('unable to decode filter');
             }
@@ -221,7 +223,7 @@ class AssetListing
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function extractMultipleElements($elements, $args, $context, $resolveInfo)
     {
@@ -243,7 +245,7 @@ class AssetListing
      *
      * @return ElementDescriptor|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function extractSingleElement($element, $args, $context, $resolveInfo)
     {

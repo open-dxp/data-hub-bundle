@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\Service;
 
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\OutputCachePreLoadEvent;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\OutputCachePreSaveEvent;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\OutputCacheEvents;
@@ -60,7 +61,6 @@ class OutputCacheService
     }
 
     /**
-     *
      * @return mixed
      */
     public function load(Request $request)
@@ -76,7 +76,6 @@ class OutputCacheService
 
     /**
      * @param array $extraTags
-     *
      */
     public function save(Request $request, JsonResponse $response, $extraTags = []): void
     {
@@ -107,7 +106,6 @@ class OutputCacheService
      * @param string $key
      * @param mixed $item
      * @param array $tags
-     *
      */
     protected function saveToCache($key, $item, $tags = []): void
     {
@@ -132,7 +130,7 @@ class OutputCacheService
             return false;
         }
 
-        if (\OpenDxp::inDebugMode()) {
+        if (OpenDxp::inDebugMode()) {
             $disableCacheForSingleRequest = filter_var($request->query->get('opendxp_nocache', 'false'), FILTER_VALIDATE_BOOLEAN)
             || filter_var($request->query->get('opendxp_outputfilters_disabled', 'false'), FILTER_VALIDATE_BOOLEAN);
 

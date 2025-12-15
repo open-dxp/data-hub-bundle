@@ -9,7 +9,7 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
@@ -19,6 +19,7 @@ use OpenDxp\Db;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
 use OpenDxp\Model\DataObject\ClassDefinition\Layout;
 use OpenDxp\Model\DataObject\Listing;
+use stdClass;
 
 /**
  * @internal
@@ -27,7 +28,7 @@ class Helper
 {
     /**
      * @param Listing\Concrete $list
-     * @param \stdClass | array $filter
+     * @param stdClass|array $filter
      * @param array $columns
      * @param array $mappingTable
      */
@@ -60,7 +61,7 @@ class Helper
 
     /**
      * @param string $defaultTable
-     * @param string|array|\stdClass $q
+     * @param string|array|stdClass $q
      * @param string|null $op
      * @param string|null $subject
      * @param array $fieldMappingTable
@@ -136,7 +137,7 @@ class Helper
                     foreach ($value as $subValue) {
                         $parts[] = self::buildSqlCondition($defaultTable, $subValue);
                     }
-                } elseif ($value instanceof \stdClass) {
+                } elseif ($value instanceof stdClass) {
                     $objectVars = get_object_vars($value);
                     foreach ($objectVars as $objectVar => $objectValue) {
                         if (array_search(strtolower($objectVar), $ops) !== false) {
@@ -162,7 +163,7 @@ class Helper
                                 ) . ' ' . $innerOp . ' ' . $db->quote($objectValue) . ')';
                             }
                         } else {
-                            if ($objectValue instanceof \stdClass) {
+                            if ($objectValue instanceof stdClass) {
                                 $parts[] = self::buildSqlCondition($defaultTable, $objectValue, null, $objectVar);
                             } else {
                                 if (is_null($objectValue)) {

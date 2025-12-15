@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator;
 
+use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\BlockDescriptor;
@@ -61,7 +62,7 @@ class Block extends Base
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return \Closure
+     * @return Closure
      */
     public function getResolver($attribute, $fieldDefinition, $class)
     {

@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver;
 
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
 
@@ -29,7 +30,7 @@ class Link
      *
      * @return string|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveText($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -43,7 +44,7 @@ class Link
      *
      * @return string|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolvePath($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -51,7 +52,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveTarget($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -60,7 +60,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveAnchor($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -69,7 +68,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveTitle($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -78,7 +76,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveAccesskey($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -87,7 +84,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveRel($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -96,7 +92,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveClass($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -105,7 +100,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveAttributes($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -114,7 +108,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveTabindex($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -123,7 +116,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     public function resolveParameters($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
@@ -132,7 +124,6 @@ class Link
     }
 
     /**
-     *
      * @return null
      */
     protected function resolveLinkValue(?\OpenDxp\Model\DataObject\Data\Link $value, string $property)

@@ -9,12 +9,14 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle;
 
+use Exception;
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Configuration\Workspace\Dao;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\PermissionEvent;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\PermissionEvents;
@@ -41,7 +43,6 @@ class WorkspaceHelper
     const MODIFY_TYPE_DELETE = 'delete';
 
     /**
-     *
      * @return array
      */
     public static function cleanupWorkspaces(array $workspaces)
@@ -143,7 +144,7 @@ class WorkspaceHelper
     /**
      * @param array         $workspaces
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function saveWorkspaces(Configuration $config, $workspaces)
     {
@@ -174,10 +175,9 @@ class WorkspaceHelper
     }
 
     /**
-     *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function loadWorkspaces(Configuration $configuration)
     {
@@ -201,8 +201,7 @@ class WorkspaceHelper
     }
 
     /**
-     *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function deleteConfiguration(Configuration $config)
     {
@@ -235,7 +234,7 @@ class WorkspaceHelper
 
         $event = new PermissionEvent($element, $type);
         /** @var EventDispatcher $eventDispatcher */
-        $eventDispatcher = \OpenDxp::getContainer()->get('event_dispatcher');
+        $eventDispatcher = OpenDxp::getContainer()->get('event_dispatcher');
         $eventDispatcher->dispatch($event, PermissionEvents::PRE_CHECK);
         if (!$event->isGranted() && OpenDxpDataHubBundle::getNotAllowedPolicy() === OpenDxpDataHubBundle::NOT_ALLOWED_POLICY_EXCEPTION) {
             throw new ClientSafeException('access for '.  $element->getFullPath() . ' denied');

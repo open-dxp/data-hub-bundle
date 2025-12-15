@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver;
 
+use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\ElementDescriptor;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
@@ -48,7 +49,7 @@ class Video
      *
      * @return string|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveTitle($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {

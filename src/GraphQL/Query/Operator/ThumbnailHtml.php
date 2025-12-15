@@ -10,7 +10,7 @@ declare(strict_types=1);
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
@@ -19,6 +19,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Query\Operator;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Model\Asset;
 use OpenDxp\Model\Element\ElementInterface;
+use stdClass;
 
 /**
  * Class ThumbnailHtml
@@ -45,11 +46,11 @@ class ThumbnailHtml extends AbstractOperator
     /**
      * @param ElementInterface|null $element
      *
-     * @return \stdClass|null
+     * @return stdClass|null
      */
     public function getLabeledValue($element, ?ResolveInfo $resolveInfo = null)
     {
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->label = $this->label;
         $result->value = null;
 

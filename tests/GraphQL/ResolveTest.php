@@ -9,13 +9,15 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\Tests\GraphQL;
 
 use Codeception\Test\Unit;
+use Exception;
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\QueryType;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\TranslationListing;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
@@ -29,7 +31,7 @@ class ResolveTest extends Unit
 
     protected function setUp(): void
     {
-        $this->service = \OpenDxp::getContainer()->get("OpenDxp\Bundle\DataHubBundle\GraphQL\Service");
+        $this->service = OpenDxp::getContainer()->get("OpenDxp\Bundle\DataHubBundle\GraphQL\Service");
         $this->addTranslations();
     }
 
@@ -142,7 +144,7 @@ class ResolveTest extends Unit
 
     public function testGraphQLResolveTranslationGetter()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $queryTypeResolver = new QueryType(new EventDispatcher());
         $queryTypeResolver->resolveTranslationGetter();
     }

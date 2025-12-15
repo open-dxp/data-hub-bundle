@@ -9,7 +9,7 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
@@ -17,6 +17,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver;
 
 use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Event\GraphQL\AssetMetadataEvents;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\ElementDescriptor;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ElementTagTrait;
@@ -76,7 +77,7 @@ class AssetType
             'context' => $context,
         ]);
         /** @var EventDispatcher $eventDispatcher */
-        $eventDispatcher = \OpenDxp::getContainer()->get('event_dispatcher');
+        $eventDispatcher = OpenDxp::getContainer()->get('event_dispatcher');
         $eventDispatcher->dispatch($event, AssetMetadataEvents::PRE_RESOLVE);
         $metadata = $event->getArgument('metadata');
 
@@ -290,7 +291,7 @@ class AssetType
      *
      * @return array|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function resolveDimensions($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -340,7 +341,6 @@ class AssetType
     }
 
     /**
-     *
      * @throws Exception
      */
     public function resolveDuration(ElementDescriptor | null $value = null, array $context = []): ?float
@@ -381,7 +381,7 @@ class AssetType
      *
      * @return Asset|null
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function getAssetFromValue($value, $context)
     {

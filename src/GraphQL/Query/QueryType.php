@@ -9,12 +9,13 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Query;
 
+use Exception;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
@@ -57,7 +58,7 @@ class QueryType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(Service $graphQlService, LocaleServiceInterface $localeService, Factory $modelFactory, EventDispatcherInterface $eventDispatcher, $config = [], $context = [])
     {
@@ -189,7 +190,7 @@ class QueryType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildDataObjectQueries(&$config = [], $context = []): void
     {
@@ -289,7 +290,7 @@ class QueryType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildAssetListingQueries(&$config = [], $context = []): void
     {
@@ -468,7 +469,7 @@ class QueryType extends ObjectType
      * @param array $config
      * @param array $context
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function build(&$config = [], $context = [])
     {

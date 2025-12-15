@@ -9,7 +9,7 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
@@ -19,6 +19,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
 use OpenDxp\Model\DataObject\AbstractObject;
 use OpenDxp\Model\DataObject\ClassDefinition;
+use stdClass;
 
 class Base
 {
@@ -55,7 +56,7 @@ class Base
      * @param array $args
      * @param array $context
      *
-     * @return \stdClass
+     * @return stdClass
      */
     public function resolve($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
@@ -72,8 +73,6 @@ class Base
 
     /**
      * Helper method that allows dynamic inspection into the resolver attributes.
-     *
-     *
      */
     public function getResolverAttribute(string $type): ?string
     {

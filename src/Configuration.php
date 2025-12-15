@@ -9,12 +9,14 @@
  * LICENSE.md which is distributed with this source code.
  *
  * @copyright  Copyright (c) Pimcore GmbH (https://pimcore.com)
- * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.ch)
+ * @copyright  Modification Copyright (c) OpenDXP (https://www.opendxp.io)
  * @license    https://www.gnu.org/licenses/gpl-3.0.html  GNU General Public License version 3 (GPLv3)
  */
 
 namespace OpenDxp\Bundle\DataHubBundle;
 
+use Exception;
+use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Event\ConfigurationEvents;
 use OpenDxp\Model\AbstractModel;
 use OpenDxp\Model\User;
@@ -227,17 +229,17 @@ class Configuration extends AbstractModel
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function save(): void
     {
         if (!$this->isAllowed('update')) {
-            throw new \Exception('Permissions missing to save the configuration');
+            throw new Exception('Permissions missing to save the configuration');
         }
 
         $event = new GenericEvent($this);
         $event->setArgument('configuration', $this);
-        \OpenDxp::getEventDispatcher()->dispatch($event, ConfigurationEvents::CONFIGURATION_PRE_SAVE);
+        OpenDxp::getEventDispatcher()->dispatch($event, ConfigurationEvents::CONFIGURATION_PRE_SAVE);
 
         if (empty($this->configuration)) {
             $this->configuration = [];
@@ -273,7 +275,7 @@ class Configuration extends AbstractModel
 
             foreach ($securityConfig['apikey'] as $apiKey) {
                 if (strlen($apiKey) < 16) {
-                    throw new \Exception('API key ' . $apiKey . ' does not satisfy the minimum length of 16 characters');
+                    throw new Exception('API key ' . $apiKey . ' does not satisfy the minimum length of 16 characters');
                 }
             }
         }
@@ -287,20 +289,20 @@ class Configuration extends AbstractModel
 
         $event = new GenericEvent($this);
         $event->setArgument('configuration', $this);
-        \OpenDxp::getEventDispatcher()->dispatch($event, ConfigurationEvents::CONFIGURATION_POST_SAVE);
+        OpenDxp::getEventDispatcher()->dispatch($event, ConfigurationEvents::CONFIGURATION_POST_SAVE);
     }
 
     public function delete(): void
     {
         if (!$this->isAllowed('delete')) {
-            throw new \Exception('Permissions missing to delete the configuration');
+            throw new Exception('Permissions missing to delete the configuration');
         }
 
         $this->getDao()->delete();
 
         $event = new GenericEvent($this);
         $event->setArgument('configuration', $this);
-        \OpenDxp::getEventDispatcher()->dispatch($event, ConfigurationEvents::CONFIGURATION_POST_DELETE);
+        OpenDxp::getEventDispatcher()->dispatch($event, ConfigurationEvents::CONFIGURATION_POST_DELETE);
     }
 
     /**
@@ -315,7 +317,6 @@ class Configuration extends AbstractModel
 
     /**
      * @param string $name
-     *
      */
     public static function getByName($name): ?self
     {
