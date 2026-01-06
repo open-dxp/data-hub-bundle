@@ -37,7 +37,7 @@ A short introduction video of an output channel based on the GraphQL query langu
 ***
 
 ## Upstream Origin & Version Transparency
-This project is a fork of the [Pimcore data-hub (d5619f3 / v1.9.4)](https://github.com/pimcore/data-hub/tree/d5619f34c6c1c0dfdc77230b3e77a4e5e75fa96a), which is © Pimcore GmbH and licensed under GPLv3.
+This project is a fork of the [Pimcore data-hub (9d70ca1 / v1.9.5)](https://github.com/pimcore/data-hub/tree/9d70ca14788e25e34d49010ed00206ebaf761155), which is © Pimcore GmbH and licensed under GPLv3.
 
 ## License
 Licensed under the GNU General Public License v3.0 (GPLv3). For details, please see [LICENSE.md](LICENSE.md).
