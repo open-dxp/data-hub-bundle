@@ -35,6 +35,7 @@ class DocumentFolderType extends FolderType
      */
     public function build(&$config)
     {
+        $propertyType = $this->getGraphQlService()->buildGeneralType('element_property');
         $resolver = new \OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\Element('document', $this->getGraphQLService());
         $documentResolver = new \OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\Document(new \OpenDxp\Model\Document\Service(), $this->getGraphQlService());
         $documentTree = $this->getGraphQlService()->buildGeneralType('document_tree');
@@ -52,6 +53,17 @@ class DocumentFolderType extends FolderType
                 ],
                 'creationDate' => Type::int(),
                 'modificationDate' => Type::int(),
+                'type' => Type::string(),
+                'properties' => [
+                    'type' => Type::listOf($propertyType),
+                    'args' => [
+                        'keys' => [
+                            'type' => Type::listOf(Type::string()),
+                            'description' => 'comma seperated list of key names',
+                        ],
+                    ],
+                    'resolve' => [$resolver, 'resolveProperties'],
+                ],
                 'parent' => [
                     'type' => $documentTree,
                     'resolve' => [$resolver, 'resolveParent'],
