@@ -269,6 +269,11 @@ services:
     tags:
       - { name: opendxp.datahub.graphql.documentelementquerytypegenerator, id: typegenerator_documentelementquerydatatype_relations }
 
+  opendxp.datahub.graphql.documentelementquerytypegenerator_datatype_renderlet:
+      class: OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementQueryFieldConfigGenerator\Renderlet
+      tags:
+          - { name: opendxp.datahub.graphql.documentelementquerytypegenerator, id: typegenerator_documentelementquerydatatype_renderlet }
+
   opendxp.datahub.graphql.documentelementquerytypegenerator_datatype_scheduledblock:
       class: OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementQueryFieldConfigGenerator\Scheduledblock
       tags:
@@ -1235,4 +1240,3 @@ services:
   OpenDxp\Bundle\DataHubBundle\GraphQL\ElementTag:
     tags:
       - { name: opendxp.datahub.graphql.elementtag, id: element_tag }
-
