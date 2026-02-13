@@ -41,7 +41,7 @@ class RenderletType extends ObjectType
                 'fields' => [
                     '_editableType' => [
                         'type' => Type::string(),
-                        'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                        'resolve' => static function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) {
                             if ($value instanceof Renderlet) {
                                 return $value->getType();
                             }
@@ -49,7 +49,7 @@ class RenderletType extends ObjectType
                     ],
                     '_editableName' => [
                         'type' => Type::string(),
-                        'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                        'resolve' => static function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) {
                             if ($value instanceof Renderlet) {
                                 return $value->getName();
                             }
@@ -57,7 +57,7 @@ class RenderletType extends ObjectType
                     ],
                     'id' => [
                         'type' => Type::int(),
-                        'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                        'resolve' => static function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) {
                             if ($value instanceof Renderlet) {
                                 return $value->getId();
                             }
@@ -65,7 +65,7 @@ class RenderletType extends ObjectType
                     ],
                     'type' => [
                         'type' => Type::string(),
-                        'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                        'resolve' => static function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) {
                             if ($value instanceof Renderlet) {
                                 return $value->getType();
                             }
@@ -73,7 +73,7 @@ class RenderletType extends ObjectType
                     ],
                     'subtype' => [
                         'type' => Type::string(),
-                        'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) {
+                        'resolve' => static function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) {
                             if ($value instanceof Renderlet) {
                                 return $value->getSubtype();
                             }
@@ -81,7 +81,7 @@ class RenderletType extends ObjectType
                     ],
                     'relation' => [
                         'type' => $anyTargetType,
-                        'resolve' => static function ($value = null, $args = [], $context = [], ResolveInfo $resolveInfo = null) use ($graphQlService) {
+                        'resolve' => static function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) use ($graphQlService) {
                             if ($value instanceof Renderlet) {
                                 $target = $value->getO();
                                 if ($target) {
