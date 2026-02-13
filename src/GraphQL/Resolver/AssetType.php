@@ -376,7 +376,26 @@ class AssetType
     }
 
     /**
-     * @param ElementDescriptor $value
+     * @return array{x: float, y: float}|null
+     *
+     * @throws Exception
+     */
+    public function resolveFocalPoints(?ElementDescriptor $value = null, array $context = []): ?array
+    {
+        $asset = $this->getAssetFromValue($value, $context);
+
+        if (!$asset instanceof Asset\Image) {
+            return null;
+        }
+
+        return [
+            'x' => $asset->getCustomSetting('focalPointX'),
+            'y' => $asset->getCustomSetting('focalPointY'),
+        ];
+    }
+
+    /**
+     * @param ElementDescriptor|null $value
      * @param array $context
      *
      * @return Asset|null

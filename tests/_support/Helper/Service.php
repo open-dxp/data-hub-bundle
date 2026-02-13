@@ -32,7 +32,7 @@ class Service extends Model
     public function grabService(string $serviceId)
     {
 
-        //TODO change this as soon as Pimcore helper as grabService method and requirement is bumped to pimcore/pimcore:10.4
+        //TODO change this as soon as OpenDxp helper has grabService method
         if (empty(self::$container)) {
             $container = OpenDxp::getContainer();
             self::$container = $container->has('test.service_container') ? $container->get('test.service_container') : $container;
@@ -41,7 +41,7 @@ class Service extends Model
         return self::$container->get($serviceId);
     }
 
-    public function initializeDefinitions()
+    public function initializeDefinitions(): void
     {
         //        $this->setupFieldcollection_Unittestfieldcollection();
         //        $this->setupPimcoreClass_Unittest();

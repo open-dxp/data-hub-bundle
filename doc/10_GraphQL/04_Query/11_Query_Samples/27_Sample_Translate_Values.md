@@ -2,7 +2,7 @@
 
 The following example translates the `AccessoryPart` condition value.
 
-Deeplink: [http://pimcore-demo-basic.pim.zone/admin/login/deeplink?object_373_object](http://pimcore-demo-basic.pim.zone/admin/login/deeplink?object_373_object)
+Deeplink: [http://demo.opendxp.io/admin/login/deeplink?object_373_object](http://demo.opendxp.io/admin/login/deeplink?object_373_object)
 
 Operator Config: 
 
