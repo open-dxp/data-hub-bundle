@@ -15,6 +15,7 @@
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementType;
 
+use Exception;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -29,7 +30,7 @@ class RenderletType extends ObjectType
     /**
      * @return RenderletType
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function getInstance(Service $graphQlService)
     {
