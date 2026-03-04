@@ -70,9 +70,11 @@ class ObjectsType extends UnionType
     {
         if ($element) {
             if ($element['__elementType'] == 'object') {
-                $type = ClassTypeDefinitions::get($element['__elementSubtype']);
+                if ($element['__elementSubtype'] === 'folder') {
+                    return $this->getGraphQlService()->getDataObjectTypeDefinition('_object_folder');
+                }
 
-                return $type;
+                return ClassTypeDefinitions::get($element['__elementSubtype']);
             } elseif ($element['__elementType'] == 'asset') {
                 return  $this->getGraphQlService()->buildAssetType('asset');
             } elseif ($element['__elementType'] == 'document') {
