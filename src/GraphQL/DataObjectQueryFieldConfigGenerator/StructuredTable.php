@@ -27,19 +27,11 @@ class StructuredTable extends AbstractTable
             foreach ($fieldDefinition->getCols() as $i => $columnConfig) {
                 $key = $columnConfig['key'] ?? 'col' . $i;
 
-                switch ($columnConfig['type']) {
-                    case 'number':
-                        $type = Type::float();
-
-                        break;
-                    case 'bool':
-                        $type = Type::boolean();
-
-                        break;
-                    case 'text':
-                    default:
-                        $type = Type::string();
-                }
+                $type = match ($columnConfig['type']) {
+                    'number' => Type::float(),
+                    'bool' => Type::boolean(),
+                    default => Type::string(),
+                };
 
                 $cols[$key] = $type;
             }

@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGene
 class Image extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\Image($nodeDef);
@@ -25,7 +26,7 @@ class Image extends Base
 
         return [
             'arg' => $this->getGraphQlService()->getDataObjectTypeDefinition('image_input'),
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
             'description' => 'Asset ID',
         ];
     }

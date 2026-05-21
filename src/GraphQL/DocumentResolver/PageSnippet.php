@@ -64,10 +64,9 @@ class PageSnippet
                 }
             }
 
-            usort($result, function (Editable $a, Editable $b) use ($sortBy) {
+            usort($result, 
                 // "Natural order" comparison so that "10" is ordered after "2"
-                return strnatcmp($sortBy[$a->getName()], $sortBy[$b->getName()]);
-            });
+                fn(Editable $a, Editable $b) => strnatcmp($sortBy[$a->getName()], $sortBy[$b->getName()]));
 
             return $result;
         }

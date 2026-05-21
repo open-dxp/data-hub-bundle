@@ -22,6 +22,7 @@ use OpenDxp\Model\DataObject\ClassDefinition\Data;
 class Table extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $fieldName = $nodeDef['attributes']['attribute'];
@@ -62,7 +63,7 @@ class Table extends Base
 
         return [
             'arg' => $inputType,
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 
@@ -71,8 +72,8 @@ class Table extends Base
         $tableHeaderStr = $tableDef->getData();
         $tableHeader = [];
 
-        if (strlen($tableHeaderStr) > 0) {
-            $tableHeader = explode('|', $tableHeaderStr);
+        if (strlen((string) $tableHeaderStr) > 0) {
+            $tableHeader = explode('|', (string) $tableHeaderStr);
         }
 
         $processors = ['tableHeader' => $tableHeader];

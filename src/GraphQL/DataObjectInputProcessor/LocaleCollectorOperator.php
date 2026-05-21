@@ -27,6 +27,7 @@ class LocaleCollectorOperator extends BaseOperator
      * @param array $args
      * @param array $context
      */
+    #[\Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $localeService = $this->getGraphQlService()->getLocaleService();

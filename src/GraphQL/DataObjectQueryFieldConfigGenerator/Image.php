@@ -27,10 +27,11 @@ class Image extends AssetBase
      *
      * @return array
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\Image($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

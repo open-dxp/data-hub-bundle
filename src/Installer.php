@@ -32,11 +32,13 @@ class Installer extends SettingsStoreAwareInstaller
 
     const DATAHUB_ADMIN_PERMISSION = 'plugin_datahub_admin';
 
+    #[\Override]
     public function needsReloadAfterInstall(): bool
     {
         return true;
     }
 
+    #[\Override]
     public function install(): void
     {
         try {
@@ -74,6 +76,7 @@ class Installer extends SettingsStoreAwareInstaller
         parent::install();
     }
 
+    #[\Override]
     public function isInstalled(): bool
     {
         // When switching to SettingsStoreAwareInstaller, we need to explicitly mark this bundle installed, if Settingstore entry doesn't exists and datahub permission is installed

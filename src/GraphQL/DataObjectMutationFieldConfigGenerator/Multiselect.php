@@ -20,6 +20,7 @@ use GraphQL\Type\Definition\Type;
 class Multiselect extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\Base($nodeDef);
@@ -27,7 +28,7 @@ class Multiselect extends Base
 
         return [
             'arg' => Type::listOf(Type::string()),
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

@@ -108,7 +108,7 @@ class AssetType extends ObjectType
                     'format' => ['type' => Type::string()],
                     'deferred' => ['type' => Type::boolean(), 'defaultValue' => false],
                 ],
-                'resolve' => [$resolver, 'resolvePath'],
+                'resolve' => $resolver->resolvePath(...),
             ],
             'resolutions' => [
                 'type' => $resolutionsType,
@@ -117,7 +117,7 @@ class AssetType extends ObjectType
                     'format' => ['type' => Type::string()],
                     'types' => $resolutionsArgumentsType,
                 ],
-                'resolve' => [$resolver, 'resolveResolutions'],
+                'resolve' => $resolver->resolveResolutions(...),
             ],
             'dimensions' => [
                 'type' => $dimensionsType,
@@ -125,15 +125,15 @@ class AssetType extends ObjectType
                     'thumbnail' => ['type' => Type::string()],
                     'format' => ['type' => Type::string()],
                 ],
-                'resolve' => [$resolver, 'resolveDimensions'],
+                'resolve' => $resolver->resolveDimensions(...),
             ],
             'duration' => [
                 'type' => Type::float(),
-                'resolve' => [$resolver, 'resolveDuration'],
+                'resolve' => $resolver->resolveDuration(...),
             ],
             'focalPoints' => [
                 'type' => $focalPointsType,
-                'resolve' => [$resolver, 'resolveFocalPoints'],
+                'resolve' => $resolver->resolveFocalPoints(...),
             ],
             'srcset' => [
                 'type' => Type::listOf(new ObjectType([
@@ -146,7 +146,7 @@ class AssetType extends ObjectType
                             'args' => [
                                 'types' => $resolutionsArgumentsType,
                             ],
-                            'resolve' => [$resolver, 'resolveResolutions'],
+                            'resolve' => $resolver->resolveResolutions(...),
                         ],
                     ],
                 ])),
@@ -155,7 +155,7 @@ class AssetType extends ObjectType
                     'format' => ['type' => Type::string()],
                     'deferred' => ['type' => Type::boolean(), 'defaultValue' => false],
                 ],
-                'resolve' => [$resolver, 'resolveSrcSet'],
+                'resolve' => $resolver->resolveSrcSet(...),
             ],
             'mimetype' => Type::string(),
             'modificationDate' => Type::int(),
@@ -163,7 +163,7 @@ class AssetType extends ObjectType
             'filesize' => Type::int(),
             'version' => [
                 'type' => Type::int(),
-                'resolve' => [$resolver, 'resolveVersion'],
+                'resolve' => $resolver->resolveVersion(...),
             ],
             'data' => [
                 'type' => Type::string(),
@@ -171,14 +171,14 @@ class AssetType extends ObjectType
                     'thumbnail' => ['type' => Type::string()],
                     'format' => ['type' => Type::string()],
                 ],
-                'resolve' => [$resolver, 'resolveData'],
+                'resolve' => $resolver->resolveData(...),
             ],
             'tags' => [
                 'type' => Type::listOf($elementTagType),
                 'args' => [
                     'name' => ['type' => Type::string()],
                 ],
-                'resolve' => [$resolver, 'resolveTag'],
+                'resolve' => $resolver->resolveTag(...),
             ],
             'metadata' => [
                 'type' => Type::listOf($assetMetadataItemType),
@@ -186,11 +186,11 @@ class AssetType extends ObjectType
                     'language' => ['type' => Type::string()],
                     'ignore_language' => ['type' => Type::boolean()],
                 ],
-                'resolve' => [$resolver, 'resolveMetadata'],
+                'resolve' => $resolver->resolveMetadata(...),
             ],
             'embeddedMetaInfo' => [
                 'type' => Type::listOf($assetEmbeddedMetaInfoItemType),
-                'resolve' => [$resolver, 'resolveEmbeddedMetaInfo'],
+                'resolve' => $resolver->resolveEmbeddedMetaInfo(...),
             ],
             'properties' => [
                 'type' => Type::listOf($propertyType),
@@ -200,19 +200,19 @@ class AssetType extends ObjectType
                         'description' => 'comma separated list of key names',
                     ],
                 ],
-                'resolve' => [$elementResolver, 'resolveProperties'],
+                'resolve' => $elementResolver->resolveProperties(...),
             ],
             'parent' => [
                 'type' => $assetTree,
-                'resolve' => [$elementResolver, 'resolveParent'],
+                'resolve' => $elementResolver->resolveParent(...),
             ],
             'children' => [
                 'type' => Type::listOf($assetTree),
-                'resolve' => [$elementResolver, 'resolveChildren'],
+                'resolve' => $elementResolver->resolveChildren(...),
             ],
             '_siblings' => [
                 'type' => Type::listOf($assetTree),
-                'resolve' => [$elementResolver, 'resolveSiblings'],
+                'resolve' => $elementResolver->resolveSiblings(...),
             ],
         ];
     }

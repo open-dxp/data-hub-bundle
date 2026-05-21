@@ -61,19 +61,19 @@ class AssetFolderType extends FolderType
                         'description' => 'comma seperated list of key names',
                     ],
                 ],
-                'resolve' => [$elementResolver, 'resolveProperties'],
+                'resolve' => $elementResolver->resolveProperties(...),
             ],
             'parent' => [
                 'type' => $this,
-                'resolve' => [$elementResolver, 'resolveParent'],
+                'resolve' => $elementResolver->resolveParent(...),
             ],
             'children' => [
                 'type' => Type::listOf($assetTree),
-                'resolve' => [$elementResolver, 'resolveChildren'],
+                'resolve' => $elementResolver->resolveChildren(...),
             ],
             '_siblings' => [
                 'type' => Type::listOf($assetTree),
-                'resolve' => [$elementResolver, 'resolveSiblings'],
+                'resolve' => $elementResolver->resolveSiblings(...),
             ],
         ];
     }

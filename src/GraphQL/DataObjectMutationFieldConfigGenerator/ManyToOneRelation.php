@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGene
 class ManyToOneRelation extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\ManyToOneRelation($nodeDef);
@@ -25,7 +26,7 @@ class ManyToOneRelation extends Base
 
         return [
             'arg' => $this->getGraphQlService()->getDataObjectTypeDefinition('elementdescriptor_input'),
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

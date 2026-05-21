@@ -27,14 +27,11 @@ class Base
 {
     use ServiceTrait;
 
-    protected $nodeDef;
-
     /**
      * @param array $nodeDef
      */
-    public function __construct($nodeDef)
+    public function __construct(protected $nodeDef)
     {
-        $this->nodeDef = $nodeDef;
     }
 
     /**
@@ -57,9 +54,7 @@ class Base
     {
         $attribute = $this->getAttribute();
 
-        Service::setValue($object, $attribute, function ($container, $setter) use ($newValue) {
-            return $container->$setter($newValue);
-        });
+        Service::setValue($object, $attribute, fn($container, $setter) => $container->$setter($newValue));
     }
 
     /**

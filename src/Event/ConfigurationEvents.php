@@ -24,10 +24,8 @@ final class ConfigurationEvents
      *  - configuration | the original configuration instance
      *
      * @Event("OpenDxp\Event\Model\GenericEvent")
-     *
-     * @var string
      */
-    const CONFIGURATION_POST_DELETE = 'opendxp.datahub.configuration.postDelete';
+    const string CONFIGURATION_POST_DELETE = 'opendxp.datahub.configuration.postDelete';
 
     /**
      * Fired before a configuration gets saved
@@ -36,10 +34,8 @@ final class ConfigurationEvents
      *  - configuration | the original configuration instance
      *
      * @Event("OpenDxp\Event\Model\GenericEvent")
-     *
-     * @var string
      */
-    const CONFIGURATION_PRE_SAVE = 'opendxp.datahub.configuration.preSave';
+    const string CONFIGURATION_PRE_SAVE = 'opendxp.datahub.configuration.preSave';
 
     /**
      * Fired after a configuration was saved
@@ -48,8 +44,6 @@ final class ConfigurationEvents
      *  - configuration | the original configuration instance
      *
      * @Event("OpenDxp\Event\Model\GenericEvent")
-     *
-     * @var string
      */
-    const CONFIGURATION_POST_SAVE = 'opendxp.datahub.configuration.postSave';
+    const string CONFIGURATION_POST_SAVE = 'opendxp.datahub.configuration.postSave';
 }

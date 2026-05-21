@@ -28,30 +28,14 @@ class Merge
 {
     use ServiceTrait;
 
-    /** @var string|null */
-    protected $typeName;
-
-    /** @var array|null */
-    protected $attributes;
-
-    /** @var ClassDefinition|null */
-    protected $class;
-
-    /** @var object|null */
-    protected $container;
-
     /**
      * @param string|null $typeName
      * @param array|null $attributes
      * @param ClassDefinition|null $class
      * @param object|null $container
      */
-    public function __construct($typeName = null, $attributes = null, $class = null, $container = null)
+    public function __construct(protected $typeName = null, protected $attributes = null, protected $class = null, protected $container = null)
     {
-        $this->typeName = $typeName;
-        $this->attributes = $attributes;
-        $this->class = $class;
-        $this->container = $container;
     }
 
     /**

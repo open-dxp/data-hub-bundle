@@ -41,11 +41,6 @@ class OpenDxpObjectType extends ObjectType
      */
     protected $className;
 
-    /**
-     * @var string
-     */
-    protected $classId;
-
     protected static $skipOperators;
 
     protected $fields;
@@ -55,10 +50,9 @@ class OpenDxpObjectType extends ObjectType
      * @param array $config
      * @param array $context
      */
-    public function __construct(Service $graphQlService, string $className, $classId, $config = [], $context = [])
+    public function __construct(Service $graphQlService, string $className, protected $classId, $config = [], $context = [])
     {
         $this->className = $className;
-        $this->classId = $classId;
         $this->name = $config['name'] = 'object_' . $className;
         $this->setGraphQLService($graphQlService);
         $config['interfaces'] = [Element::getInstance()];
@@ -115,11 +109,11 @@ class OpenDxpObjectType extends ObjectType
             ],
             'index' => [
                 'type' => Type::int(),
-                'resolve' => [$resolver, 'resolveIndex'],
+                'resolve' => $resolver->resolveIndex(...),
             ],
             'childrenSortBy' => [
                 'type' => Type::string(),
-                'resolve' => [$resolver, 'resolveChildrenSortBy'],
+                'resolve' => $resolver->resolveChildrenSortBy(...),
             ],
             'classname' => [
                 'type' => Type::string(),
@@ -129,7 +123,7 @@ class OpenDxpObjectType extends ObjectType
                 'args' => [
                     'name' => ['type' => Type::string()],
                 ],
-                'resolve' => [$resolver, 'resolveTag'],
+                'resolve' => $resolver->resolveTag(...),
             ],
             'properties' => [
                 'type' => Type::listOf($propertyType),
@@ -139,11 +133,11 @@ class OpenDxpObjectType extends ObjectType
                         'description' => 'comma separated list of key names',
                     ],
                 ],
-                'resolve' => [$resolver, 'resolveProperties'],
+                'resolve' => $resolver->resolveProperties(...),
             ],
             'parent' => [
                 'type' => $objectTreeType,
-                'resolve' => [$resolver, 'resolveParent'],
+                'resolve' => $resolver->resolveParent(...),
             ],
             'children' => [
                 'type' => Type::listOf($objectTreeType),
@@ -153,7 +147,7 @@ class OpenDxpObjectType extends ObjectType
                         'description' => 'list of object types (object, variant, folder)',
                     ],
                 ],
-                'resolve' => [$resolver, 'resolveChildren'],
+                'resolve' => $resolver->resolveChildren(...),
             ],
             '_siblings' => [
                 'type' => Type::listOf($objectTreeType),
@@ -163,7 +157,7 @@ class OpenDxpObjectType extends ObjectType
                         'description' => 'list of object types (object, variant, folder)',
                     ],
                 ],
-                'resolve' => [$resolver, 'resolveSiblings'],
+                'resolve' => $resolver->resolveSiblings(...),
             ],
         ];
 
@@ -173,7 +167,7 @@ class OpenDxpObjectType extends ObjectType
             $configurationItem = $context['configuration'];
 
             $queryColumnConfig = $configurationItem->getQueryColumnConfig($this->className);
-            $columns = isset($queryColumnConfig['columns']) ? $queryColumnConfig['columns'] : [];
+            $columns = $queryColumnConfig['columns'] ?? [];
 
             if ($columns) {
                 $class = ClassDefinition::getById($this->classId);
@@ -334,7 +328,7 @@ class OpenDxpObjectType extends ObjectType
     public function getFields(): array
     {
         if (null === $this->fields) {
-            $fields = isset($this->config['fields']) ? $this->config['fields'] : [];
+            $fields = $this->config['fields'] ?? [];
             $this->fields = FieldDefinition::defineFieldMap($this, $fields);
         }
 

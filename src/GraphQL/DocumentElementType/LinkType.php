@@ -51,9 +51,7 @@ class LinkType extends ObjectType
                         ],
                         'data' => [
                             'type' => $linkDataType,
-                            'resolve' => static function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) {
-                                return $value;
-                            },
+                            'resolve' => static fn($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) => $value,
                         ],
                     ],
                 ];

@@ -42,11 +42,12 @@ class Fieldcollections extends Base
      *
      * @throws Exception
      */
+    #[\Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $attribute = $this->getAttribute();
-        $getter = 'get' . ucfirst($attribute);
-        $setter = 'set' . ucfirst($attribute);
+        $getter = 'get' . ucfirst((string) $attribute);
+        $setter = 'set' . ucfirst((string) $attribute);
         $currentCollection = $object->$getter();
         if ($currentCollection instanceof Fieldcollection) {
             $currentItems = $currentCollection->getItems() ?: [];
@@ -80,7 +81,7 @@ class Fieldcollections extends Base
                 if (!$fc || $fc->getType() != $fcKey) {
                     // either index does not exist or type does not match
                     $modelFactory = $this->getGraphQlService()->getModelFactory();
-                    $className = 'OpenDxp\\Model\\DataObject\\Fieldcollection\\Data\\' . ucfirst($fcKey);
+                    $className = 'OpenDxp\\Model\\DataObject\\Fieldcollection\\Data\\' . ucfirst((string) $fcKey);
                     /** @var AbstractData $fc */
                     $fc = $modelFactory->build($className);
                 }

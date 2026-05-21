@@ -25,30 +25,14 @@ class Base
 {
     use ServiceTrait;
 
-    /** @var string */
-    protected $typeName;
-
-    /** @var array */
-    protected $attributes;
-
-    /** @var ClassDefinition */
-    protected $class;
-
-    /** @var object */
-    protected $container;
-
     /**
      * @param string $typeName
      * @param array $attributes
      * @param ClassDefinition $class
      * @param object $container
      */
-    public function __construct($typeName, $attributes, $class, $container)
+    public function __construct(protected $typeName, protected $attributes, protected $class, protected $container)
     {
-        $this->typeName = $typeName;
-        $this->attributes = $attributes;
-        $this->class = $class;
-        $this->container = $container;
     }
 
     /**

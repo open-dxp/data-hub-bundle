@@ -63,20 +63,15 @@ abstract class AbstractFieldHelper
         // example for http://webonyx.github.io/graphql-php/error-handling/
         //         throw new MySafeException("fieldhelper", "TBD customized error message");
 
-        $getter = 'get' . ucfirst($astName);
+        $getter = 'get' . ucfirst((string) $astName);
         $arguments = $this->getArguments($ast);
-        $languageArgument = isset($arguments['language']) ? $arguments['language'] : null;
+        $languageArgument = $arguments['language'] ?? null;
 
         if (method_exists($container, $getter)) {
             if ($languageArgument) {
                 if ($ast->alias) {
                     // defer it
-                    $data[$astName] = function ($source, $args, $context, ResolveInfo $info) use (
-                        $container,
-                        $getter
-                    ) {
-                        return $container->$getter($args['language'] ?? null);
-                    };
+                    $data[$astName] = (fn($source, $args, $context, ResolveInfo $info) => $container->$getter($args['language'] ?? null));
                 } else {
                     $data[$astName] = $container->$getter($languageArgument);
                 }

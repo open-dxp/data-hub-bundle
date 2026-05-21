@@ -115,7 +115,7 @@ class WorkspaceHelper
                     unset($spaces[$spaceIndex]);
                     $spaces = array_values($spaces); // reset array keys
                 }
-            } elseif (strpos($cTrailingPath, $cTrailingSearchValue) !== false) {
+            } elseif (str_contains($cTrailingPath, $cTrailingSearchValue)) {
 
                 // it's a sub element
                 $changed = true;
@@ -293,7 +293,7 @@ class WorkspaceHelper
             }
 
             foreach ($lookupTable as $row) {
-                if (strpos($row['cpath'], $path) === 0 && $row[$type] == 1) {
+                if (str_starts_with((string) $row['cpath'], $path) && $row[$type] == 1) {
                     return true;
                 }
             }

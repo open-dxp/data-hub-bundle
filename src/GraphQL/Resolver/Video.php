@@ -96,7 +96,7 @@ class Video
                 $fieldHelper = $this->getGraphQlService()->getObjectFieldHelper();
                 $fieldHelper->extractData($data, $asset, $args, $context, $resolveInfo);
 
-                $data['data'] = isset($data['data']) ? base64_encode($data['data']) : null;
+                $data['data'] = isset($data['data']) ? base64_encode((string) $data['data']) : null;
                 $data['__elementSubtype'] = $asset->getType();
 
                 return $data;
@@ -125,7 +125,7 @@ class Video
                 $asset = $value->getData();
                 $fieldHelper = $this->getGraphQlService()->getAssetFieldHelper();
                 $fieldHelper->extractData($data, $asset, $args, $context, $resolveInfo);
-                $data['data'] = !empty($data['data']) ? base64_encode($data['data']) : null;
+                $data['data'] = !empty($data['data']) ? base64_encode((string) $data['data']) : null;
                 $data['__elementSubtype'] = $asset->getType();
 
                 return $data;

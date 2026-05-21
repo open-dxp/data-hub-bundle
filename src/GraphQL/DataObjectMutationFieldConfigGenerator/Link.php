@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGene
 class Link extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\Link($nodeDef);
@@ -25,7 +26,7 @@ class Link extends Base
 
         return [
             'arg' => $this->getGraphQlService()->getDataObjectTypeDefinition('link_input'),
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

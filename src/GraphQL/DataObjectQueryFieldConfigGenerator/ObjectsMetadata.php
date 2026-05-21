@@ -30,6 +30,7 @@ class ObjectsMetadata extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         /** @var AdvancedManyToManyObjectRelation $fieldDefinition */
@@ -50,6 +51,7 @@ class ObjectsMetadata extends Base
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $type = new ObjectMetadataType($this->getGraphQlService(), $fieldDefinition, $class);
@@ -64,10 +66,11 @@ class ObjectsMetadata extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\ObjectsMetadata($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

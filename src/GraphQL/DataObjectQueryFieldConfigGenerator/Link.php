@@ -28,6 +28,7 @@ class Link extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -43,6 +44,7 @@ class Link extends Base
      *
      * @return LinkType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return LinkType::getInstance();

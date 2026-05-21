@@ -44,30 +44,12 @@ class QueryType
     use ElementIdentificationTrait;
 
     /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
-     * @var ClassDefinition|null
-     */
-    protected $class;
-
-    /**
-     * @var object
-     */
-    protected $configuration;
-
-    /**
      * @param ClassDefinition|null $class
      * @param object $configuration
      * @param bool $omitPermissionCheck
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher, $class = null, $configuration = null, $omitPermissionCheck = false)
+    public function __construct(private EventDispatcherInterface $eventDispatcher, protected $class = null, protected $configuration = null, $omitPermissionCheck = false)
     {
-        $this->eventDispatcher = $eventDispatcher;
-        $this->class = $class;
-        $this->configuration = $configuration;
         $this->omitPermissionCheck = $omitPermissionCheck;
     }
 
@@ -98,7 +80,7 @@ class QueryType
         }
 
         $data = new ElementDescriptor();
-        $getter = 'get' . ucfirst($elementType) . 'FieldHelper';
+        $getter = 'get' . ucfirst((string) $elementType) . 'FieldHelper';
         $fieldHelper = $this->getGraphQlService()->$getter();
         $fieldHelper->extractData($data, $element, $args, $context, $resolveInfo);
         $data = $data->getArrayCopy();
@@ -275,7 +257,7 @@ class QueryType
         }
 
         $modelFactory = $this->getGraphQlService()->getModelFactory();
-        $listClass = 'OpenDxp\\Model\\DataObject\\' . ucfirst($this->class->getName()) . '\\Listing';
+        $listClass = 'OpenDxp\\Model\\DataObject\\' . ucfirst((string) $this->class->getName()) . '\\Listing';
         /** @var Listing $objectList */
         $objectList = $modelFactory->build($listClass);
         $conditionParts = [];
@@ -392,7 +374,7 @@ class QueryType
         }
 
         $modelFactory = $this->getGraphQlService()->getModelFactory();
-        $listClass = 'OpenDxp\\Model\\DataObject\\' . ucfirst($this->class->getName()) . '\\Listing';
+        $listClass = 'OpenDxp\\Model\\DataObject\\' . ucfirst((string) $this->class->getName()) . '\\Listing';
         /** @var Listing\Concrete $objectList */
         $objectList = $modelFactory->build($listClass);
         $tableName = $objectList->getDao()->getTableName();
@@ -402,9 +384,9 @@ class QueryType
         if (isset($args['ids'])) {
             // Explode it and then quote it
             if (!is_array($args['ids'])) {
-                $args['ids'] = explode(',', $args['ids']);
+                $args['ids'] = explode(',', (string) $args['ids']);
             }
-            $ids = implode(', ', array_map([$db, 'quote'], $args['ids']));
+            $ids = implode(', ', array_map($db->quote(...), $args['ids']));
             $conditionParts[] = '(id IN (' . $ids . '))';
         }
         if (isset($args['fullpaths'])) {
@@ -422,7 +404,7 @@ class QueryType
 
         if (isset($args['tags'])) {
             if (!is_array($args['tags'])) {
-                $args['tags'] = explode(',', $args['tags']);
+                $args['tags'] = explode(',', (string) $args['tags']);
             }
             $tags = strtolower(implode(', ', array_map(static function ($tag) use ($db) {
                 $tag = trim($tag);

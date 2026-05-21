@@ -28,11 +28,6 @@ abstract class AbstractOperator implements OperatorInterface
     protected $label;
 
     /**
-     * @var array
-     */
-    protected $context;
-
-    /**
      * @var ConfigElementInterface[]
      */
     protected $children;
@@ -40,11 +35,10 @@ abstract class AbstractOperator implements OperatorInterface
     /**
      * @param array|null $context
      */
-    public function __construct(array $config = [], $context = null)
+    public function __construct(array $config = [], protected $context = null)
     {
         $this->label = $config['label'];
         $this->children = $config['children'];
-        $this->context = $context;
     }
 
     /**

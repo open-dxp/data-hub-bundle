@@ -35,6 +35,7 @@ class Multihref extends Base implements TypeDefinitionInterface
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute,
@@ -53,6 +54,7 @@ class Multihref extends Base implements TypeDefinitionInterface
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return Type::listOf(new HrefType($this->getGraphQlService(), $fieldDefinition, $class));
@@ -65,10 +67,11 @@ class Multihref extends Base implements TypeDefinitionInterface
      *
      * @return array
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\Multihref($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

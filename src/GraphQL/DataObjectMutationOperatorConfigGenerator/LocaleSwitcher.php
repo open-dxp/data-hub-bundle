@@ -26,6 +26,7 @@ class LocaleSwitcher extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlMutationOperatorConfig($nodeDef, $class = null, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\LocaleSwitcherOperator($nodeDef);
@@ -33,13 +34,13 @@ class LocaleSwitcher extends Base
 
         $factories = $this->getGraphQlService()->getDataObjectMutationTypeGeneratorFactories();
 
-        $typeName = strtolower($nodeDef['attributes']['class']);
+        $typeName = strtolower((string) $nodeDef['attributes']['class']);
         $factory = $factories->get('typegenerator_dataobjectmutationoperator_' . $typeName);
         $determinedType = $factory->resolveInputTypeFromNodeDef($nodeDef, $class, $container);
 
         return [
             'arg' => $determinedType,
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

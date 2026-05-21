@@ -31,16 +31,6 @@ class QueryTypeEvent extends Event
     protected $queryType;
 
     /**
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * @var array
-     */
-    protected $context;
-
-    /**
      * @return QueryType
      */
     public function getQueryType()
@@ -77,10 +67,8 @@ class QueryTypeEvent extends Event
      * @param array $config
      * @param array $context
      */
-    public function __construct(QueryType $queryType, $config, $context)
+    public function __construct(QueryType $queryType, protected $config, protected $context)
     {
         $this->queryType = $queryType;
-        $this->config = $config;
-        $this->context = $context;
     }
 }

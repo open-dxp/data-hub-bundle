@@ -65,15 +65,15 @@ class QuantityValueType extends ObjectType
         $fields = [
             'unit' => [
                 'type' => QuantityValueUnitType::getInstance(),
-                'resolve' => [$resolver, 'resolveUnit'],
+                'resolve' => $resolver->resolveUnit(...),
             ],
             'value' => [
                 'type' => $valueType,
-                'resolve' => [$resolver, 'resolveValue'],
+                'resolve' => $resolver->resolveValue(...),
             ],
             'toString' => [
                 'type' => Type::string(),
-                'resolve' => [$resolver, 'resolveToString'],
+                'resolve' => $resolver->resolveToString(...),
                 'args' => ['language' => ['type' => Type::string()]],
             ],
         ];

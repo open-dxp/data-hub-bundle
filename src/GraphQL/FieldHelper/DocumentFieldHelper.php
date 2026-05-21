@@ -30,6 +30,7 @@ class DocumentFieldHelper extends AbstractFieldHelper
      * @param array $context
      * @param ResolveInfo $resolveInfo
      */
+    #[\Override]
     public function doExtractData(FieldNode $ast, &$data, $container, $args, $context, $resolveInfo = null)
     {
         $astName = $ast->name->value;
@@ -39,9 +40,9 @@ class DocumentFieldHelper extends AbstractFieldHelper
             return;
         }
 
-        $getter = 'get' . ucfirst($astName);
+        $getter = 'get' . ucfirst((string) $astName);
         $arguments = $this->getArguments($ast);
-        $languageArgument = isset($arguments['language']) ? $arguments['language'] : null;
+        $languageArgument = $arguments['language'] ?? null;
 
         $realName = $astName;
 
@@ -49,12 +50,7 @@ class DocumentFieldHelper extends AbstractFieldHelper
             if ($languageArgument) {
                 if ($ast->alias) {
                     // defer it
-                    $data[$realName] = function ($source, $args, $context, ResolveInfo $info) use (
-                        $container,
-                        $getter
-                    ) {
-                        return $container->$getter($args['language'] ?? null);
-                    };
+                    $data[$realName] = (fn($source, $args, $context, ResolveInfo $info) => $container->$getter($args['language'] ?? null));
                 } else {
                     $data[$realName] = $container->$getter($languageArgument);
                 }

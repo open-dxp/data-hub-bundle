@@ -31,9 +31,6 @@ abstract class AbstractRelationsType extends UnionType
 {
     use ServiceTrait;
 
-    /** @var ClassDefinition */
-    protected $class;
-
     /** @var Data */
     protected $fieldDefinition;
 
@@ -41,18 +38,17 @@ abstract class AbstractRelationsType extends UnionType
      * @param ClassDefinition|Definition|null $class
      * @param array $config
      */
-    public function __construct(Service $graphQlService, ?Data $fieldDefinition = null, $class = null, $config = [])
+    public function __construct(Service $graphQlService, ?Data $fieldDefinition = null, protected $class = null, $config = [])
     {
-        $this->class = $class;
         $this->fieldDefinition = $fieldDefinition;
         $this->setGraphQLService($graphQlService);
         $name = null;
 
-        if ($fieldDefinition && $class) {
-            if ($class instanceof ClassDefinition) {
-                $name = 'object_' . $class->getName() . '_' . $fieldDefinition->getName();
-            } elseif ($class instanceof Definition) {
-                $name = 'fieldcollection_' . $class->getKey() . '_' . $fieldDefinition->getName();
+        if ($fieldDefinition && $this->class) {
+            if ($this->class instanceof ClassDefinition) {
+                $name = 'object_' . $this->class->getName() . '_' . $fieldDefinition->getName();
+            } elseif ($this->class instanceof Definition) {
+                $name = 'fieldcollection_' . $this->class->getKey() . '_' . $fieldDefinition->getName();
             }
         }
         if ($fieldDefinition instanceof Data\AdvancedManyToManyRelation || $fieldDefinition instanceof Data\AdvancedManyToManyObjectRelation) {

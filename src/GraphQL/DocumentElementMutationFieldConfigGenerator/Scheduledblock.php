@@ -48,16 +48,14 @@ class Scheduledblock extends Base
             self::$itemType = new InputObjectType(
                 [
                     'name' => 'document_element_input_scheduledblock_item',
-                    'fields' => function () {
-                        return [
-                            'date' => Type::int(),
-                            'replace' => [
-                                'type' => Type::boolean(),
-                                'description' => 'if true (default), all elements inside the block will be replaced',
-                            ],
-                            'editables' => MutationType::$documentElementTypes,
-                        ];
-                    },
+                    'fields' => fn() => [
+                        'date' => Type::int(),
+                        'replace' => [
+                            'type' => Type::boolean(),
+                            'description' => 'if true (default), all elements inside the block will be replaced',
+                        ],
+                        'editables' => MutationType::$documentElementTypes,
+                    ],
                 ]
             );
         }
@@ -66,19 +64,17 @@ class Scheduledblock extends Base
             'arg' => new InputObjectType(
                 [
                     'name' => 'document_element_input_scheduledblock',
-                    'fields' => function () {
-                        return [
-                            '_editableName' => Type::nonNull(Type::string()),
-                            'indices' => Type::listOf($this->scheduledblockDataInputType),
-                            'items' => [
-                                'type' => Type::listOf(self::$itemType),
-                            ],
-                        ];
-                    },
+                    'fields' => fn() => [
+                        '_editableName' => Type::nonNull(Type::string()),
+                        'indices' => Type::listOf($this->scheduledblockDataInputType),
+                        'items' => [
+                            'type' => Type::listOf(self::$itemType),
+                        ],
+                    ],
                 ]
 
             ),
-            'processor' => [$this->processor, 'process'],
+            'processor' => $this->processor->process(...),
         ];
     }
 }

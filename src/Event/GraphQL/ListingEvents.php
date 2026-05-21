@@ -19,8 +19,6 @@ final class ListingEvents
 {
     /**
      * @Event("OpenDxp\Bundle\DataHubBundle\Event\GraphQL\Model\ListingEvent")
-     *
-     * @var string
      */
-    const PRE_LOAD = 'opendxp.datahub.graphql.listing.preLoad';
+    const string PRE_LOAD = 'opendxp.datahub.graphql.listing.preLoad';
 }

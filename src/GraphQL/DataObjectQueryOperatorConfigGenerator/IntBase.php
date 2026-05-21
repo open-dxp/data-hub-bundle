@@ -31,6 +31,7 @@ class IntBase extends Base
      *
      * @return ScalarType|Type
      */
+    #[\Override]
     public function getGraphQlType($typeName, $nodeDef, $class = null, $container = null, $params = [])
     {
         return Type::int();
@@ -43,6 +44,7 @@ class IntBase extends Base
      *
      * @return \GraphQL\Type\Definition\ScalarType
      */
+    #[\Override]
     public function getFieldType($attributes, $class = null, $container = null)
     {
         return Type::int();

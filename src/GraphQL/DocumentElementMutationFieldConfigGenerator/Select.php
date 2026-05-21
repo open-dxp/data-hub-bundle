@@ -45,7 +45,7 @@ class Select extends Base
                     ],
                 ]
             ),
-            'processor' => [$this->processor, 'process'],
+            'processor' => $this->processor->process(...),
         ];
     }
 }

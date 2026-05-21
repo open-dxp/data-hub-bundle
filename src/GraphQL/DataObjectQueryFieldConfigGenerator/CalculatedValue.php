@@ -32,6 +32,7 @@ class CalculatedValue extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig(

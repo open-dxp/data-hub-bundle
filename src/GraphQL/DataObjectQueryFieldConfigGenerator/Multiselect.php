@@ -28,6 +28,7 @@ class Multiselect extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -42,6 +43,7 @@ class Multiselect extends Base
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return Type::listOf(Type::string());

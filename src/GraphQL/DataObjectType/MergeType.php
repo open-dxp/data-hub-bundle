@@ -33,27 +33,15 @@ class MergeType extends UnionType
 {
     use ServiceTrait;
 
-    /** @var array */
-    protected $nodeDef;
-
-    /** @var ClassDefinition|null */
-    protected $class;
-
-    /** @var object|null */
-    protected $container;
-
     /**
      * @param array $nodeDef
      * @param ClassDefinition|null $class
      * @param object|null $container
      * @param array $config
      */
-    public function __construct(Service $graphQlService, $nodeDef, $class = null, $container = null, $config = [])
+    public function __construct(Service $graphQlService, protected $nodeDef, protected $class = null, protected $container = null, $config = [])
     {
         $this->setGraphQLService($graphQlService);
-        $this->nodeDef = $nodeDef;
-        $this->class = $class;
-        $this->container = $container;
         parent::__construct($config);
     }
 

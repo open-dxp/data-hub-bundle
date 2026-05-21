@@ -49,7 +49,7 @@ class LinkType extends AbstractDocumentType
             'internalType' => Type::string(),
             'object' => [
                 'type' => $anyTargetType,
-                'resolve' => [$resolver, 'resolveObject'],
+                'resolve' => $resolver->resolveObject(...),
                 ],
             'direct' => Type::string(),
             'linktype' => Type::string(),

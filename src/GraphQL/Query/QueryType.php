@@ -40,11 +40,6 @@ class QueryType extends ObjectType
     use PermissionInfoTrait;
 
     /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
      * @var LocaleServiceInterface
      */
     protected $localeService;
@@ -60,7 +55,7 @@ class QueryType extends ObjectType
      *
      * @throws Exception
      */
-    public function __construct(Service $graphQlService, LocaleServiceInterface $localeService, Factory $modelFactory, EventDispatcherInterface $eventDispatcher, $config = [], $context = [])
+    public function __construct(Service $graphQlService, LocaleServiceInterface $localeService, Factory $modelFactory, private EventDispatcherInterface $eventDispatcher, $config = [], $context = [])
     {
         if (!isset($config['name'])) {
             $config['name'] = 'Query';
@@ -68,7 +63,6 @@ class QueryType extends ObjectType
         $this->setGraphQLService($graphQlService);
         $this->localeService = $localeService;
         $this->modelFactory = $modelFactory;
-        $this->eventDispatcher = $eventDispatcher;
 
         $this->build($config, $context);
         parent::__construct($config);
@@ -97,17 +91,17 @@ class QueryType extends ObjectType
 
             // GETTER DEFINITION
             $defGet = [
-                'name' => 'get' . ucfirst($type) . 'Folder',
+                'name' => 'get' . ucfirst((string) $type) . 'Folder',
                 'args' => [
                     'id' => ['type' => Type::int()],
                     'fullpath' => ['type' => Type::string()],
                     'defaultLanguage' => ['type' => Type::string()],
                 ],
                 'type' => $graphQlType,
-                'resolve' => [$resolver, 'resolve' . ucfirst($type) . 'FolderGetter'],
+                'resolve' => [$resolver, 'resolve' . ucfirst((string) $type) . 'FolderGetter'],
             ];
 
-            $config['fields']['get' . ucfirst($type) . 'Folder'] = $defGet;
+            $config['fields']['get' . ucfirst((string) $type) . 'Folder'] = $defGet;
         }
     }
 
@@ -135,7 +129,7 @@ class QueryType extends ObjectType
                     'defaultLanguage' => ['type' => Type::string()],
                 ],
                 'type' => $assetType,
-                'resolve' => [$resolver, 'resolveAssetGetter'],
+                'resolve' => $resolver->resolveAssetGetter(...),
             ];
 
             $config['fields']['getAsset'] = $defGet;
@@ -165,7 +159,7 @@ class QueryType extends ObjectType
                     'defaultLanguage' => ['type' => Type::string()],
                 ],
                 'type' => $this->getGraphQlService()->getDocumentTypeDefinition('document'),
-                'resolve' => [$resolver, 'resolveDocumentGetter'],
+                'resolve' => $resolver->resolveDocumentGetter(...),
             ];
 
             $config['fields']['getDocument'] = $defGet;
@@ -207,7 +201,7 @@ class QueryType extends ObjectType
             }
 
             $resolver = $this->getResolver($class, $configuration);
-            $ucFirstClassName = ucfirst($class->getName());
+            $ucFirstClassName = ucfirst((string) $class->getName());
 
             // GETTER DEFINITION
             $defGet = [
@@ -218,7 +212,7 @@ class QueryType extends ObjectType
                     'defaultLanguage' => ['type' => Type::string()],
                 ],
                 'type' => ClassTypeDefinitions::get($class),
-                'resolve' => [$resolver, 'resolveObjectGetter'],
+                'resolve' => $resolver->resolveObjectGetter(...),
             ];
 
             // LISTING DEFINITION
@@ -229,7 +223,7 @@ class QueryType extends ObjectType
                         'cursor' => Type::string(),
                         'node' => [
                             'type' => ClassTypeDefinitions::get($class),
-                            'resolve' => [$resolver, 'resolveEdge'],
+                            'resolve' => $resolver->resolveEdge(...),
                         ],
                     ],
                 ]
@@ -242,11 +236,11 @@ class QueryType extends ObjectType
 
                         'edges' => [
                             'type' => Type::listOf($edgeType),
-                            'resolve' => [$resolver, 'resolveEdges'],
+                            'resolve' => $resolver->resolveEdges(...),
                         ],
                         'totalCount' => [
                             'description' => 'The total count of all queryable objects for this schema listing',
-                            'resolve' => [$resolver, 'resolveListingTotalCount'],
+                            'resolve' => $resolver->resolveListingTotalCount(...),
                             'type' => Type::int(),
                         ],
                     ],
@@ -274,7 +268,7 @@ class QueryType extends ObjectType
                     'published' => ['type' => Type::boolean()],
                 ],
                 'type' => $listingType,
-                'resolve' => [$resolver, 'resolveListing'],
+                'resolve' => $resolver->resolveListing(...),
             ];
 
             if (!isset($config['fields'])) {
@@ -311,7 +305,7 @@ class QueryType extends ObjectType
                     'cursor' => Type::string(),
                     'node' => [
                         'type' => $assetTree,
-                        'resolve' => [$listResolver, 'resolveEdge'],
+                        'resolve' => $listResolver->resolveEdge(...),
                     ],
                 ],
             ]
@@ -323,11 +317,11 @@ class QueryType extends ObjectType
                 'fields' => [
                     'edges' => [
                         'type' => Type::listOf($edgeType),
-                        'resolve' => [$listResolver, 'resolveEdges'],
+                        'resolve' => $listResolver->resolveEdges(...),
                     ],
                     'totalCount' => [
                         'description' => 'The total count of all queryable assets for this schema listing',
-                        'resolve' => [$listResolver, 'resolveListingTotalCount'],
+                        'resolve' => $listResolver->resolveListingTotalCount(...),
                         'type' => Type::int(),
                     ],
                 ],
@@ -354,7 +348,7 @@ class QueryType extends ObjectType
                 'published' => ['type' => Type::boolean()],
             ],
             'type' => $listingType,
-            'resolve' => [$listResolver, 'resolveListing'],
+            'resolve' => $listResolver->resolveListing(...),
         ];
 
         $config['fields']['getAssetListing'] = $defListing;
@@ -386,7 +380,7 @@ class QueryType extends ObjectType
                     ],
                 ],
                 'type' => $translationType,
-                'resolve' => [$resolver, 'resolveTranslationGetter'],
+                'resolve' => $resolver->resolveTranslationGetter(...),
             ];
 
             $config['fields']['getTranslation'] = $defGet;
@@ -412,7 +406,7 @@ class QueryType extends ObjectType
                     'cursor' => Type::string(),
                     'node' => [
                         'type' => $translation,
-                        'resolve' => [$listResolver, 'resolveEdge'],
+                        'resolve' => $listResolver->resolveEdge(...),
                     ],
                 ],
             ]
@@ -424,11 +418,11 @@ class QueryType extends ObjectType
                 'fields' => [
                     'edges' => [
                         'type' => Type::listOf($edgeType),
-                        'resolve' => [$listResolver, 'resolveEdges'],
+                        'resolve' => $listResolver->resolveEdges(...),
                     ],
                     'totalCount' => [
                         'description' => 'The total count of all queryable translations for this schema listing',
-                        'resolve' => [$listResolver, 'resolveListingTotalCount'],
+                        'resolve' => $listResolver->resolveListingTotalCount(...),
                         'type' => Type::int(),
                     ],
                 ],
@@ -459,7 +453,7 @@ class QueryType extends ObjectType
                 ],
             ],
             'type' => $listingType,
-            'resolve' => [$listResolver, 'resolveListing'],
+            'resolve' => $listResolver->resolveListing(...),
         ];
 
         $config['fields']['getTranslationListing'] = $defListing;

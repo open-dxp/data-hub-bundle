@@ -29,6 +29,7 @@ class ReverseManyToManyObjectRelation extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         /** @var Data\ReverseObjectRelation $fieldDefinition */
@@ -52,6 +53,7 @@ class ReverseManyToManyObjectRelation extends Base
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $className = $fieldDefinition->getOwnerClassName();
@@ -67,10 +69,11 @@ class ReverseManyToManyObjectRelation extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator\Helper\ReverseManyToManyObjects($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

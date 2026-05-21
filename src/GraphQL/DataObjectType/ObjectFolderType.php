@@ -53,15 +53,15 @@ class ObjectFolderType extends FolderType
             'modificationDate' => Type::int(),
             'parent' => [
                 'type' => $objectTreeType,
-                'resolve' => [$resolver, 'resolveParent'],
+                'resolve' => $resolver->resolveParent(...),
             ],
             'index' => [
                 'type' => Type::int(),
-                'resolve' => [$resolver, 'resolveIndex'],
+                'resolve' => $resolver->resolveIndex(...),
             ],
             'childrenSortBy' => [
                 'type' => Type::string(),
-                'resolve' => [$resolver, 'resolveChildrenSortBy'],
+                'resolve' => $resolver->resolveChildrenSortBy(...),
             ],
             'children' => [
                 'type' => Type::listOf($objectTreeType),
@@ -71,7 +71,7 @@ class ObjectFolderType extends FolderType
                         'description' => 'list of object types (object, variant, folder)',
                     ],
                 ],
-                'resolve' => [$resolver, 'resolveChildren'],
+                'resolve' => $resolver->resolveChildren(...),
             ],
             'properties' => [
                 'type' => Type::listOf($propertyType),
@@ -81,7 +81,7 @@ class ObjectFolderType extends FolderType
                         'description' => 'comma separated list of key names',
                     ],
                 ],
-                'resolve' => [$resolver, 'resolveProperties'],
+                'resolve' => $resolver->resolveProperties(...),
             ],
             '_siblings' => [
                 'type' => Type::listOf($objectTreeType),
@@ -91,7 +91,7 @@ class ObjectFolderType extends FolderType
                         'description' => 'list of object types (object, variant, folder)',
                     ],
                 ],
-                'resolve' => [$resolver, 'resolveSiblings'],
+                'resolve' => $resolver->resolveSiblings(...),
             ],
         ];
     }

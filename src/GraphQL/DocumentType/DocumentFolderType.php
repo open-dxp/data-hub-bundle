@@ -62,24 +62,24 @@ class DocumentFolderType extends FolderType
                             'description' => 'comma seperated list of key names',
                         ],
                     ],
-                    'resolve' => [$resolver, 'resolveProperties'],
+                    'resolve' => $resolver->resolveProperties(...),
                 ],
                 'parent' => [
                     'type' => $documentTree,
-                    'resolve' => [$resolver, 'resolveParent'],
+                    'resolve' => $resolver->resolveParent(...),
                 ],
                 'children' => [
                     'type' => Type::listOf($documentTree),
-                    'resolve' => [$resolver, 'resolveChildren'],
+                    'resolve' => $resolver->resolveChildren(...),
                 ],
                 '_siblings' => [
                     'type' => Type::listOf($documentTree),
-                    'resolve' => [$resolver, 'resolveSiblings'],
+                    'resolve' => $resolver->resolveSiblings(...),
                 ],
                 'translations' => [
                     'args' => ['defaultLanguage' => ['type' => Type::string()]],
                     'type' => Type::listOf($documentTranslation),
-                    'resolve' => [$documentResolver, 'resolveTranslations'],
+                    'resolve' => $documentResolver->resolveTranslations(...),
                 ],
             ];
         }

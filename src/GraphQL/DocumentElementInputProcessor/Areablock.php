@@ -29,6 +29,7 @@ class Areablock extends Base
      * @param array $args
      * @param mixed $context
      */
+    #[\Override]
     public function process($document, $newValue, $args, $context, ResolveInfo $info)
     {
         $editableType = $newValue['_editableType'];

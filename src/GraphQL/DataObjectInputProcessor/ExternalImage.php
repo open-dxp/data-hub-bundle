@@ -31,6 +31,7 @@ class ExternalImage extends Base
      *
      * @throws Exception
      */
+    #[\Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $attribute = $this->getAttribute();

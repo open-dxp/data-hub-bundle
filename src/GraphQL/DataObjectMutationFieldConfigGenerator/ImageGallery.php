@@ -21,6 +21,7 @@ use GraphQL\Type\Definition\Type;
 class ImageGallery extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\ImageGallery($nodeDef);
@@ -48,7 +49,7 @@ class ImageGallery extends Base
 
         return [
             'arg' => $inputType,
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

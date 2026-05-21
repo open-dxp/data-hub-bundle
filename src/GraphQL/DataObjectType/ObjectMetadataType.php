@@ -30,8 +30,6 @@ class ObjectMetadataType extends ObjectType
 {
     use ServiceTrait;
 
-    protected $class;
-
     /** @var Data */
     protected $fieldDefinition;
 
@@ -39,17 +37,16 @@ class ObjectMetadataType extends ObjectType
      * @param ClassDefinition|null $class
      * @param array $config
      */
-    public function __construct(Service $graphQlService, ?Data $fieldDefinition = null, $class = null, $config = [])
+    public function __construct(Service $graphQlService, ?Data $fieldDefinition = null, protected $class = null, $config = [])
     {
         $this->setGraphQLService($graphQlService);
-        $this->class = $class;
         $this->fieldDefinition = $fieldDefinition;
-        if ($class instanceof ObjectbrickDefinition) {
-            $config['name'] = 'objectbrick_' . $class->getKey() . '_' . $fieldDefinition->getName();
-        } elseif ($class instanceof FieldcollectionDefinition) {
-            $config['name'] = 'fieldcollection_' . $class->getKey() . '_' . $fieldDefinition->getName();
+        if ($this->class instanceof ObjectbrickDefinition) {
+            $config['name'] = 'objectbrick_' . $this->class->getKey() . '_' . $fieldDefinition->getName();
+        } elseif ($this->class instanceof FieldcollectionDefinition) {
+            $config['name'] = 'fieldcollection_' . $this->class->getKey() . '_' . $fieldDefinition->getName();
         } else {
-            $config['name'] = 'object_' . $class->getName() . '_' . $fieldDefinition->getName();
+            $config['name'] = 'object_' . $this->class->getName() . '_' . $fieldDefinition->getName();
         }
         $this->build($config);
         parent::__construct($config);
@@ -73,11 +70,11 @@ class ObjectMetadataType extends ObjectType
         $fields = ['element' =>
             [
                 'type' => $elementTypeDefinition,
-                'resolve' => [$resolver, 'resolveElement'],
+                'resolve' => $resolver->resolveElement(...),
             ],
             'metadata' => [
                 'type' => Type::listOf($metadataKeyValuePairType),
-                'resolve' => [$resolver, 'resolveMetadata'],
+                'resolve' => $resolver->resolveMetadata(...),
 
             ]];
 

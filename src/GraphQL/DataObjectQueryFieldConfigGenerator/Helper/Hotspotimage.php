@@ -42,28 +42,16 @@ class Hotspotimage
     public $fieldDefinition;
 
     /**
-     * @var ClassDefinition|Fieldcollection\Definition
-     */
-    public $class;
-
-    /**
-     * @var string
-     */
-    public $attribute;
-
-    /**
      * @param string $attribute
      * @param ClassDefinition|Fieldcollection\Definition $class
      */
     public function __construct(
         Service $graphQlService,
-        $attribute,
+        public $attribute,
         ClassDefinition\Data\Hotspotimage $fieldDefinition,
-        $class
+        public $class
     ) {
         $this->fieldDefinition = $fieldDefinition;
-        $this->class = $class;
-        $this->attribute = $attribute;
         $this->setGraphQLService($graphQlService);
     }
 

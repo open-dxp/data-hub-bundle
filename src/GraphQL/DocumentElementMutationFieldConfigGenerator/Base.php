@@ -28,7 +28,7 @@ class Base
         $this->setGraphQLService($graphQlService);
     }
 
-    public function getDocumentElementMutationFieldConfig()
+    public function getDocumentElementMutationFieldConfig(): never
     {
         throw new Exception("needs to be implemented in the base class. let's see, maybe there are similarities");
     }

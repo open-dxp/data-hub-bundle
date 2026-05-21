@@ -30,7 +30,7 @@ trait EditablesTrait
 
         foreach ($editables as $editable) {
             $name = $editable->getName();
-            if ($name === $editableName || strpos($name, $editableName . '.') === 0) {
+            if ($name === $editableName || str_starts_with($name, $editableName . '.')) {
                 $document->removeEditable($name);
             }
         }

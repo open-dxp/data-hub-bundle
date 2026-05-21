@@ -64,11 +64,11 @@ class MultihrefMetadataType extends ObjectType
         $fields = ['element' =>
                        [
                            'type' => new HrefType($this->getGraphQlService(), $this->fieldDefinition, $this->class),
-                           'resolve' => [$resolver, 'resolveElement'],
+                           'resolve' => $resolver->resolveElement(...),
                        ],
                    'metadata' => [
                        'type' => Type::listOf($metadataKeyValuePairType),
-                       'resolve' => [$resolver, 'resolveMetadata'],
+                       'resolve' => $resolver->resolveMetadata(...),
                    ]];
 
         $config['fields'] = $fields;

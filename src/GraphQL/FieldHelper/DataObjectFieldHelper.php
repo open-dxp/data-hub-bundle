@@ -45,7 +45,7 @@ class DataObjectFieldHelper extends AbstractFieldHelper
         $attributes = $nodeDef['attributes'];
 
         if ($nodeDef['isOperator']) {
-            $key = isset($attributes['label']) ? $attributes['label'] : '';
+            $key = $attributes['label'] ?? '';
 
             $key = File::getValidFilename($key);
 
@@ -63,37 +63,30 @@ class DataObjectFieldHelper extends AbstractFieldHelper
 
             // system columns which are not part of the common set (see OpenDxpObjectType)
             if ($attributes['dataType'] == 'system') {
-                switch ($key) {
-                    case 'creationDate':
-                    case 'modificationDate':
-                        return [
-                            'key' => $key,
-                            'config' => [
-                                'name' => $key,
-                                'type' => Type::int(),
-                            ],
-                        ];
-                    case 'filename':
-                    case 'fullpath':
-                    case 'key':
-                        return [
-                            'key' => $key,
-                            'config' => [
-                                'name' => $key,
-                                'type' => Type::string(),
-                            ],
-                        ];
-                    case 'published':
-                        return [
-                            'key' => $key,
-                            'config' => [
-                                'name' => $key,
-                                'type' => Type::boolean(),
-                            ],
-                        ];
-                    default:
-                        return null;
-                }
+                return match ($key) {
+                    'creationDate', 'modificationDate' => [
+                        'key' => $key,
+                        'config' => [
+                            'name' => $key,
+                            'type' => Type::int(),
+                        ],
+                    ],
+                    'filename', 'fullpath', 'key' => [
+                        'key' => $key,
+                        'config' => [
+                            'name' => $key,
+                            'type' => Type::string(),
+                        ],
+                    ],
+                    'published' => [
+                        'key' => $key,
+                        'config' => [
+                            'name' => $key,
+                            'type' => Type::boolean(),
+                        ],
+                    ],
+                    default => null,
+                };
             } else {
                 $fieldDefinition = $this->getFieldDefinitionFromKey($class, $key, $container);
 
@@ -152,13 +145,13 @@ class DataObjectFieldHelper extends AbstractFieldHelper
         $fieldDefinition = null;
         $parts = explode('~', $key);
 
-        if (substr($key, 0, 1) === '~') {
+        if (str_starts_with($key, '~')) {
             // classification store ...
         } elseif (count($parts) > 1) {
             $brickType = $parts[0];
             $brickDescriptor = null;
 
-            if (strpos($brickType, '?') !== false) {
+            if (str_contains($brickType, '?')) {
                 $brickDescriptor = substr($brickType, 1);
                 $brickDescriptor = json_decode($brickDescriptor, true);
                 $brickType = $brickDescriptor['containerKey'];
@@ -202,14 +195,11 @@ class DataObjectFieldHelper extends AbstractFieldHelper
     {
         $typeName = $fieldDefinition->getFieldtype();
 
-        switch ($operationType) {
-            case 'query':
-                return $this->getGraphQlService()->supportsDataObjectQueryDataType($typeName);
-            case 'mutation':
-                return $this->getGraphQlService()->supportsDataObjectMutationDataType($typeName);
-            default:
-                throw new ClientSafeException('unknown operation type ' . $typeName);
-        }
+        return match ($operationType) {
+            'query' => $this->getGraphQlService()->supportsDataObjectQueryDataType($typeName),
+            'mutation' => $this->getGraphQlService()->supportsDataObjectMutationDataType($typeName),
+            default => throw new ClientSafeException('unknown operation type ' . $typeName),
+        };
     }
 
     /**
@@ -242,7 +232,7 @@ class DataObjectFieldHelper extends AbstractFieldHelper
         $attributes = $nodeDef['attributes'];
 
         if ($nodeDef['isOperator'] ?? false) {
-            $key = isset($attributes['label']) ? $attributes['label'] : '';
+            $key = $attributes['label'] ?? '';
             $key = preg_replace('/[^A-Za-z0-9\-\.~_]+/', '_', $key);
 
             $result = $this->getGraphQlOperatorConfig(
@@ -259,27 +249,24 @@ class DataObjectFieldHelper extends AbstractFieldHelper
 
             // system columns which are not part of the common set (see OpenDxpObjectType)
             if ($attributes['dataType'] === 'system') {
-                switch ($key) {
-                    case 'key':
-                        return [
-                            'key' => $key,
-                            'arg' => ['type' => Type::string()],
-                            'processor' => function ($object, $newValue, $args) {
-                                $object->setKey($newValue);
-                            },
+                return match ($key) {
+                    'key' => [
+                        'key' => $key,
+                        'arg' => ['type' => Type::string()],
+                        'processor' => function ($object, $newValue, $args) {
+                            $object->setKey($newValue);
+                        },
 
-                        ];
-                    case 'published':
-                        return [
-                            'key' => $key,
-                            'arg' => ['type' => Type::boolean()],
-                            'processor' => function ($object, $newValue, $args) {
-                                $object->setPublished($newValue);
-                            },
-                        ];
-                    default:
-                        return null;
-                }
+                    ],
+                    'published' => [
+                        'key' => $key,
+                        'arg' => ['type' => Type::boolean()],
+                        'processor' => function ($object, $newValue, $args) {
+                            $object->setPublished($newValue);
+                        },
+                    ],
+                    default => null,
+                };
             } else {
                 $fieldDefinition = $this->getFieldDefinitionFromKey($class, $key, $container);
 
@@ -349,6 +336,7 @@ class DataObjectFieldHelper extends AbstractFieldHelper
      * @param array $context
      * @param ResolveInfo $resolveInfo
      */
+    #[\Override]
     public function doExtractData(FieldNode $ast, &$data, $container, $args, $context, $resolveInfo = null)
     {
         $astName = $ast->name->value;
@@ -361,7 +349,7 @@ class DataObjectFieldHelper extends AbstractFieldHelper
         // example for http://webonyx.github.io/graphql-php/error-handling/
         //         throw new MySafeException("fieldhelper", "TBD customized error message");
 
-        $getter = 'get' . ucfirst($astName);
+        $getter = 'get' . ucfirst((string) $astName);
 
         $isLocalizedField = false;
         $containerDefinition = null;
@@ -408,6 +396,7 @@ class DataObjectFieldHelper extends AbstractFieldHelper
      *
      * @return bool
      */
+    #[\Override]
     public function skipField($container, $astName)
     {
         if ($container instanceof Concrete || $container instanceof Localizedfield) {

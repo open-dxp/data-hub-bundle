@@ -30,6 +30,7 @@ class AssetBase extends Base
      *
      * @throws Exception
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig(
@@ -53,6 +54,7 @@ class AssetBase extends Base
      *
      * @throws Exception
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->getGraphQlService()->buildAssetType('asset');
@@ -65,10 +67,11 @@ class AssetBase extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\AssetBase($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

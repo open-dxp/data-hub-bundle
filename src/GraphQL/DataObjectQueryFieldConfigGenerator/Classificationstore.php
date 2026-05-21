@@ -31,6 +31,7 @@ class Classificationstore extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -40,7 +41,7 @@ class Classificationstore extends Base
             'description' => 'returns a list of group containers',
             'resolve' => function ($value, $args, $context = [], ?ResolveInfo $resolveInfo = null) {
                 $fieldName = $resolveInfo->fieldName;
-                $language = isset($args['language']) ? $args['language'] : null;
+                $language = $args['language'] ?? null;
                 /** @var \OpenDxp\Model\DataObject\Classificationstore $csField */
                 $csField = $value[$fieldName];
 
@@ -77,6 +78,7 @@ class Classificationstore extends Base
      *
      * @return ListOfType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $service = $this->getGraphQlService();

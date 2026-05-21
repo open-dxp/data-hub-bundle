@@ -42,6 +42,7 @@ class IfEmptyOperator extends BaseOperator
      *
      * @throws Exception|UnexpectedValueException
      */
+    #[\Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $class = $object->getClass();

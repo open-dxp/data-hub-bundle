@@ -35,7 +35,7 @@ class DateFormatter extends AbstractOperator
     {
         parent::__construct($config, $context);
 
-        $this->format = ($config['format'] ? $config['format'] : null);
+        $this->format = ($config['format'] ?: null);
     }
 
     /**

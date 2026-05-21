@@ -30,30 +30,12 @@ class Objects
     use ServiceTrait;
 
     /**
-     * @var Data
-     */
-    public $fieldDefinition;
-
-    /**
-     * @var ClassDefinition
-     */
-    public $class;
-
-    /**
-     * @var string
-     */
-    public $attribute;
-
-    /**
      * @param string $attribute
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      */
-    public function __construct(Service $graphQlService, $attribute, $fieldDefinition, $class)
+    public function __construct(Service $graphQlService, public $attribute, public $fieldDefinition, public $class)
     {
-        $this->fieldDefinition = $fieldDefinition;
-        $this->class = $class;
-        $this->attribute = $attribute;
         $this->setGraphQLService($graphQlService);
     }
 

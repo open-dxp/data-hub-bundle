@@ -27,6 +27,7 @@ class Video extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -41,6 +42,7 @@ class Video extends Base
      *
      * @return mixed
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $graphQlService = $this->getGraphQlService();
