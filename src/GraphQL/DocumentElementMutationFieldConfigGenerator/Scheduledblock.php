@@ -32,9 +32,13 @@ class Scheduledblock extends Base
     /** @var \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Scheduledblock */
     protected $processor;
 
-    public function __construct(Service $graphQlService, ScheduledblockDataInputType $scheduledblockDataInputType, \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Scheduledblock $processor)
-    {
-        $this->setGraphQLService($graphQlService);
+    public function __construct(
+        Service $graphQlService,
+        ScheduledblockDataInputType $scheduledblockDataInputType,
+        \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Scheduledblock $processor
+    ) {
+        parent::__construct($graphQlService);
+
         $this->scheduledblockDataInputType = $scheduledblockDataInputType;
         $this->processor = $processor;
     }

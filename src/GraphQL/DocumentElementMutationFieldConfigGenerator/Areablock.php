@@ -32,9 +32,13 @@ class Areablock extends Base
     /** @var \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Areablock */
     protected $processor;
 
-    public function __construct(Service $graphQlService, AreablockDataInputType $areablockDataInputType, \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Areablock $processor)
-    {
-        $this->setGraphQLService($graphQlService);
+    public function __construct(
+        Service $graphQlService,
+        AreablockDataInputType $areablockDataInputType,
+        \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Areablock $processor
+    ) {
+        parent::__construct($graphQlService);
+
         $this->areablockDataInputType = $areablockDataInputType;
         $this->processor = $processor;
     }

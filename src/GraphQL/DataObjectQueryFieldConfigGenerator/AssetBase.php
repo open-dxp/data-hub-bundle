@@ -65,7 +65,7 @@ class AssetBase extends Base
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return array
+     * @return \Closure
      */
     #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)

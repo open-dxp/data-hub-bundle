@@ -22,17 +22,16 @@
         "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^9.6",
         "symfony/phpunit-bridge": "^6",
-        "codeception/codeception": "^5.0.3",
+        "codeception/codeception": "^5.3.5",
         "codeception/phpunit-wrapper": "^9",
-        "codeception/module-asserts": "^2",
-        "codeception/module-symfony": "^3.1.0",
+        "codeception/module-asserts": "^3.2",
+        "codeception/module-symfony": "^3.8",
         "symfony/dotenv": "^7.3",
         "symfony/runtime": "^7.3"
     },
     "autoload": {
         "psr-4": {
-            "OpenDxp\\Bundle\\DataHubBundle\\": "src/",
-            "OpenDxp\\": "core-extension/OpenDxp/"
+            "OpenDxp\\Bundle\\DataHubBundle\\": "src/"
         }
     },
     "autoload-dev": {
