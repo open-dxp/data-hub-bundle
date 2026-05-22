@@ -38,6 +38,7 @@ class Hotspotimage extends Base
      *
      *@throws Exception
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute,
@@ -58,6 +59,7 @@ class Hotspotimage extends Base
      *
      * @throws Exception
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $hotspotType = $this->getGraphQlService()->getDataObjectTypeDefinition('object_datatype_hotspotimage');
@@ -70,14 +72,15 @@ class Hotspotimage extends Base
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return array
+     * @return \Closure
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
 
         /** @var Data\Hotspotimage $fieldDefinition */
         $resolver = new Helper\Hotspotimage($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

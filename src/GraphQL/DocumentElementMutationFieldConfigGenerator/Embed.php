@@ -47,7 +47,7 @@ class Embed extends Base
                     ],
                 ]
             ),
-            'processor' => [$this->processor, 'process'],
+            'processor' => $this->processor->process(...),
         ];
     }
 }

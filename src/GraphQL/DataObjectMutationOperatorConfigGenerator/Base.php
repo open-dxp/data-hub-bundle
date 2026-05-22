@@ -73,7 +73,7 @@ abstract class Base
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\BaseOperator($nodeDef);
         $processor->setGraphQLService($this->getGraphQlService());
 
-        $typeName = strtolower($nodeDef['attributes']['class']);
+        $typeName = strtolower((string) $nodeDef['attributes']['class']);
 
         $factories = $this->getGraphQlService()->getDataObjectMutationTypeGeneratorFactories();
         $factory = $factories->get('typegenerator_' . 'mutation' . 'operator_' . $typeName);
@@ -81,7 +81,7 @@ abstract class Base
 
         return [
             'arg' => $determinedType,
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

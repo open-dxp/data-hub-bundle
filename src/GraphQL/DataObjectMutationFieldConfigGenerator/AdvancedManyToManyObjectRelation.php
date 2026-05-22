@@ -32,6 +32,7 @@ class AdvancedManyToManyObjectRelation extends Base
     }
 
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\AdvancedManyToManyObjectRelation($nodeDef);
@@ -41,7 +42,7 @@ class AdvancedManyToManyObjectRelation extends Base
 
         return [
             'arg' => ['type' => Type::listOf($inputType)],
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

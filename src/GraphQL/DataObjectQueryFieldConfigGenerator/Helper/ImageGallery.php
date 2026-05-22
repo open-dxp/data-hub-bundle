@@ -44,28 +44,16 @@ class ImageGallery
     public $fieldDefinition;
 
     /**
-     * @var ClassDefinition|Fieldcollection\Definition
-     */
-    public $class;
-
-    /**
-     * @var string
-     */
-    public $attribute;
-
-    /**
      * @param string $attribute
      * @param ClassDefinition|Fieldcollection\Definition $class
      */
     public function __construct(
         GraphQlService $graphQlService,
-        $attribute,
+        public $attribute,
         ClassDefinition\Data\ImageGallery $fieldDefinition,
-        $class
+        public $class
     ) {
         $this->fieldDefinition = $fieldDefinition;
-        $this->class = $class;
-        $this->attribute = $attribute;
         $this->setGraphQLService($graphQlService);
     }
 
@@ -98,7 +86,7 @@ class ImageGallery
                     $data = new ElementDescriptor($image);
                     $this->getGraphQlService()->extractData($data, $image, $args, $context, $resolveInfo);
 
-                    $data['data'] = isset($data['data']) ? base64_encode($data['data']) : null;
+                    $data['data'] = isset($data['data']) ? base64_encode((string) $data['data']) : null;
                     $data['crop'] = $relation->getCrop();
                     $data['hotspots'] = $relation->getHotspots();
                     $data['marker'] = $relation->getMarker();

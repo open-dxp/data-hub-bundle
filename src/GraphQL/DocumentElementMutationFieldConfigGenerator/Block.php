@@ -43,15 +43,13 @@ class Block extends Base
             self::$itemType = new InputObjectType(
                 [
                     'name' => 'document_element_input_block_item',
-                    'fields' => function () {
-                        return [
-                            'replace' => [
-                                'type' => Type::boolean(),
-                                'description' => 'if true (default), all elements inside the block will be replaced',
-                                ],
-                            'editables' => MutationType::$documentElementTypes,
-                        ];
-                    },
+                    'fields' => fn() => [
+                        'replace' => [
+                            'type' => Type::boolean(),
+                            'description' => 'if true (default), all elements inside the block will be replaced',
+                            ],
+                        'editables' => MutationType::$documentElementTypes,
+                    ],
                 ]
             );
         }
@@ -60,18 +58,16 @@ class Block extends Base
             'arg' => new InputObjectType(
                 [
                     'name' => 'document_element_input_block',
-                    'fields' => function () {
-                        return [
-                            '_editableName' => Type::nonNull(Type::string()),
-                            'indices' => Type::listOf(Type::int()),
-                            'items' => [
-                                'type' => Type::listOf(self::$itemType),
-                            ],
-                        ];
-                    },
+                    'fields' => fn() => [
+                        '_editableName' => Type::nonNull(Type::string()),
+                        'indices' => Type::listOf(Type::int()),
+                        'items' => [
+                            'type' => Type::listOf(self::$itemType),
+                        ],
+                    ],
                 ]
             ),
-            'processor' => [$this->processor, 'process'],
+            'processor' => $this->processor->process(...),
         ];
     }
 }

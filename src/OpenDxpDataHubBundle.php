@@ -51,6 +51,7 @@ class OpenDxpDataHubBundle extends AbstractOpenDxpBundle implements OpenDxpBundl
         $container->addCompilerPass(new CustomDocumentTypePass());
     }
 
+    #[\Override]
     public function getContainerExtension(): ?ExtensionInterface
     {
         if (null === $this->extension) {

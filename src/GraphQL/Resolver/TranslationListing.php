@@ -28,13 +28,9 @@ class TranslationListing
 {
     use ServiceTrait;
 
-    protected EventDispatcherInterface $eventDispatcher;
-
-    public function __construct(Service $graphQlService, EventDispatcherInterface $eventDispatcher)
+    public function __construct(Service $graphQlService, protected EventDispatcherInterface $eventDispatcher)
     {
         $this->setGraphQLService($graphQlService);
-
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function resolveEdge(mixed $value = null, array $args = [], array $context = [], ?ResolveInfo $resolveInfo = null): mixed
@@ -61,7 +57,7 @@ class TranslationListing
         $list = new \OpenDxp\Model\Translation\Listing();
 
         if (!empty($args['keys'])) {
-            $keysArray = explode(',', $args['keys']);
+            $keysArray = explode(',', (string) $args['keys']);
             $keysArray = array_map(fn ($value): string => $list->quote($value), $keysArray);
             $keysString = implode(',', $keysArray);
             $list->setCondition('`key` IN (' . $keysString . ')');

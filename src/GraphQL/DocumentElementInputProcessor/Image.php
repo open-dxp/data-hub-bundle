@@ -28,6 +28,7 @@ class Image extends Base
      * @param array $args
      * @param mixed $context
      */
+    #[\Override]
     public function process($document, $newValue, $args, $context, ResolveInfo $info)
     {
         $dataFromEditMode = [];

@@ -40,7 +40,7 @@ class LocalizedType extends InputObjectType
             if ($determinedType instanceof ListOfType) {
                 $determinedTypeName = $determinedType->getWrappedType()->toString() . 'List';
             }
-        } catch (Throwable $throwable) {
+        } catch (Throwable) {
             return $determinedType;
         }
 

@@ -42,13 +42,14 @@ class Table extends Base
      *
      * @throws Exception
      */
+    #[\Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $attribute = $this->getAttribute();
         $objectBrickParts = Service::parseObjectBrickFieldName($attribute);
 
         if (empty($objectBrickParts)) {
-            $getter = 'get' . ucfirst($attribute);
+            $getter = 'get' . ucfirst((string) $attribute);
             $currentTable = $object->$getter();
         } else {
             $currentTable = Service::getValueFromObjectBrick(

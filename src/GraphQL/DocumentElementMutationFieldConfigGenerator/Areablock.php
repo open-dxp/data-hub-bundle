@@ -32,9 +32,13 @@ class Areablock extends Base
     /** @var \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Areablock */
     protected $processor;
 
-    public function __construct(Service $graphQlService, AreablockDataInputType $areablockDataInputType, \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Areablock $processor)
-    {
-        $this->setGraphQLService($graphQlService);
+    public function __construct(
+        Service $graphQlService,
+        AreablockDataInputType $areablockDataInputType,
+        \OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor\Areablock $processor
+    ) {
+        parent::__construct($graphQlService);
+
         $this->areablockDataInputType = $areablockDataInputType;
         $this->processor = $processor;
     }
@@ -48,17 +52,15 @@ class Areablock extends Base
             self::$itemType = new InputObjectType(
                 [
                     'name' => 'document_element_input_areablock_item',
-                    'fields' => function () {
-                        return [
-                            'type' => Type::nonNull(Type::string()),
-                            'hidden' => Type::boolean(),
-                            'replace' => [
-                                'type' => Type::boolean(),
-                                'description' => 'if true (default), all elements inside the block will be replaced',
-                            ],
-                            'editables' => MutationType::$documentElementTypes,
-                        ];
-                    },
+                    'fields' => fn() => [
+                        'type' => Type::nonNull(Type::string()),
+                        'hidden' => Type::boolean(),
+                        'replace' => [
+                            'type' => Type::boolean(),
+                            'description' => 'if true (default), all elements inside the block will be replaced',
+                        ],
+                        'editables' => MutationType::$documentElementTypes,
+                    ],
                 ]
             );
         }
@@ -67,19 +69,17 @@ class Areablock extends Base
             'arg' => new InputObjectType(
                 [
                     'name' => 'document_element_input_areablock',
-                    'fields' => function () {
-                        return [
-                            '_editableName' => Type::nonNull(Type::string()),
-                            'indices' => Type::listOf($this->areablockDataInputType),
-                            'items' => [
-                                'type' => Type::listOf(self::$itemType),
-                            ],
-                        ];
-                    },
+                    'fields' => fn() => [
+                        '_editableName' => Type::nonNull(Type::string()),
+                        'indices' => Type::listOf($this->areablockDataInputType),
+                        'items' => [
+                            'type' => Type::listOf(self::$itemType),
+                        ],
+                    ],
                 ]
 
             ),
-            'processor' => [$this->processor, 'process'],
+            'processor' => $this->processor->process(...),
         ];
     }
 }

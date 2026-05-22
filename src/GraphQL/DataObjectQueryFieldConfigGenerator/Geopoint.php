@@ -28,6 +28,7 @@ class Geopoint extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -42,6 +43,7 @@ class Geopoint extends Base
      *
      * @return GeopointType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return GeopointType::getInstance();

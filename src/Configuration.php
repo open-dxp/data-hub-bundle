@@ -85,6 +85,7 @@ class Configuration extends AbstractModel
         $this->setConfiguration($configuration);
     }
 
+    #[\Override]
     public function getObjectVars(): array
     {
         $data = parent::getObjectVars();
@@ -274,7 +275,7 @@ class Configuration extends AbstractModel
             }
 
             foreach ($securityConfig['apikey'] as $apiKey) {
-                if (strlen($apiKey) < 16) {
+                if (strlen((string) $apiKey) < 16) {
                     throw new Exception('API key ' . $apiKey . ' does not satisfy the minimum length of 16 characters');
                 }
             }
@@ -325,7 +326,7 @@ class Configuration extends AbstractModel
             $config->getDao()->loadByName($name);
 
             return $config;
-        } catch (\OpenDxp\Model\Exception\NotFoundException $e) {
+        } catch (\OpenDxp\Model\Exception\NotFoundException) {
             return null;
         }
     }
@@ -363,7 +364,7 @@ class Configuration extends AbstractModel
      */
     public function getQueryEntityConfig($entityName)
     {
-        return isset($this->configuration['schema']['queryEntities'][$entityName]) ? $this->configuration['schema']['queryEntities'][$entityName] : null;
+        return $this->configuration['schema']['queryEntities'][$entityName] ?? null;
     }
 
     /**
@@ -414,6 +415,7 @@ class Configuration extends AbstractModel
         return $this->configuration['permissions'] ?? [];
     }
 
+    #[\Override]
     public function __clone(): void
     {
         if ($this->dao) {

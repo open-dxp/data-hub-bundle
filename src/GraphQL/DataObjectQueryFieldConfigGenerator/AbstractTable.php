@@ -34,6 +34,7 @@ abstract class AbstractTable extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -58,9 +59,7 @@ abstract class AbstractTable extends Base
                 foreach ($rows as &$row) {
                     $row = array_combine(
                         array_map(
-                            function ($k) {
-                                return is_numeric($k) ? 'col'. $k : $k;
-                            },
+                            fn($k) => is_numeric($k) ? 'col'. $k : $k,
                             array_keys($row)
                         ),
                         $row
@@ -78,6 +77,7 @@ abstract class AbstractTable extends Base
      *
      * @return Type
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         if ($class instanceof ObjectbrickDefinition) {

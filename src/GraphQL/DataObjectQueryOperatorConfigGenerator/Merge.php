@@ -35,6 +35,7 @@ class Merge extends StringBase
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlQueryOperatorConfig($typeName, $nodeConfig, $class = null, $container = null, $params = [])
     {
         $attributes = $nodeConfig['attributes'];
@@ -48,7 +49,7 @@ class Merge extends StringBase
             [
                 'name' => $fieldname,
                 'type' => $type,
-                'resolve' => [$resolver, 'resolve'],
+                'resolve' => $resolver->resolve(...),
             ],
             $container
         );
@@ -60,10 +61,11 @@ class Merge extends StringBase
      *
      * @return array
      */
+    #[\Override]
     public function enrichConfig($config, $container = null)
     {
         if ($container instanceof Localizedfield) {
-            $config['args'] = $config['args'] ? $config['args'] : [];
+            $config['args'] = $config['args'] ?: [];
             $config['args'] = array_merge(
                 $config['args'],
                 ['language' => ['type' => Type::string()],
@@ -83,6 +85,7 @@ class Merge extends StringBase
      *
      * @return ListOfType|Type
      */
+    #[\Override]
     public function getGraphQlType($typeName, $nodeDef, $class = null, $container = null, $params = [])
     {
         $attributes = $nodeDef['attributes'];

@@ -35,6 +35,7 @@ class BaseOperator extends Base
      * @param array $args
      * @param array $context
      */
+    #[\Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $class = $object->getClass();

@@ -28,6 +28,7 @@ class Geobounds extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -42,6 +43,7 @@ class Geobounds extends Base
      *
      * @return GeoboundsType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return GeoboundsType::getInstance();

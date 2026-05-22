@@ -26,6 +26,7 @@ class Fieldcollections extends Base
     public static $typeCache = [];
 
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $fieldName = $nodeDef['attributes']['attribute'];
@@ -98,7 +99,7 @@ class Fieldcollections extends Base
 
         return [
             'arg' => $inputType,
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 

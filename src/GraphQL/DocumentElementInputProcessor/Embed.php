@@ -26,6 +26,7 @@ class Embed extends Base
      * @param array $args
      * @param mixed $context
      */
+    #[\Override]
     public function process($document, $newValue, $args, $context, ResolveInfo $info)
     {
         $editableName = $newValue['_editableName'];

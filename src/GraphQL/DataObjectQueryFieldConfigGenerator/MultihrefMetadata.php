@@ -29,6 +29,7 @@ class MultihrefMetadata extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute,
@@ -47,6 +48,7 @@ class MultihrefMetadata extends Base
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return Type::listOf(new MultihrefMetadataType($this->getGraphQlService(), $fieldDefinition, $class));
@@ -57,12 +59,13 @@ class MultihrefMetadata extends Base
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return array
+     * @return \Closure
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\MultihrefMetadata($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

@@ -54,7 +54,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
 
         return [
             'id' => $name,
-            'text' => htmlspecialchars($name),
+            'text' => htmlspecialchars((string) $name),
             'type' => 'config',
             'iconCls' => 'plugin_opendxp_datahub_icon_' . $type,
             'expandable' => false,
@@ -107,7 +107,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
             }
         }
 
-        $sortFunc = fn ($a, $b) => strtolower($a['text']) <=> strtolower($b['text']);
+        $sortFunc = fn ($a, $b) => strtolower((string) $a['text']) <=> strtolower((string) $b['text']);
 
         //sort group children
         foreach ($groups as &$group) {
@@ -247,7 +247,7 @@ class ConfigController extends \OpenDxp\Controller\UserAwareController
         $config = $configuration->getConfiguration();
         $config['schema']['queryEntities'] = array_values($config['schema']['queryEntities'] ?? []);
         $config['schema']['mutationEntities'] = array_values($config['schema']['mutationEntities'] ?? []);
-        $config['schema']['specialEntities'] = $config['schema']['specialEntities'] ?? [];
+        $config['schema']['specialEntities'] ??= [];
 
         if (!$config['schema']['specialEntities']) {
             $config['schema']['specialEntities'] = [];

@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGene
 class InputQuantityValue extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\InputQuantityValue($nodeDef);
@@ -25,7 +26,7 @@ class InputQuantityValue extends Base
 
         return [
             'arg' => $this->getGraphQlService()->getDataObjectTypeDefinition('input_quantity_value_input'),
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

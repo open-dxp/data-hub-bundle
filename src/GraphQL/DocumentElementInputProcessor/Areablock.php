@@ -29,6 +29,7 @@ class Areablock extends Base
      * @param array $args
      * @param mixed $context
      */
+    #[\Override]
     public function process($document, $newValue, $args, $context, ResolveInfo $info)
     {
         $editableType = $newValue['_editableType'];
@@ -67,7 +68,7 @@ class Areablock extends Base
                 foreach ($editables as $editableType => $listByType) {
                     foreach ($listByType as $editableData) {
                         $editableData['_editableName'] = $editableName . ':' . ($idx + 1) . '.' . $editableData['_editableName'];
-                        $editableData['_editableName'] = $editableType;
+                        $editableData['_editableType'] = $editableType;
                         $typeDefinition = $typeCache[$editableType];
                         $processor = $typeDefinition['processor'];
                         call_user_func_array($processor, [$document, $editableData, $args, $context, $info]);

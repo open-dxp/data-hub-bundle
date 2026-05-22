@@ -92,8 +92,6 @@ class Service
      */
     protected $csFeatureTypeGeneratorFactories;
 
-    protected ContainerInterface $translationTypeGeneratorFactories;
-
     /**
      * @var array
      */
@@ -197,7 +195,7 @@ class Service
         ContainerInterface $generalTypeGeneratorFactories,
         ContainerInterface $assetTypeGeneratorFactories,
         ContainerInterface $csFeatureTypeGeneratorFactories,
-        ContainerInterface $translationTypeGeneratorFactories
+        protected ContainerInterface $translationTypeGeneratorFactories
     ) {
         $this->assetFieldHelper = $assetFieldHelper;
         $this->documentFieldHelper = $documentFieldHelper;
@@ -214,7 +212,6 @@ class Service
         $this->generalTypeGeneratorFactories = $generalTypeGeneratorFactories;
         $this->assetTypeGeneratorFactories = $assetTypeGeneratorFactories;
         $this->csFeatureTypeGeneratorFactories = $csFeatureTypeGeneratorFactories;
-        $this->translationTypeGeneratorFactories = $translationTypeGeneratorFactories;
     }
 
     /**
@@ -861,7 +858,7 @@ class Service
 
         $attributeParts = explode('~', $attribute);
 
-        if (substr($attribute, 0, 1) === '~') {
+        if (str_starts_with($attribute, '~')) {
             // key value, ignore for now
         } elseif (count($attributeParts) > 1) {
             // TODO once the datahub gets integrated into the core we should try to share this code
@@ -871,7 +868,7 @@ class Service
 
             // brick
             $brickType = $attributeParts[0];
-            if (strpos($brickType, '?') !== false) {
+            if (str_contains($brickType, '?')) {
                 $brickDescriptor = substr($brickType, 1);
                 $brickDescriptor = json_decode($brickDescriptor, true);
                 $brickType = $brickDescriptor['containerKey'];
@@ -904,22 +901,22 @@ class Service
                         $def = $locFields->getFieldDefinition($key, $context);
                     }
                 }
-                $brickGetter = 'get' . ucfirst($key);
+                $brickGetter = 'get' . ucfirst((string) $key);
 
                 $brickContainer = $object->$brickGetter();
-                $subBrickGetter = 'get' . ucfirst($brickType);
-                $subBrickSetter = 'set' . ucfirst($brickType);
+                $subBrickGetter = 'get' . ucfirst((string) $brickType);
+                $subBrickSetter = 'set' . ucfirst((string) $brickType);
                 $subBrickType = $brickContainer->$subBrickGetter();
 
                 if (!$subBrickType) {
-                    $brickClass = 'OpenDxp\\Model\\DataObject\\Objectbrick\\Data\\' . ucfirst($brickType);
+                    $brickClass = 'OpenDxp\\Model\\DataObject\\Objectbrick\\Data\\' . ucfirst((string) $brickType);
                     /** @var AbstractData $subBrickType */
                     $subBrickType = new $brickClass($object);
-                    $subBrickSetter = 'set' . ucfirst($brickType);
+                    $subBrickSetter = 'set' . ucfirst((string) $brickType);
                     $brickContainer->$subBrickSetter($subBrickType);
                 }
 
-                $innerSetter = 'set' . ucfirst($def->getName());
+                $innerSetter = 'set' . ucfirst((string) $def->getName());
                 $result = $callback($subBrickType, $innerSetter, $def->getName());
 
                 $brickContainer->$subBrickSetter($subBrickType);
@@ -941,7 +938,7 @@ class Service
      */
     public static function resolveValue(BaseDescriptor $descriptor, Data $fieldDefinition, $attribute, $args = [])
     {
-        $getter = 'get' . ucfirst($fieldDefinition->getName());
+        $getter = 'get' . ucfirst((string) $fieldDefinition->getName());
         $objectId = $descriptor['id'];
         $object = Concrete::getById($objectId);
         if (!$object) {
@@ -954,7 +951,7 @@ class Service
 
         if ($descriptor instanceof FieldcollectionDescriptor) {
             $descriptorData = $descriptor->getArrayCopy();
-            $fcFieldNameGetter = 'get' . ucfirst($descriptorData['__fcFieldname']);
+            $fcFieldNameGetter = 'get' . ucfirst((string) $descriptorData['__fcFieldname']);
             $fcData = $object->$fcFieldNameGetter();
             if ($fcData) {
                 $items = $fcData->getItems();
@@ -971,7 +968,7 @@ class Service
             $blockData = null;
 
             if (isset($descriptorData['__fcFieldname']) && $descriptorData['__fcFieldname']) {
-                $fcFieldNameGetter = 'get' . ucfirst($descriptorData['__fcFieldname']);
+                $fcFieldNameGetter = 'get' . ucfirst((string) $descriptorData['__fcFieldname']);
                 $fcData = $object->$fcFieldNameGetter();
 
                 if ($fcData) {
@@ -980,7 +977,7 @@ class Service
                     $itemData = $items[$idx];
                     $result = [];
 
-                    $blockGetter = 'get' . ucfirst($descriptorData['__blockName']);
+                    $blockGetter = 'get' . ucfirst((string) $descriptorData['__blockName']);
                     $blockData = call_user_func_array([$itemData, $blockGetter], $descriptorData['args'] ?? []);
                 }
             } elseif (isset($descriptorData['__brickType']) && $descriptorData['__brickType']) {
@@ -997,7 +994,7 @@ class Service
                     $descriptorData
                 );
             } else {
-                $blockGetter = 'get'.ucfirst($descriptorData['__blockName']);
+                $blockGetter = 'get'.ucfirst((string) $descriptorData['__blockName']);
                 $isLocalizedField = self::isLocalizedField($container, $fieldDefinition->getName());
                 if ($isLocalizedField) {
                     $blockData = $object->$blockGetter($descriptorData['args']['language'] ?? null);
@@ -1019,7 +1016,7 @@ class Service
                     );
                 }
             }
-        } elseif (substr($attribute, 0, 1) == '~') {
+        } elseif (str_starts_with($attribute, '~')) {
             // key value, ignore for now
         } elseif (count($attributeParts) > 1) {
             // TODO once the datahub gets integrated into the core we should try to share this code
@@ -1029,7 +1026,7 @@ class Service
 
             // brick
             $brickType = $attributeParts[0];
-            if (strpos($brickType, '?') !== false) {
+            if (str_contains($brickType, '?')) {
                 $brickDescriptor = substr($brickType, 1);
                 $brickDescriptor = json_decode($brickDescriptor, true);
                 $brickType = $brickDescriptor['containerKey'];
@@ -1212,7 +1209,7 @@ class Service
             [$brickType, $brickKey] = $parts;
             $brickDescriptor = null;
 
-            if (strpos($brickType, '?') !== false) {
+            if (str_contains($brickType, '?')) {
                 $brickDescriptor = substr($brickType, 1);
                 $brickDescriptor = json_decode($brickDescriptor, true);
                 $brickType = $brickDescriptor['containerKey'];

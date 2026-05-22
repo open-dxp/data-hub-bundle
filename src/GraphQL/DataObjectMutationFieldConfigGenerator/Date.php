@@ -20,6 +20,7 @@ use GraphQL\Type\Definition\Type;
 class Date extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\Date($nodeDef);
@@ -27,7 +28,7 @@ class Date extends Base
 
         return [
             'arg' => Type::string(),
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
             'description' => 'Either as unix timestamp (as string) or date string',
         ];
     }

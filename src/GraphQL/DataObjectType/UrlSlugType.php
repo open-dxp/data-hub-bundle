@@ -58,11 +58,11 @@ class UrlSlugType extends ObjectType
         $fields = [
             'slug' => [
                 'type' => Type::string(),
-                'resolve' => [$resolver, 'resolveSlug'],
+                'resolve' => $resolver->resolveSlug(...),
             ],
             'siteId' => [
                 'type' => Type::int(),
-                'resolve' => [$resolver, 'resolveSiteId'],
+                'resolve' => $resolver->resolveSiteId(...),
             ],
         ];
 

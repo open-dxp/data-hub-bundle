@@ -68,7 +68,7 @@ abstract class Base implements OperatorTypeDefinitionInterface
         return $this->enrichConfig([
             'name' => $fieldname,
             'type' => $type,
-            'resolve' => [$resolver, 'resolve'],
+            'resolve' => $resolver->resolve(...),
 
         ], $container);
     }
@@ -82,7 +82,7 @@ abstract class Base implements OperatorTypeDefinitionInterface
     public function enrichConfig($config, $container = null)
     {
         if ($container instanceof Data\Localizedfields) {
-            $config['args'] = $config['args'] ? $config['args'] : [];
+            $config['args'] = $config['args'] ?: [];
             $config['args'] = array_merge($config['args'],
                 ['language' => ['type' => Type::string()],
             ]);

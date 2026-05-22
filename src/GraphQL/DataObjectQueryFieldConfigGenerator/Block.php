@@ -37,6 +37,7 @@ class Block extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -52,6 +53,7 @@ class Block extends Base
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return Type::listOf(new BlockEntryType($this->getGraphQlService(), $fieldDefinition, $class, []));
@@ -64,6 +66,7 @@ class Block extends Base
      *
      * @return Closure
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         return function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) use (
@@ -89,7 +92,7 @@ class Block extends Base
                 $context = ['object' => $object];
 
                 $brickType = $attributeParts[0];
-                if (strpos($brickType, '?') !== false) {
+                if (str_contains($brickType, '?')) {
                     $brickDescriptor = substr($brickType, 1);
                     $brickDescriptor = json_decode($brickDescriptor, true);
                     $brickType = $brickDescriptor['containerKey'];

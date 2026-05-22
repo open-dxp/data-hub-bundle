@@ -26,9 +26,6 @@ class BlockType extends ObjectType
 {
     use ServiceTrait;
 
-    /** @var ClassDefinition */
-    protected $class;
-
     /** @var Data */
     protected $fieldDefinition;
 
@@ -36,9 +33,8 @@ class BlockType extends ObjectType
      * @param ClassDefinition|null $class
      * @param array $config
      */
-    public function __construct(Service $graphQlService, Data $fieldDefinition, $class = null, $config = [])
+    public function __construct(Service $graphQlService, Data $fieldDefinition, protected $class = null, $config = [])
     {
-        $this->class = $class;
         $this->fieldDefinition = $fieldDefinition;
         $this->setGraphQLService($graphQlService);
 

@@ -20,6 +20,7 @@ use GraphQL\Type\Definition\Type;
 class BooleanSelect extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\Base($nodeDef);
@@ -27,7 +28,7 @@ class BooleanSelect extends Base
 
         return [
             'arg' => Type::boolean(),
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

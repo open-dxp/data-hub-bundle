@@ -52,7 +52,7 @@ class HotspotType
 
             $data = new ElementDescriptor($image);
             $this->getGraphQlService()->extractData($data, $image, $args, $context, $resolveInfo);
-            $data['data'] = isset($data['data']) ? base64_encode($data['data']) : null;
+            $data['data'] = isset($data['data']) ? base64_encode((string) $data['data']) : null;
 
             return $data;
         }

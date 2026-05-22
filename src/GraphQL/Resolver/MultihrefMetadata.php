@@ -29,23 +29,13 @@ class MultihrefMetadata
 {
     use ServiceTrait;
 
-    protected $fieldDefinition;
-
-    protected $class;
-
-    /** @var DataObjectFieldHelper */
-    protected $fieldHelper;
-
     /**
      * @param ClassDefinition\Data $fieldDefinition
      * @param ClassDefinition $class
      * @param mixed $fieldHelper
      */
-    public function __construct($fieldDefinition = null, $class = null, $fieldHelper = null)
+    public function __construct(protected $fieldDefinition = null, protected $class = null, protected $fieldHelper = null)
     {
-        $this->fieldDefinition = $fieldDefinition;
-        $this->class = $class;
-        $this->fieldHelper = $fieldHelper;
     }
 
     /**

@@ -57,19 +57,19 @@ class HotspotType extends ObjectType
         $config['fields'] = [
             'image' => [
                 'type' => $assetType,
-                'resolve' => [$resolver, 'resolveImage'],
+                'resolve' => $resolver->resolveImage(...),
             ],
             'crop' => [
                 'type' => HotspotCropType::getInstance(),
-                'resolve' => [$resolver, 'resolveCrop'],
+                'resolve' => $resolver->resolveCrop(...),
             ],
             'hotspots' => [
                 'type' => Type::listOf($hotspotHotspotType),
-                'resolve' => [$resolver, 'resolveHotspots'],
+                'resolve' => $resolver->resolveHotspots(...),
             ],
             'marker' => [
                 'type' => Type::listOf($hotspotMarkerType),
-                'resolve' => [$resolver, 'resolveMarker'],
+                'resolve' => $resolver->resolveMarker(...),
             ],
         ];
     }

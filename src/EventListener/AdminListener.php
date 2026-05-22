@@ -19,11 +19,8 @@ use OpenDxp\Bundle\AdminBundle\Event\IndexActionSettingsEvent;
 
 class AdminListener
 {
-    private array $config;
-
-    public function __construct(array $config)
+    public function __construct(private array $config)
     {
-        $this->config = $config;
     }
 
     /**

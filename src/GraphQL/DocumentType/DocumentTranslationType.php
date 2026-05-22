@@ -43,7 +43,7 @@ class DocumentTranslationType extends ObjectType
         $config['fields']['language'] = Type::string();
         $config['fields']['target'] = [
             'type' => $anyTargetType,
-            'resolve' => [$documentResolver, 'resolveTranslationTarget'],
+            'resolve' => $documentResolver->resolveTranslationTarget(...),
         ];
     }
 }

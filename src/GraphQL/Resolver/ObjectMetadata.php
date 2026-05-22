@@ -28,25 +28,13 @@ class ObjectMetadata
 {
     use ServiceTrait;
 
-    /** @var ClassDefinition\Data|null */
-    protected $fieldDefinition;
-
-    /** @var ClassDefinition|null */
-    protected $class;
-
-    /** @var DataObjectFieldHelper|null */
-    protected $fieldHelper;
-
     /**
      * @param ClassDefinition\Data|null $fieldDefinition
      * @param ClassDefinition|null $class
      * @param DataObjectFieldHelper|null $fieldHelper
      */
-    public function __construct($fieldDefinition = null, $class = null, $fieldHelper = null)
+    public function __construct(protected $fieldDefinition = null, protected $class = null, protected $fieldHelper = null)
     {
-        $this->fieldDefinition = $fieldDefinition;
-        $this->class = $class;
-        $this->fieldHelper = $fieldHelper;
     }
 
     /**

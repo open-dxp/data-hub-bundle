@@ -47,6 +47,7 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
      */
     public const CONFIG_PATH = OPENDXP_CONFIGURATION_DIRECTORY . '/data_hub';
 
+    #[\Override]
     public function configure(): void
     {
         $config = OpenDxp::getContainer()->getParameter('opendxp_data_hub');
@@ -141,7 +142,7 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
             $config->getDao()->loadByName($name);
 
             return $config;
-        } catch (\OpenDxp\Model\Exception\NotFoundException $e) {
+        } catch (\OpenDxp\Model\Exception\NotFoundException) {
             return null;
         }
     }
@@ -228,6 +229,7 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
      *
      * @return array[][][]
      */
+    #[\Override]
     protected function prepareDataStructureForYaml(string $id, $data): mixed
     {
         return [

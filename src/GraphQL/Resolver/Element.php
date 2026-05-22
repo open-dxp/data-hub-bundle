@@ -174,7 +174,7 @@ class Element
     {
         $arguments = [];
         if ($this->elementType === 'object') {
-            $arguments[] = isset($args['objectTypes']) ? $args['objectTypes'] : [AbstractObject::OBJECT_TYPE_OBJECT, AbstractObject::OBJECT_TYPE_FOLDER];
+            $arguments[] = $args['objectTypes'] ?? [AbstractObject::OBJECT_TYPE_OBJECT, AbstractObject::OBJECT_TYPE_FOLDER];
         }
 
         return $arguments;

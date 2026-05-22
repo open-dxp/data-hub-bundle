@@ -60,7 +60,7 @@ class HotspotMarkerType extends ObjectType
                         'description' => 'comma seperated list of key names',
                     ],
                 ],
-                'resolve' => [$resolver, 'resolveMetadata'],
+                'resolve' => $resolver->resolveMetadata(...),
             ],
             'name' => Type::string(),
         ];

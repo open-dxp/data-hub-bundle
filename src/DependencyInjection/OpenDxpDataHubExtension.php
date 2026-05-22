@@ -25,6 +25,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class OpenDxpDataHubExtension extends Extension implements PrependExtensionInterface
 {
+    #[\Override]
     public function getAlias(): string
     {
         return 'opendxp_data_hub';

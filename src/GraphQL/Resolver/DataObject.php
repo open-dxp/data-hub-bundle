@@ -40,6 +40,7 @@ class DataObject extends Element
      *
      * @throws Exception
      */
+    #[\Override]
     public function resolveTag($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
         $object = \OpenDxp\Model\DataObject::getById($value['id']);

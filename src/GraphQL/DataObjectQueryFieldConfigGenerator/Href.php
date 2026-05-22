@@ -28,6 +28,7 @@ class Href extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -43,6 +44,7 @@ class Href extends Base
      *
      * @return HrefType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return new HrefType($this->getGraphQlService(), $fieldDefinition, $class, ['description' => 'pseudo class for field ' . $fieldDefinition->getName()]);
@@ -53,12 +55,13 @@ class Href extends Base
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return array
+     * @return \Closure
      */
+    #[\Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\Href($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

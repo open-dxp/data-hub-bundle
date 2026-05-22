@@ -21,6 +21,7 @@ use OpenDxp\Model\DataObject\ClassDefinition\Data;
 class Numeric extends Base
 {
     /** {@inheritdoc } */
+    #[\Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\Base($nodeDef);
@@ -38,7 +39,7 @@ class Numeric extends Base
 
         return [
             'arg' => $type,
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

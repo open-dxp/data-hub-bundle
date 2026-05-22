@@ -28,6 +28,7 @@ class LocaleCollector extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlMutationOperatorConfig($nodeDef, $class = null, $container = null, $params = [])
     {
         $processor = new LocaleCollectorOperator($nodeDef);
@@ -35,7 +36,7 @@ class LocaleCollector extends Base
 
         $factories = $this->getGraphQlService()->getDataObjectMutationTypeGeneratorFactories();
 
-        $typeName = strtolower($nodeDef['attributes']['class']);
+        $typeName = strtolower((string) $nodeDef['attributes']['class']);
         $factory = $factories->get('typegenerator_dataobjectmutationoperator_' . $typeName);
         $determinedType = LocalizedType::getInstance(
             $factory->resolveInputTypeFromNodeDef($nodeDef, $class, $container)
@@ -43,7 +44,7 @@ class LocaleCollector extends Base
 
         return [
             'arg' => $determinedType,
-            'processor' => [$processor, 'process'],
+            'processor' => $processor->process(...),
         ];
     }
 }

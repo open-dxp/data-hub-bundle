@@ -22,18 +22,12 @@ use Throwable;
 class MySafeException extends Exception implements ClientAware
 {
     /**
-     * @var string|null
-     */
-    protected $category;
-
-    /**
      * @param string|null $category
      * @param string $message
      * @param int $code
      */
-    public function __construct($category = null, $message = '', $code = 0, ?Throwable $previous = null)
+    public function __construct(protected $category = null, $message = '', $code = 0, ?Throwable $previous = null)
     {
-        $this->category = $category;
         parent::__construct($message, $code, $previous);
     }
 
@@ -47,6 +41,6 @@ class MySafeException extends Exception implements ClientAware
      */
     public function getCategory()
     {
-        return $this->category ? $this->category : 'datahub';
+        return $this->category ?: 'datahub';
     }
 }

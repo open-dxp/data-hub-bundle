@@ -34,14 +34,14 @@ class FileUploadService
             throw new RequestError('The request must define a `map`');
         }
 
-        $map = json_decode($bodyParams['map'], true);
-        $result = json_decode($bodyParams['operations'], true);
+        $map = json_decode((string) $bodyParams['map'], true);
+        $result = json_decode((string) $bodyParams['operations'], true);
 
         foreach ($map as $fileKey => $locations) {
             foreach ($locations as $location) {
                 $items = &$result;
 
-                foreach (explode('.', $location) as $key) {
+                foreach (explode('.', (string) $location) as $key) {
                     if (!isset($items[$key]) || !is_array($items[$key])) {
                         $items[$key] = [];
                     }

@@ -66,7 +66,7 @@ class ElementDescriptorInputType extends InputObjectType
             'fullpath' => Type::string(),
             'metadata' => [
                 'type' => Type::listOf(new ElementMetadataKeyValuePairInputType()),
-                'resolve' => [$resolver, 'resolveMetadata'],
+                'resolve' => $resolver->resolveMetadata(...),
             ],
         ];
         $config['description'] = 'type can be omitted for mutations only allowing one type, e.g. many-to-many-objects.';

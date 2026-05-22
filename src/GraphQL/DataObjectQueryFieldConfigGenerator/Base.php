@@ -59,7 +59,7 @@ class Base implements DataObjectQueryFieldConfigGeneratorInterface, TypeDefiniti
     public function enrichConfig($fieldDefinition, $class, $attribute, $graphQLConfig, $container = null)
     {
         if ($container instanceof Data\Localizedfields) {
-            $graphQLConfig['args'] = $graphQLConfig['args'] ?? [];
+            $graphQLConfig['args'] ??= [];
             $graphQLConfig['args'] = array_merge($graphQLConfig['args'],
                 [
                     'language' => [
@@ -72,9 +72,9 @@ class Base implements DataObjectQueryFieldConfigGeneratorInterface, TypeDefiniti
         }
 
         // for non-standard getters we provide a resolve which takes care of the composed x~y~z key. not needed for standard getters.
-        if (strpos($attribute, '~') !== false && !isset($graphQLConfig['resolve'])) {
+        if (str_contains($attribute, '~') && !isset($graphQLConfig['resolve'])) {
             $resolver = new Helper\Base($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
-            $graphQLConfig['resolve'] = [$resolver, 'resolve'];
+            $graphQLConfig['resolve'] = $resolver->resolve(...);
         }
 
         return $graphQLConfig;
@@ -102,6 +102,6 @@ class Base implements DataObjectQueryFieldConfigGeneratorInterface, TypeDefiniti
     {
         $resolver = new Helper\Base($this->getGraphQlService(), $attribute, $fieldDefinition, $class);
 
-        return [$resolver, 'resolve'];
+        return $resolver->resolve(...);
     }
 }

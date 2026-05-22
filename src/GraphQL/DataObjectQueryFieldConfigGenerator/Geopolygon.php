@@ -30,6 +30,7 @@ class Geopolygon extends Base
      *
      * @return array
      */
+    #[\Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -44,6 +45,7 @@ class Geopolygon extends Base
      *
      * @return ListOfType
      */
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return Type::listOf(GeopointType::getInstance());

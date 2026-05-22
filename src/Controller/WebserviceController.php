@@ -50,36 +50,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class WebserviceController extends FrontendController
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
-     * @var CheckConsumerPermissionsService
-     */
-    private $permissionsService;
-
-    /**
-     * @var OutputCacheService
-     */
-    private $cacheService;
-
-    /**
-     * @var FileUploadService
-     */
-    private $uploadService;
-
-    public function __construct(
-        EventDispatcherInterface $eventDispatcher,
-        CheckConsumerPermissionsService $permissionsService,
-        OutputCacheService $cacheService,
-        FileUploadService $uploadService
-    ) {
-        $this->eventDispatcher = $eventDispatcher;
-        $this->permissionsService = $permissionsService;
-        $this->cacheService = $cacheService;
-        $this->uploadService = $uploadService;
+    public function __construct(private readonly EventDispatcherInterface $eventDispatcher, private readonly CheckConsumerPermissionsService $permissionsService, private readonly OutputCacheService $cacheService, private readonly FileUploadService $uploadService)
+    {
     }
 
     /**

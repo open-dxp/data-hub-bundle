@@ -19,6 +19,7 @@ use OpenDxp\Model\DataObject\ClassDefinition\Data;
 
 class InputQuantityValue extends Base
 {
+    #[\Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->getGraphQlService()->getDataObjectTypeDefinition('input_quantity_value');

@@ -32,10 +32,11 @@ class ImageGallery extends Base
      *
      * @throws Exception
      */
+    #[\Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $attribute = $this->getAttribute();
-        $getter = 'get' . ucfirst($attribute);
+        $getter = 'get' . ucfirst((string) $attribute);
         $currentGallery = $object->$getter();
 
         if ($currentGallery instanceof \OpenDxp\Model\DataObject\Data\ImageGallery) {

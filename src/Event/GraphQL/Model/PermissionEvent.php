@@ -22,16 +22,6 @@ use Symfony\Contracts\EventDispatcher\Event;
 class PermissionEvent extends Event
 {
     /**
-     * @var ElementInterface|OwnerAwareFieldInterface $element
-     */
-    protected $element;
-
-    /**
-     * @var string
-     */
-    protected $type;
-
-    /**
      * @var bool
      */
     protected $isGranted = true;
@@ -76,9 +66,7 @@ class PermissionEvent extends Event
      * @param ElementInterface|OwnerAwareFieldInterface $element
      * @param string $type
      */
-    public function __construct($element, $type)
+    public function __construct(protected $element, protected $type)
     {
-        $this->element = $element;
-        $this->type = $type;
     }
 }

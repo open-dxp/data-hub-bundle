@@ -46,7 +46,7 @@ class PageSnippetType extends AbstractDocumentType
         $this->buildBaseFields($config);
         $config['fields']['elements'] = [
             'type' => Type::listOf($this->documentElementType),
-            'resolve' => [$resolver, 'resolveElements'],
+            'resolve' => $resolver->resolveElements(...),
         ];
 
         $config['fields']['editables'] = [
@@ -58,7 +58,7 @@ class PageSnippetType extends AbstractDocumentType
                     'defaultValue' => false,
                 ],
             ],
-            'resolve' => [$resolver, 'resolveElements'],
+            'resolve' => $resolver->resolveElements(...),
         ];
 
         $config['fields']['title'] = [

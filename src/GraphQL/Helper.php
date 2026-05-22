@@ -46,7 +46,7 @@ class Helper
                     if (isset($attributes['attribute'])) {
                         $name = $attributes['attribute'];
 
-                        if (strpos($name, '~') !== false) {
+                        if (str_contains($name, '~')) {
                             $nameParts = explode('~', $name);
                             $brickName = $nameParts[0];
                             $brickKey = $nameParts[1];
@@ -114,8 +114,8 @@ class Helper
         }
 
         foreach ($q as $key => $value) {
-            if (array_search(strtolower($key), ['$and', '$or']) !== false) {
-                $childOp = strtolower($key) == '$and' ? 'AND' : 'OR';
+            if (array_search(strtolower((string) $key), ['$and', '$or']) !== false) {
+                $childOp = strtolower((string) $key) == '$and' ? 'AND' : 'OR';
 
                 if (is_array($value)) {
                     $childParts = [];
@@ -140,8 +140,8 @@ class Helper
                 } elseif ($value instanceof stdClass) {
                     $objectVars = get_object_vars($value);
                     foreach ($objectVars as $objectVar => $objectValue) {
-                        if (array_search(strtolower($objectVar), $ops) !== false) {
-                            $innerOp = $mappingTable[strtolower($objectVar)];
+                        if (array_search(strtolower((string) $objectVar), $ops) !== false) {
+                            $innerOp = $mappingTable[strtolower((string) $objectVar)];
                             if ($innerOp == 'NOT') {
                                 $valuePart = ' IS NULL';
                                 if (!is_null($objectValue)) {
@@ -183,8 +183,8 @@ class Helper
                     $combinedParts = implode(' ' . $op . ' ', $parts);
                     $parts = [$combinedParts];
                 } else {
-                    if (array_search(strtolower($key), $ops) !== false) {
-                        $innerOp = $mappingTable[strtolower($key)];
+                    if (array_search(strtolower((string) $key), $ops) !== false) {
+                        $innerOp = $mappingTable[strtolower((string) $key)];
                         if ($innerOp == 'NOT') {
                             $parts[] = '(NOT' . self::quoteAbsoluteColumnName(
                                 $defaultTable,
@@ -232,7 +232,7 @@ class Helper
     protected static function quoteAbsoluteColumnName($defaultTable, $columnName)
     {
         $db = Db::get();
-        $absoluteColumnName = (strpos($columnName, '.') !== false) ? $columnName : $defaultTable . '.' . $columnName;
+        $absoluteColumnName = (str_contains($columnName, '.')) ? $columnName : $defaultTable . '.' . $columnName;
 
         return $db->quoteIdentifier($absoluteColumnName);
     }
