@@ -34,8 +34,12 @@ class Merge
      * @param ClassDefinition|null $class
      * @param object|null $container
      */
-    public function __construct(protected $typeName = null, protected $attributes = null, protected $class = null, protected $container = null)
-    {
+    public function __construct(
+        protected $typeName = null,
+        protected $attributes = null,
+        protected $class = null,
+        protected $container = null
+    ) {
     }
 
     /**

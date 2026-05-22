@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryOperatorConfigGene
 use GraphQL\Type\Definition\ScalarType;
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Model\DataObject\ClassDefinition;
+use Override;
 
 class IntBase extends Base
 {
@@ -31,7 +32,7 @@ class IntBase extends Base
      *
      * @return ScalarType|Type
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlType($typeName, $nodeDef, $class = null, $container = null, $params = [])
     {
         return Type::int();
@@ -44,7 +45,7 @@ class IntBase extends Base
      *
      * @return \GraphQL\Type\Definition\ScalarType
      */
-    #[\Override]
+    #[Override]
     public function getFieldType($attributes, $class = null, $container = null)
     {
         return Type::int();

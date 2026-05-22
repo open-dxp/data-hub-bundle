@@ -75,8 +75,12 @@ class ListingEvent extends Event
      * @param array $args
      * @param array $context
      */
-    public function __construct(AbstractListing $listing, protected $args, protected $context = [], ?ResolveInfo $resolveInfo = null)
-    {
+    public function __construct(
+        AbstractListing $listing,
+        protected $args,
+        protected $context = [],
+        ?ResolveInfo $resolveInfo = null
+    ) {
         $this->listing = $listing;
         $this->resolveInfo = $resolveInfo;
     }

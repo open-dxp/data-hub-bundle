@@ -17,6 +17,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor;
 
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Model\Document\PageSnippet;
+use Override;
 
 class Multiselect extends Base
 {
@@ -26,7 +27,7 @@ class Multiselect extends Base
      * @param array $args
      * @param mixed $context
      */
-    #[\Override]
+    #[Override]
     public function process($document, $newValue, $args, $context, ResolveInfo $info)
     {
         $editableName = $newValue['_editableName'];

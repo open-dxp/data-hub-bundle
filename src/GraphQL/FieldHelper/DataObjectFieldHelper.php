@@ -28,6 +28,7 @@ use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
 use OpenDxp\Model\DataObject\Localizedfield;
 use OpenDxp\Model\DataObject\Objectbrick\Definition;
+use Override;
 
 class DataObjectFieldHelper extends AbstractFieldHelper
 {
@@ -336,7 +337,7 @@ class DataObjectFieldHelper extends AbstractFieldHelper
      * @param array $context
      * @param ResolveInfo $resolveInfo
      */
-    #[\Override]
+    #[Override]
     public function doExtractData(FieldNode $ast, &$data, $container, $args, $context, $resolveInfo = null)
     {
         $astName = $ast->name->value;
@@ -396,7 +397,7 @@ class DataObjectFieldHelper extends AbstractFieldHelper
      *
      * @return bool
      */
-    #[\Override]
+    #[Override]
     public function skipField($container, $astName)
     {
         if ($container instanceof Concrete || $container instanceof Localizedfield) {

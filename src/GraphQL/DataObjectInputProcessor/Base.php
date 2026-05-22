@@ -54,7 +54,7 @@ class Base
     {
         $attribute = $this->getAttribute();
 
-        Service::setValue($object, $attribute, fn($container, $setter) => $container->$setter($newValue));
+        Service::setValue($object, $attribute, fn ($container, $setter) => $container->$setter($newValue));
     }
 
     /**

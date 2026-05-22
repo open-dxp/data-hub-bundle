@@ -17,6 +17,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerat
 
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
+use Override;
 
 class Video extends Base
 {
@@ -27,7 +28,7 @@ class Video extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -42,7 +43,7 @@ class Video extends Base
      *
      * @return mixed
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $graphQlService = $this->getGraphQlService();

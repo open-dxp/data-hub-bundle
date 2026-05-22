@@ -33,8 +33,11 @@ class ObjectMetadata
      * @param ClassDefinition|null $class
      * @param DataObjectFieldHelper|null $fieldHelper
      */
-    public function __construct(protected $fieldDefinition = null, protected $class = null, protected $fieldHelper = null)
-    {
+    public function __construct(
+        protected $fieldDefinition = null,
+        protected $class = null,
+        protected $fieldHelper = null
+    ) {
     }
 
     /**

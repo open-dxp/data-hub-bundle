@@ -15,10 +15,12 @@
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGenerator;
 
+use Override;
+
 class Geopoint extends Base
 {
     /** {@inheritdoc } */
-    #[\Override]
+    #[Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\Geopoint($nodeDef);

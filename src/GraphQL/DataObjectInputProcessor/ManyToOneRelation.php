@@ -22,6 +22,7 @@ use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ElementIdentificationTrait;
 use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
 use OpenDxp\Model\Exception\NotFoundException;
+use Override;
 
 class ManyToOneRelation extends Base
 {
@@ -35,7 +36,7 @@ class ManyToOneRelation extends Base
      *
      * @throws Exception
      */
-    #[\Override]
+    #[Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info): void
     {
         $attribute = $this->getAttribute();

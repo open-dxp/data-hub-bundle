@@ -67,8 +67,11 @@ class MutationTypeEvent extends Event
      * @param array $config
      * @param array $context
      */
-    public function __construct(MutationType $mutationType, protected $config, protected $context)
-    {
+    public function __construct(
+        MutationType $mutationType,
+        protected $config,
+        protected $context
+    ) {
         $this->mutationType = $mutationType;
     }
 }

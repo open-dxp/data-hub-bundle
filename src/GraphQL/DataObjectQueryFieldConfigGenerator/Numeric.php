@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerat
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
+use Override;
 
 class Numeric extends Base
 {
@@ -28,7 +29,7 @@ class Numeric extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -43,7 +44,7 @@ class Numeric extends Base
      *
      * @return \GraphQL\Type\Definition\ScalarType|void
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         if ($fieldDefinition instanceof Data\Numeric) {

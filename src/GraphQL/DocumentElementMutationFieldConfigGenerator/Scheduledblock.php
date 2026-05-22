@@ -52,7 +52,7 @@ class Scheduledblock extends Base
             self::$itemType = new InputObjectType(
                 [
                     'name' => 'document_element_input_scheduledblock_item',
-                    'fields' => fn() => [
+                    'fields' => fn () => [
                         'date' => Type::int(),
                         'replace' => [
                             'type' => Type::boolean(),
@@ -68,7 +68,7 @@ class Scheduledblock extends Base
             'arg' => new InputObjectType(
                 [
                     'name' => 'document_element_input_scheduledblock',
-                    'fields' => fn() => [
+                    'fields' => fn () => [
                         '_editableName' => Type::nonNull(Type::string()),
                         'indices' => Type::listOf($this->scheduledblockDataInputType),
                         'items' => [

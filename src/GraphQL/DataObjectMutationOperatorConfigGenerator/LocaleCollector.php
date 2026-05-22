@@ -17,6 +17,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationOperatorConfigG
 
 use OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\LocaleCollectorOperator;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType\LocalizedType;
+use Override;
 
 class LocaleCollector extends Base
 {
@@ -28,7 +29,7 @@ class LocaleCollector extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlMutationOperatorConfig($nodeDef, $class = null, $container = null, $params = [])
     {
         $processor = new LocaleCollectorOperator($nodeDef);

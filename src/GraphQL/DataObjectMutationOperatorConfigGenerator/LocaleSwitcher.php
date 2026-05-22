@@ -16,6 +16,7 @@
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationOperatorConfigGenerator;
 
 use OpenDxp\Model\DataObject\ClassDefinition;
+use Override;
 
 class LocaleSwitcher extends Base
 {
@@ -26,7 +27,7 @@ class LocaleSwitcher extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlMutationOperatorConfig($nodeDef, $class = null, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\LocaleSwitcherOperator($nodeDef);

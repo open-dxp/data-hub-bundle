@@ -39,8 +39,13 @@ class MergeType extends UnionType
      * @param object|null $container
      * @param array $config
      */
-    public function __construct(Service $graphQlService, protected $nodeDef, protected $class = null, protected $container = null, $config = [])
-    {
+    public function __construct(
+        Service $graphQlService,
+        protected $nodeDef,
+        protected $class = null,
+        protected $container = null,
+        $config = []
+    ) {
         $this->setGraphQLService($graphQlService);
         parent::__construct($config);
     }

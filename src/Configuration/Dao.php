@@ -19,6 +19,7 @@ use OpenDxp;
 use OpenDxp\Bundle\DataHubBundle\Configuration;
 use OpenDxp\Config;
 use OpenDxp\Model;
+use Override;
 use Symfony\Component\Uid\Uuid as Uid;
 
 /**
@@ -47,7 +48,7 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
      */
     public const CONFIG_PATH = OPENDXP_CONFIGURATION_DIRECTORY . '/data_hub';
 
-    #[\Override]
+    #[Override]
     public function configure(): void
     {
         $config = OpenDxp::getContainer()->getParameter('opendxp_data_hub');
@@ -229,7 +230,7 @@ class Dao extends Model\Dao\OpenDxpLocationAwareConfigDao
      *
      * @return array[][][]
      */
-    #[\Override]
+    #[Override]
     protected function prepareDataStructureForYaml(string $id, $data): mixed
     {
         return [

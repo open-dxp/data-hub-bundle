@@ -21,6 +21,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
 use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
+use Override;
 
 class Date extends Base
 {
@@ -32,7 +33,7 @@ class Date extends Base
      *
      * @throws Exception
      */
-    #[\Override]
+    #[Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $attribute = $this->getAttribute();

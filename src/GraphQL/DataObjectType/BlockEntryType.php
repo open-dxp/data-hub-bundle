@@ -44,8 +44,12 @@ class BlockEntryType extends ObjectType implements ContainerAwareInterface
      * @param ClassDefinition|null $class
      * @param array $config
      */
-    public function __construct(Service $graphQlService, Data $fieldDefinition, protected $class = null, $config = [])
-    {
+    public function __construct(
+        Service $graphQlService,
+        Data $fieldDefinition,
+        protected $class = null,
+        $config = []
+    ) {
         $this->fieldDefinition = $fieldDefinition;
         $this->setGraphQLService($graphQlService);
 

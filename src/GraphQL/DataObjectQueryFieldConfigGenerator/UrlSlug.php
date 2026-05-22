@@ -17,10 +17,11 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerat
 
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
+use Override;
 
 class UrlSlug extends Base
 {
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return Type::listOf($this->getGraphQlService()->getDataObjectTypeDefinition('url_slug'));

@@ -21,6 +21,7 @@ use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ElementTagTrait;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
 use OpenDxp\Model\DataObject\AbstractObject;
+use Override;
 
 class DataObject extends Element
 {
@@ -40,7 +41,7 @@ class DataObject extends Element
      *
      * @throws Exception
      */
-    #[\Override]
+    #[Override]
     public function resolveTag($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null)
     {
         $object = \OpenDxp\Model\DataObject::getById($value['id']);

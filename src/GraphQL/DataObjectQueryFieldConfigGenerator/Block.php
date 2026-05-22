@@ -27,6 +27,7 @@ use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Data\BlockElement;
 use OpenDxp\Model\DataObject\Objectbrick\Definition;
 use OpenDxp\Model\DataObject\Service;
+use Override;
 
 class Block extends Base
 {
@@ -37,7 +38,7 @@ class Block extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -53,7 +54,7 @@ class Block extends Base
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return Type::listOf(new BlockEntryType($this->getGraphQlService(), $fieldDefinition, $class, []));
@@ -66,7 +67,7 @@ class Block extends Base
      *
      * @return Closure
      */
-    #[\Override]
+    #[Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         return function ($value = null, $args = [], $context = [], ?ResolveInfo $resolveInfo = null) use (

@@ -20,6 +20,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
 use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
+use Override;
 
 class Table extends Base
 {
@@ -42,7 +43,7 @@ class Table extends Base
      *
      * @throws Exception
      */
-    #[\Override]
+    #[Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $attribute = $this->getAttribute();

@@ -20,6 +20,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Model\Asset;
 use OpenDxp\Model\Asset\Image;
 use OpenDxp\Model\Asset\Video;
+use Override;
 
 class AssetFieldHelper extends AbstractFieldHelper
 {
@@ -88,7 +89,7 @@ class AssetFieldHelper extends AbstractFieldHelper
      * @param array $context
      * @param ResolveInfo $resolveInfo
      */
-    #[\Override]
+    #[Override]
     public function doExtractData(FieldNode $ast, &$data, $container, $args, $context, $resolveInfo = null)
     {
         $astName = $ast->name->value;
@@ -137,7 +138,7 @@ class AssetFieldHelper extends AbstractFieldHelper
                 if ($languageArgument) {
                     if ($ast->alias) {
                         // defer it
-                        $data[$realName] = (fn($source, $args, $context, ResolveInfo $info) => $container->$getter($args['language'] ?? null));
+                        $data[$realName] = (fn ($source, $args, $context, ResolveInfo $info) => $container->$getter($args['language'] ?? null));
                     } else {
                         $data[$realName] = $container->$getter($languageArgument);
                     }

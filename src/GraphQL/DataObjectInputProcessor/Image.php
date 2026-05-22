@@ -23,6 +23,7 @@ use OpenDxp\Bundle\DataHubBundle\OpenDxpDataHubBundle;
 use OpenDxp\Model\Asset;
 use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
+use Override;
 
 class Image extends Base
 {
@@ -36,7 +37,7 @@ class Image extends Base
      *
      * @throws Exception
      */
-    #[\Override]
+    #[Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $attribute = $this->getAttribute();

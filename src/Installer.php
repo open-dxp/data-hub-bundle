@@ -23,6 +23,7 @@ use OpenDxp\Extension\Bundle\Installer\SettingsStoreAwareInstaller;
 use OpenDxp\Logger;
 use OpenDxp\Model\Tool\SettingsStore;
 use OpenDxp\Model\User\Permission\Definition;
+use Override;
 
 class Installer extends SettingsStoreAwareInstaller
 {
@@ -32,13 +33,13 @@ class Installer extends SettingsStoreAwareInstaller
 
     const DATAHUB_ADMIN_PERMISSION = 'plugin_datahub_admin';
 
-    #[\Override]
+    #[Override]
     public function needsReloadAfterInstall(): bool
     {
         return true;
     }
 
-    #[\Override]
+    #[Override]
     public function install(): void
     {
         try {
@@ -76,7 +77,7 @@ class Installer extends SettingsStoreAwareInstaller
         parent::install();
     }
 
-    #[\Override]
+    #[Override]
     public function isInstalled(): bool
     {
         // When switching to SettingsStoreAwareInstaller, we need to explicitly mark this bundle installed, if Settingstore entry doesn't exists and datahub permission is installed

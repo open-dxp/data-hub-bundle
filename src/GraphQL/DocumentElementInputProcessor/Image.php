@@ -19,6 +19,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\WorkspaceHelper;
 use OpenDxp\Model\Asset;
 use OpenDxp\Model\Document\PageSnippet;
+use Override;
 
 class Image extends Base
 {
@@ -28,7 +29,7 @@ class Image extends Base
      * @param array $args
      * @param mixed $context
      */
-    #[\Override]
+    #[Override]
     public function process($document, $newValue, $args, $context, ResolveInfo $info)
     {
         $dataFromEditMode = [];

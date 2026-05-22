@@ -52,7 +52,7 @@ class Areablock extends Base
             self::$itemType = new InputObjectType(
                 [
                     'name' => 'document_element_input_areablock_item',
-                    'fields' => fn() => [
+                    'fields' => fn () => [
                         'type' => Type::nonNull(Type::string()),
                         'hidden' => Type::boolean(),
                         'replace' => [
@@ -69,7 +69,7 @@ class Areablock extends Base
             'arg' => new InputObjectType(
                 [
                     'name' => 'document_element_input_areablock',
-                    'fields' => fn() => [
+                    'fields' => fn () => [
                         '_editableName' => Type::nonNull(Type::string()),
                         'indices' => Type::listOf($this->areablockDataInputType),
                         'items' => [

@@ -15,11 +15,13 @@
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator;
 
+use Closure;
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType\ObjectMetadataType;
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
 use OpenDxp\Model\DataObject\ClassDefinition\Data\AdvancedManyToManyObjectRelation;
+use Override;
 
 class ObjectsMetadata extends Base
 {
@@ -30,7 +32,7 @@ class ObjectsMetadata extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         /** @var AdvancedManyToManyObjectRelation $fieldDefinition */
@@ -51,7 +53,7 @@ class ObjectsMetadata extends Base
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $type = new ObjectMetadataType($this->getGraphQlService(), $fieldDefinition, $class);
@@ -64,9 +66,9 @@ class ObjectsMetadata extends Base
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return \Closure
+     * @return Closure
      */
-    #[\Override]
+    #[Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\ObjectsMetadata($this->getGraphQlService(), $attribute, $fieldDefinition, $class);

@@ -18,11 +18,12 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGene
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
+use Override;
 
 class Table extends Base
 {
     /** {@inheritdoc } */
-    #[\Override]
+    #[Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $fieldName = $nodeDef['attributes']['attribute'];

@@ -77,8 +77,14 @@ class MutationType extends ObjectType
      *
      * @throws Exception
      */
-    public function __construct(Service $graphQlService, LocaleServiceInterface $localeService, Factory $modelFactory, private EventDispatcherInterface $eventDispatcher, $config = [], $context = [])
-    {
+    public function __construct(
+        Service $graphQlService,
+        LocaleServiceInterface $localeService,
+        Factory $modelFactory,
+        private EventDispatcherInterface $eventDispatcher,
+        $config = [],
+        $context = []
+    ) {
         if (!isset($config['name'])) {
             $config['name'] = 'Mutations';
         }

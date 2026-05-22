@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DocumentElementInputProcessor;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Mutation\MutationType;
 use OpenDxp\Model\Document\PageSnippet;
+use Override;
 
 class Areablock extends Base
 {
@@ -29,7 +30,7 @@ class Areablock extends Base
      * @param array $args
      * @param mixed $context
      */
-    #[\Override]
+    #[Override]
     public function process($document, $newValue, $args, $context, ResolveInfo $info)
     {
         $editableType = $newValue['_editableType'];

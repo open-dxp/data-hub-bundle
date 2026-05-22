@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGene
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType\ElementDescriptorInputType;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
+use Override;
 
 class ManyToManyRelation extends Base
 {
@@ -30,7 +31,7 @@ class ManyToManyRelation extends Base
     }
 
     /** {@inheritdoc } */
-    #[\Override]
+    #[Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\ManyToManyRelation($nodeDef);

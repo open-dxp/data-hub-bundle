@@ -20,6 +20,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Exception\ClientSafeException;
 use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
+use Override;
 use UnexpectedValueException;
 
 class IfEmptyOperator extends BaseOperator
@@ -42,7 +43,7 @@ class IfEmptyOperator extends BaseOperator
      *
      * @throws Exception|UnexpectedValueException
      */
-    #[\Override]
+    #[Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $class = $object->getClass();

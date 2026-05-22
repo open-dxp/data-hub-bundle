@@ -71,7 +71,7 @@ abstract class AbstractFieldHelper
             if ($languageArgument) {
                 if ($ast->alias) {
                     // defer it
-                    $data[$astName] = (fn($source, $args, $context, ResolveInfo $info) => $container->$getter($args['language'] ?? null));
+                    $data[$astName] = (fn ($source, $args, $context, ResolveInfo $info) => $container->$getter($args['language'] ?? null));
                 } else {
                     $data[$astName] = $container->$getter($languageArgument);
                 }

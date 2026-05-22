@@ -35,8 +35,12 @@ class MultihrefMetadata
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      */
-    public function __construct(Service $graphQlService, public $attribute, public $fieldDefinition, public $class)
-    {
+    public function __construct(
+        Service $graphQlService,
+        public $attribute,
+        public $fieldDefinition,
+        public $class
+    ) {
         $this->setGraphQLService($graphQlService);
     }
 

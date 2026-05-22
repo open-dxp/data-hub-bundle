@@ -18,6 +18,7 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor;
 use GraphQL\Type\Definition\ResolveInfo;
 use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
+use Override;
 
 class LocaleCollectorOperator extends BaseOperator
 {
@@ -27,7 +28,7 @@ class LocaleCollectorOperator extends BaseOperator
      * @param array $args
      * @param array $context
      */
-    #[\Override]
+    #[Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $localeService = $this->getGraphQlService()->getLocaleService();

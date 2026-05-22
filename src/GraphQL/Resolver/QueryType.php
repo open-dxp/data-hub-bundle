@@ -48,8 +48,12 @@ class QueryType
      * @param object $configuration
      * @param bool $omitPermissionCheck
      */
-    public function __construct(private EventDispatcherInterface $eventDispatcher, protected $class = null, protected $configuration = null, $omitPermissionCheck = false)
-    {
+    public function __construct(
+        private EventDispatcherInterface $eventDispatcher,
+        protected $class = null,
+        protected $configuration = null,
+        $omitPermissionCheck = false
+    ) {
         $this->omitPermissionCheck = $omitPermissionCheck;
     }
 

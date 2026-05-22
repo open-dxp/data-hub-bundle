@@ -16,10 +16,12 @@ declare(strict_types=1);
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator;
 
+use Closure;
 use Exception;
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
+use Override;
 
 /**
  * Class ImageGallery
@@ -39,7 +41,7 @@ class ImageGallery extends Base
      *
      *@throws Exception
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig(
@@ -63,7 +65,7 @@ class ImageGallery extends Base
      *
      * @throws Exception
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $hotspotType = $this->getGraphQlService()->getDataObjectTypeDefinition(Hotspotimage::TYPE);
@@ -76,9 +78,9 @@ class ImageGallery extends Base
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return \Closure
+     * @return Closure
      */
-    #[\Override]
+    #[Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         /** @var Data\ImageGallery $fieldDefinition */

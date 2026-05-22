@@ -21,6 +21,7 @@ use OpenDxp\Bundle\DataHubBundle\Event\ConfigurationEvents;
 use OpenDxp\Model\AbstractModel;
 use OpenDxp\Model\User;
 use OpenDxp\Tool\Admin;
+use Override;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 /**
@@ -85,7 +86,7 @@ class Configuration extends AbstractModel
         $this->setConfiguration($configuration);
     }
 
-    #[\Override]
+    #[Override]
     public function getObjectVars(): array
     {
         $data = parent::getObjectVars();
@@ -415,7 +416,7 @@ class Configuration extends AbstractModel
         return $this->configuration['permissions'] ?? [];
     }
 
-    #[\Override]
+    #[Override]
     public function __clone(): void
     {
         if ($this->dao) {

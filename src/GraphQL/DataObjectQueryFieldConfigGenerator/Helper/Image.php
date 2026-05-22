@@ -34,8 +34,12 @@ class Image
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      */
-    public function __construct(\OpenDxp\Bundle\DataHubBundle\GraphQL\Service $graphQlService, public $attribute, public $fieldDefinition, public $class)
-    {
+    public function __construct(
+        \OpenDxp\Bundle\DataHubBundle\GraphQL\Service $graphQlService,
+        public $attribute,
+        public $fieldDefinition,
+        public $class
+    ) {
         $this->setGraphQLService($graphQlService);
     }
 

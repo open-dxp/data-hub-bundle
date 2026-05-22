@@ -31,8 +31,12 @@ class Base
      * @param ClassDefinition $class
      * @param object $container
      */
-    public function __construct(protected $typeName, protected $attributes, protected $class, protected $container)
-    {
+    public function __construct(
+        protected $typeName,
+        protected $attributes,
+        protected $class,
+        protected $container
+    ) {
     }
 
     /**

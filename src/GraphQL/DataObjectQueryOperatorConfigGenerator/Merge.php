@@ -20,6 +20,7 @@ use GraphQL\Type\Definition\Type;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType\MergeType;
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\Localizedfield;
+use Override;
 
 /**
  * @deprecated will be removed in Data Hub 2
@@ -35,7 +36,7 @@ class Merge extends StringBase
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlQueryOperatorConfig($typeName, $nodeConfig, $class = null, $container = null, $params = [])
     {
         $attributes = $nodeConfig['attributes'];
@@ -61,7 +62,7 @@ class Merge extends StringBase
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function enrichConfig($config, $container = null)
     {
         if ($container instanceof Localizedfield) {
@@ -85,7 +86,7 @@ class Merge extends StringBase
      *
      * @return ListOfType|Type
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlType($typeName, $nodeDef, $class = null, $container = null, $params = [])
     {
         $attributes = $nodeDef['attributes'];

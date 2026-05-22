@@ -21,6 +21,7 @@ use GraphQL\Type\Definition\Type;
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
 use OpenDxp\Model\DataObject\Classificationstore\GroupConfig;
+use Override;
 
 class Classificationstore extends Base
 {
@@ -31,7 +32,7 @@ class Classificationstore extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -78,7 +79,7 @@ class Classificationstore extends Base
      *
      * @return ListOfType
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         $service = $this->getGraphQlService();

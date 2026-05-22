@@ -15,11 +15,13 @@
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator;
 
+use Closure;
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType\HrefType;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\TypeDefinitionInterface;
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
+use Override;
 
 /**
  * Class Objects
@@ -35,7 +37,7 @@ class Objects extends Base implements TypeDefinitionInterface
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig(
@@ -57,7 +59,7 @@ class Objects extends Base implements TypeDefinitionInterface
      *
      * @return \GraphQL\Type\Definition\ListOfType
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return Type::listOf(new HrefType($this->getGraphQlService(), $fieldDefinition, $class));
@@ -68,9 +70,9 @@ class Objects extends Base implements TypeDefinitionInterface
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return \Closure
+     * @return Closure
      */
-    #[\Override]
+    #[Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\Objects($this->getGraphQlService(), $attribute, $fieldDefinition, $class);

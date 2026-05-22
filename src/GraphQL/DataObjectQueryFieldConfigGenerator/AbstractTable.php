@@ -24,6 +24,7 @@ use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
 use OpenDxp\Model\DataObject\Fieldcollection\Definition as FieldcollectionDefinition;
 use OpenDxp\Model\DataObject\Objectbrick\Definition as ObjectbrickDefinition;
+use Override;
 
 abstract class AbstractTable extends Base
 {
@@ -34,7 +35,7 @@ abstract class AbstractTable extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -59,7 +60,7 @@ abstract class AbstractTable extends Base
                 foreach ($rows as &$row) {
                     $row = array_combine(
                         array_map(
-                            fn($k) => is_numeric($k) ? 'col'. $k : $k,
+                            fn ($k) => is_numeric($k) ? 'col'. $k : $k,
                             array_keys($row)
                         ),
                         $row
@@ -77,7 +78,7 @@ abstract class AbstractTable extends Base
      *
      * @return Type
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         if ($class instanceof ObjectbrickDefinition) {

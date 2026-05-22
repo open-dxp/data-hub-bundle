@@ -23,6 +23,7 @@ use OpenDxp\Model\DataObject\Concrete;
 use OpenDxp\Model\DataObject\Data\ObjectMetadata;
 use OpenDxp\Model\DataObject\Fieldcollection\Data\AbstractData;
 use OpenDxp\Model\Exception\NotFoundException;
+use Override;
 
 class AdvancedManyToManyObjectRelation extends Base
 {
@@ -36,7 +37,7 @@ class AdvancedManyToManyObjectRelation extends Base
      *
      * @throws Exception
      */
-    #[\Override]
+    #[Override]
     public function process($object, $newValue, $args, $context, ResolveInfo $info)
     {
         $attribute = $this->getAttribute();

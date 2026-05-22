@@ -17,7 +17,6 @@ namespace OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver;
 
 use Exception;
 use GraphQL\Type\Definition\ResolveInfo;
-use OpenDxp\Bundle\DataHubBundle\GraphQL\FieldHelper\DataObjectFieldHelper;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ServiceTrait;
 use OpenDxp\Model\Asset;
 use OpenDxp\Model\DataObject\AbstractObject;
@@ -34,8 +33,11 @@ class MultihrefMetadata
      * @param ClassDefinition $class
      * @param mixed $fieldHelper
      */
-    public function __construct(protected $fieldDefinition = null, protected $class = null, protected $fieldHelper = null)
-    {
+    public function __construct(
+        protected $fieldDefinition = null,
+        protected $class = null,
+        protected $fieldHelper = null
+    ) {
     }
 
     /**

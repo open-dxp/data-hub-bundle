@@ -16,11 +16,12 @@
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectMutationFieldConfigGenerator;
 
 use GraphQL\Type\Definition\Type;
+use Override;
 
 class Multiselect extends Base
 {
     /** {@inheritdoc } */
-    #[\Override]
+    #[Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $processor = new \OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectInputProcessor\Base($nodeDef);

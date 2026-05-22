@@ -38,8 +38,12 @@ abstract class AbstractRelationsType extends UnionType
      * @param ClassDefinition|Definition|null $class
      * @param array $config
      */
-    public function __construct(Service $graphQlService, ?Data $fieldDefinition = null, protected $class = null, $config = [])
-    {
+    public function __construct(
+        Service $graphQlService,
+        ?Data $fieldDefinition = null,
+        protected $class = null,
+        $config = []
+    ) {
         $this->fieldDefinition = $fieldDefinition;
         $this->setGraphQLService($graphQlService);
         $name = null;

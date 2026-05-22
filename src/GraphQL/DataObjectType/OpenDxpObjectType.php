@@ -50,8 +50,13 @@ class OpenDxpObjectType extends ObjectType
      * @param array $config
      * @param array $context
      */
-    public function __construct(Service $graphQlService, string $className, protected $classId, $config = [], $context = [])
-    {
+    public function __construct(
+        Service $graphQlService,
+        string $className,
+        protected $classId,
+        $config = [],
+        $context = []
+    ) {
         $this->className = $className;
         $this->name = $config['name'] = 'object_' . $className;
         $this->setGraphQLService($graphQlService);

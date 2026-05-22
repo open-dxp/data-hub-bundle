@@ -19,6 +19,7 @@ use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 use OpenDxp\Model\DataObject\ClassDefinition\Data\Localizedfields;
 use OpenDxp\Model\DataObject\Fieldcollection\Definition;
+use Override;
 
 class Fieldcollections extends Base
 {
@@ -26,7 +27,7 @@ class Fieldcollections extends Base
     public static $typeCache = [];
 
     /** {@inheritdoc } */
-    #[\Override]
+    #[Override]
     public function getGraphQlMutationFieldConfig($nodeDef, $class, $container = null, $params = [])
     {
         $fieldName = $nodeDef['attributes']['attribute'];

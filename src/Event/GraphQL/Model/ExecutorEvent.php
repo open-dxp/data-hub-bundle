@@ -94,8 +94,12 @@ class ExecutorEvent extends Event
      * @param string $query
      * @param array $context
      */
-    public function __construct(Request $request, protected $query, Schema $schema, protected $context)
-    {
+    public function __construct(
+        Request $request,
+        protected $query,
+        Schema $schema,
+        protected $context
+    ) {
         $this->request = $request;
         $this->schema = $schema;
     }

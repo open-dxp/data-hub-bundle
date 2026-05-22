@@ -15,9 +15,11 @@
 
 namespace OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectQueryFieldConfigGenerator;
 
+use Closure;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\DataObjectType\HrefType;
 use OpenDxp\Model\DataObject\ClassDefinition;
 use OpenDxp\Model\DataObject\ClassDefinition\Data;
+use Override;
 
 class Href extends Base
 {
@@ -28,7 +30,7 @@ class Href extends Base
      *
      * @return array
      */
-    #[\Override]
+    #[Override]
     public function getGraphQlFieldConfig($attribute, Data $fieldDefinition, $class = null, $container = null)
     {
         return $this->enrichConfig($fieldDefinition, $class, $attribute, [
@@ -44,7 +46,7 @@ class Href extends Base
      *
      * @return HrefType
      */
-    #[\Override]
+    #[Override]
     public function getFieldType(Data $fieldDefinition, $class = null, $container = null)
     {
         return new HrefType($this->getGraphQlService(), $fieldDefinition, $class, ['description' => 'pseudo class for field ' . $fieldDefinition->getName()]);
@@ -55,9 +57,9 @@ class Href extends Base
      * @param Data $fieldDefinition
      * @param ClassDefinition $class
      *
-     * @return \Closure
+     * @return Closure
      */
-    #[\Override]
+    #[Override]
     public function getResolver($attribute, $fieldDefinition, $class)
     {
         $resolver = new Helper\Href($this->getGraphQlService(), $attribute, $fieldDefinition, $class);

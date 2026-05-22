@@ -43,7 +43,7 @@ class Block extends Base
             self::$itemType = new InputObjectType(
                 [
                     'name' => 'document_element_input_block_item',
-                    'fields' => fn() => [
+                    'fields' => fn () => [
                         'replace' => [
                             'type' => Type::boolean(),
                             'description' => 'if true (default), all elements inside the block will be replaced',
@@ -58,7 +58,7 @@ class Block extends Base
             'arg' => new InputObjectType(
                 [
                     'name' => 'document_element_input_block',
-                    'fields' => fn() => [
+                    'fields' => fn () => [
                         '_editableName' => Type::nonNull(Type::string()),
                         'indices' => Type::listOf(Type::int()),
                         'items' => [
