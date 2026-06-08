@@ -96,6 +96,10 @@ class AnyTargetType extends UnionType
                 if ($document) {
                     $documentType = $document->getType();
                     $service = $this->getGraphQlService();
+                    if ($documentType === 'folder') {
+                        return $service->getDocumentTypeDefinition('_document_folder');
+                    }
+
                     //TODO maybe catch unsupported types for now ?
                     $typeDefinition = $service->getDocumentTypeDefinition('document_' . $documentType);
 
