@@ -35,8 +35,10 @@ abstract class AbstractOperator implements OperatorInterface
     /**
      * @param array|null $context
      */
-    public function __construct(array $config = [], protected $context = null)
-    {
+    public function __construct(
+        array $config = [],
+        protected $context = null
+    ) {
         $this->label = $config['label'];
         $this->children = $config['children'];
     }

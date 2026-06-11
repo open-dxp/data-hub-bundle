@@ -28,8 +28,10 @@ class TranslationListing
 {
     use ServiceTrait;
 
-    public function __construct(Service $graphQlService, protected EventDispatcherInterface $eventDispatcher)
-    {
+    public function __construct(
+        Service $graphQlService,
+        protected EventDispatcherInterface $eventDispatcher
+    ) {
         $this->setGraphQLService($graphQlService);
     }
 

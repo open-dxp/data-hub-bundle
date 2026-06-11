@@ -26,8 +26,10 @@ class DataObjectTypeFactory
 
     public static $registry = [];
 
-    public function __construct(Service $graphQlService, protected string $className)
-    {
+    public function __construct(
+        Service $graphQlService,
+        protected string $className
+    ) {
         $this->setGraphQLService($graphQlService);
     }
 

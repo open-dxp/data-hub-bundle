@@ -40,8 +40,10 @@ abstract class AbstractValue implements ValueInterface
      * @param array $config
      * @param array|null $context
      */
-    public function __construct($config, protected $context = null)
-    {
+    public function __construct(
+        $config,
+        protected $context = null
+    ) {
         $this->attribute = $config['attribute'];
         $this->label = $config['label'];
         $this->dataType = $config['dataType'];

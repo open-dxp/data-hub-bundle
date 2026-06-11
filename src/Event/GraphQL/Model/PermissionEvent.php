@@ -66,7 +66,9 @@ class PermissionEvent extends Event
      * @param ElementInterface|OwnerAwareFieldInterface $element
      * @param string $type
      */
-    public function __construct(protected $element, protected $type)
-    {
+    public function __construct(
+        protected $element,
+        protected $type
+    ) {
     }
 }
