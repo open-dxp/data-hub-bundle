@@ -135,7 +135,7 @@ class OpenDxpObjectType extends ObjectType
                 'args' => [
                     'keys' => [
                         'type' => Type::listOf(Type::string()),
-                        'description' => 'comma separated list of key names',
+                        'description' => 'List of property key names to include (if omitted, all properties are returned).',
                     ],
                 ],
                 'resolve' => $resolver->resolveProperties(...),
