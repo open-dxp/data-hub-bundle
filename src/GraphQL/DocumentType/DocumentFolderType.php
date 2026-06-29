@@ -47,7 +47,7 @@ class DocumentFolderType extends FolderType
                     'name' => 'id',
                     'type' => Type::id(),
                 ],
-                'filename' => Type::string(),
+                'key' => Type::string(),
                 'fullpath' => [
                     'type' => Type::string(),
                 ],
