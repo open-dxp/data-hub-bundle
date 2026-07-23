@@ -49,6 +49,10 @@ class ObjectsType extends UnionType
             $types = array_merge($types, $objectTypes);
         }
 
+        if ($service->querySchemaEnabled('object_folder')) {
+            $types[] = $this->getGraphQlService()->getDataObjectTypeDefinition('_object_folder');
+        }
+
         if ($service->querySchemaEnabled('document')) {
             $documentUnionType = $this->getGraphQlService()->getDocumentTypeDefinition('document');
             $supportedDocumentTypes = $documentUnionType->getTypes();

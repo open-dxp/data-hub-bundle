@@ -100,6 +100,11 @@ abstract class AbstractRelationsType extends UnionType
                     if (is_array($className)) {
                         $className = $className['classes'];
                     }
+                    if ($className === 'folder') {
+                        $types[] = $this->getGraphQlService()->getDataObjectTypeDefinition('_object_folder');
+
+                        continue;
+                    }
                     $types[] = ClassTypeDefinitions::get($className);
                 }
             }
