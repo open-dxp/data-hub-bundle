@@ -1,0 +1,5 @@
+opendxp_data_hub:
+    config_location:
+        data_hub:
+            write_target:
+                type: 'settings-store'

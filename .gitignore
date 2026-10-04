@@ -36,3 +36,7 @@ Thumbs.db
 /.htaccess
 /auth.json
 /config.json
+
+# agent instructions stay local
+/CLAUDE.md
+/.claude/

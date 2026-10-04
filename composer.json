@@ -10,22 +10,19 @@
             "*": "dist"
         },
         "allow-plugins": {
+            "pestphp/pest-plugin": true,
             "symfony/runtime": true
         }
     },
     "require": {
         "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
-        "open-dxp/opendxp": "^1.1",
+        "open-dxp/opendxp": "^1.5",
         "webonyx/graphql-php": "^15.2.3"
     },
     "require-dev": {
+        "open-dxp/test-foundation": "1.x-dev",
         "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^9.6",
-        "symfony/phpunit-bridge": "^6",
-        "codeception/codeception": "^5.3.5",
-        "codeception/phpunit-wrapper": "^9",
-        "codeception/module-asserts": "^3.2",
-        "codeception/module-symfony": "^3.8",
+        "phpstan/phpstan-symfony": "^2.0",
         "symfony/dotenv": "^7.3",
         "symfony/runtime": "^7.3"
     },
@@ -36,11 +33,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "OpenDxp\\Bundle\\DataHubBundle\\Tests\\": "tests"
-        },
-        "files": [
-            "kernel/Kernel.php"
-        ]
+            "OpenDxp\\Bundle\\DataHubBundle\\Tests\\": "tests/"
+        }
     },
     "extra": {
         "opendxp": {

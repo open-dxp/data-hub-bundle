@@ -1,6 +1,0 @@
-actor: ServiceTester
-modules:
-    enabled:
-        - \OpenDxp\Tests\Support\Helper\OpenDxp:
-            connect_db: true
-            cache_router: false
