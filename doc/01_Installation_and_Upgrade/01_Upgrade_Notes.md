@@ -1,5 +1,9 @@
 # Upgrade Notes
 
+## 1.1.0
+* [CHORE] Replace Codeception with Pest and `open-dxp/test-foundation`
+* [CHORE] Require `open-dxp/opendxp` ^1.5
+
 ## Migrating from `pimcore/data-hub` to `open-dxp/data-hub-bundle`
 * Renamed bundle to `OpenDxpDataHubBundle` (composer package: `open-dxp/data-hub-bundle`)
 * Renamed top-level PHP namespace to `OpenDxp\Bundle\DataHubBundle`
