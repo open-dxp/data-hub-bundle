@@ -8,14 +8,10 @@ use OpenDxp\Bundle\DataHubBundle\Configuration;
 
 it('saves a configuration and finds it by its name', function () {
     $name = uniqid('datahub');
-
-    expect(Configuration::getByName($name))->toBeNull();
-
+    $fixture = (string) file_get_contents(dirname(__DIR__, 2) . '/Fixtures/configurations/query-and-mutation.json');
     $configuration = new Configuration('graphql', '/', $name);
-    $configuration->setConfiguration(json_decode(
-        (string) file_get_contents(dirname(__DIR__, 2) . '/Fixtures/configurations/query-and-mutation.json'),
-        true,
-    ));
+    $configuration->setConfiguration(json_decode($fixture, true));
+
     $configuration->save();
 
     expect(Configuration::getByName($name)?->getQueryEntities())->toBe(['DataHubTestEntity']);

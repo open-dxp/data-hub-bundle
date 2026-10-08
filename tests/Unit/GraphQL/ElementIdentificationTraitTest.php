@@ -7,6 +7,9 @@ namespace OpenDxp\Bundle\DataHubBundle\Tests\Unit\GraphQL;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Exception\ClientSafeException;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ElementIdentificationTrait;
 
+/**
+ * The trait loads an element through two methods of its class. Here they name what they were asked for.
+ */
 function elementIdentification(): object
 {
     return new class() {
@@ -37,20 +40,33 @@ it('asks for an id or a full path', function () {
 })->throws(ClientSafeException::class, 'either id or fullpath expected');
 
 it('refuses an id and a full path together', function () {
-    elementIdentification()->getElementByTypeAndIdOrPath(['type' => 'object', 'id' => 4, 'fullpath' => '/some/path']);
+    elementIdentification()->getElementByTypeAndIdOrPath([
+        'type' => 'object',
+        'id' => 4,
+        'fullpath' => '/some/path',
+    ]);
 })->throws(ClientSafeException::class, 'either id or fullpath expected but not both');
 
 it('finds an element by its full path', function () {
-    expect(elementIdentification()->getElementByTypeAndIdOrPath(['type' => 'object', 'fullpath' => '/some/path']))
-        ->toBe('object /some/path');
+    $element = elementIdentification()->getElementByTypeAndIdOrPath([
+        'type' => 'object',
+        'fullpath' => '/some/path',
+    ]);
+
+    expect($element)->toBe('object /some/path');
 });
 
 it('finds an element by its id', function () {
-    expect(elementIdentification()->getElementByTypeAndIdOrPath(['type' => 'object', 'id' => 4]))
-        ->toBe('object 4');
+    $element = elementIdentification()->getElementByTypeAndIdOrPath([
+        'type' => 'object',
+        'id' => 4,
+    ]);
+
+    expect($element)->toBe('object 4');
 });
 
 it('takes the type as a separate argument', function () {
-    expect(elementIdentification()->getElementByTypeAndIdOrPath(['fullpath' => '/some/path'], 'object'))
-        ->toBe('object /some/path');
+    $element = elementIdentification()->getElementByTypeAndIdOrPath(['fullpath' => '/some/path'], 'object');
+
+    expect($element)->toBe('object /some/path');
 });

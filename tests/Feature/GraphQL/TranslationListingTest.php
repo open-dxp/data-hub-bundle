@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OpenDxp\Bundle\DataHubBundle\Tests\Feature\GraphQL;
 
+use Exception;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\QueryType;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Resolver\TranslationListing;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Service;
@@ -13,53 +14,87 @@ use OpenDxp\TestFoundation\Container;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 beforeEach(function () {
-    $this->prefix = uniqid('datahub');
+    $prefix = uniqid('datahub');
+    $this->one = sprintf('%sone', $prefix);
+    $this->two = sprintf('%stwo', $prefix);
+    $this->three = sprintf('%sthree', $prefix);
+    $this->admin = sprintf('%sadmin', $prefix);
 
-    foreach (['one', 'two', 'three'] as $key) {
+    foreach (['one', 'two', 'three'] as $name) {
         TranslationFactory::new()
-            ->withTranslations(['en' => 'en ' . $key, 'de' => 'de ' . $key])
-            ->create(['key' => $this->prefix . $key]);
+            ->withTranslations([
+                'en' => sprintf('en %s', $name),
+                'de' => sprintf('de %s', $name),
+            ])
+            ->create(['key' => $this->{$name}]);
     }
 
-    TranslationFactory::new()->inAdminDomain()
-        ->withTranslations(['en' => 'en admin', 'de' => 'de admin'])
-        ->create(['key' => $this->prefix . 'admin']);
+    TranslationFactory::new()
+        ->inAdminDomain()
+        ->withTranslations([
+            'en' => 'en admin',
+            'de' => 'de admin',
+        ])
+        ->create(['key' => $this->admin]);
 });
 
 /**
- * @return array<string, Translation>
+ * @param array<string, string> $arguments
+ *
+ * @return array<string, Translation> the listed translations by their cursor
  */
-function listTranslations(array $args): array
+function listTranslations(array $arguments): array
 {
-    $listing = (new TranslationListing(Container::get(Service::class), new EventDispatcher()))->resolveListing([], $args);
+    $resolver = new TranslationListing(Container::get(Service::class), new EventDispatcher());
     $nodes = [];
 
-    foreach ($listing['edges'] as $edge) {
+    foreach ($resolver->resolveListing([], $arguments)['edges'] as $edge) {
         $nodes[$edge['cursor']] = $edge['node'];
     }
 
     return $nodes;
 }
 
-it('lists the translations of the default domain with the key as cursor', function () {
-    $nodes = listTranslations(['keys' => $this->prefix . 'one']);
+function cursorOf(string $key): string
+{
+    return sprintf('translation-%s', $key);
+}
 
-    expect(array_keys($nodes))->toBe(['translation-' . $this->prefix . 'one'])
-        ->and($nodes['translation-' . $this->prefix . 'one']->getTranslations())->toEqual(['de' => 'de one', 'en' => 'en one']);
+it('lists the translations of the default domain with the key as cursor', function () {
+    $nodes = listTranslations(['keys' => $this->one]);
+
+    expect(array_keys($nodes))
+        ->toBe([cursorOf($this->one)])
+        ->and($nodes[cursorOf($this->one)]->getTranslations())
+        ->toEqual([
+            'de' => 'de one',
+            'en' => 'en one',
+        ]);
 });
 
 it('lists the translations of several keys', function () {
-    expect(array_keys(listTranslations(['keys' => $this->prefix . 'one,' . $this->prefix . 'three'])))
-        ->toEqualCanonicalizing(['translation-' . $this->prefix . 'one', 'translation-' . $this->prefix . 'three']);
+    $nodes = listTranslations(['keys' => sprintf('%s,%s', $this->one, $this->three)]);
+
+    expect(array_keys($nodes))->toEqualCanonicalizing([
+        cursorOf($this->one),
+        cursorOf($this->three),
+    ]);
 });
 
 it('lists the translations of the domain it is asked for', function () {
-    expect(array_keys(listTranslations(['domain' => 'admin', 'keys' => $this->prefix . 'admin,' . $this->prefix . 'one'])))
-        ->toBe(['translation-' . $this->prefix . 'admin']);
+    $nodes = listTranslations([
+        'domain' => 'admin',
+        'keys' => sprintf('%s,%s', $this->admin, $this->one),
+    ]);
+
+    expect(array_keys($nodes))->toBe([cursorOf($this->admin)]);
 });
 
 it('returns only the languages it is asked for', function (string $languages, array $expected) {
-    $nodes = listTranslations(['keys' => $this->prefix . 'two', 'languages' => $languages]);
+    $nodes = listTranslations([
+        'keys' => $this->two,
+        'languages' => $languages,
+    ]);
 
     expect(array_keys(reset($nodes)->getTranslations()))->toEqualCanonicalizing($expected);
 })->with([
@@ -69,4 +104,4 @@ it('returns only the languages it is asked for', function (string $languages, ar
 
 it('asks for the key of a single translation', function () {
     (new QueryType(new EventDispatcher()))->resolveTranslationGetter();
-})->throws(\Exception::class, 'Argument key is mandatory');
+})->throws(Exception::class, 'Argument key is mandatory');
