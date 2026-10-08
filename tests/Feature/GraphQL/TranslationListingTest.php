@@ -21,7 +21,7 @@ beforeEach(function () {
             ->create(['key' => $this->prefix . $key]);
     }
 
-    TranslationFactory::new()->admin()
+    TranslationFactory::new()->inAdminDomain()
         ->withTranslations(['en' => 'en admin', 'de' => 'de admin'])
         ->create(['key' => $this->prefix . 'admin']);
 });
