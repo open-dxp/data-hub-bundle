@@ -8,7 +8,7 @@ use OpenDxp\Bundle\DataHubBundle\GraphQL\Exception\ClientSafeException;
 use OpenDxp\Bundle\DataHubBundle\GraphQL\Traits\ElementIdentificationTrait;
 
 /**
- * The trait loads an element through two methods of its class. Here they name what they were asked for.
+ * The trait loads an element through two methods of its class. Here both methods return their arguments as text.
  */
 function elementIdentification(): object
 {
