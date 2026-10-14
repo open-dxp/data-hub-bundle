@@ -102,7 +102,6 @@ opendxp.plugin.datahub.workspace.abstract = Class.create({
             viewConfig: {
                 forceFit: true,
                 listeners: {
-                    rowupdated: this.updateRows.bind(this),
                     refresh: this.updateRows.bind(this)
                 }
             }
