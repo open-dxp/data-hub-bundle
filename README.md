@@ -18,8 +18,6 @@ technologies into a simple & easy-to-configure system on top of OpenDXP.
 
 The basic configuration of Datahub comes with a GraphQL API, which is described in the next sections of this documentation. To use another configuration, OpenDXP Datahub can be extended with different adapters (see [Further Information](#further-information)).
 
-A short introduction video of an output channel based on the GraphQL query language can be found [here](./doc/img/graphql/intro.mp4).
-
 ## Features in a Nutshell
 - Easy-to-configure interface layer for data delivery and consumption
 - Tool of choice to connect OpenDXP to any other systems and applications besides internal PHP API - whether they are backend applications like ERP systems or frontend applications like your storefront
@@ -34,6 +32,11 @@ A short introduction video of an output channel based on the GraphQL query langu
 - [Configuration & Deployment](./doc/20_Deployment.md)
 
 ***
+
+## Changelog
+Before updating, please [check the changelog!](CHANGELOG.md)
+
+Coming from an earlier package? Read [Migrating to OpenDXP](doc/01_Installation_and_Upgrade/01_Migrating_to_OpenDXP.md).
 
 ## Upstream Origin & Version Transparency
 This project is a fork of the [Pimcore data-hub (9d70ca1 / v1.9.5)](https://github.com/pimcore/data-hub/tree/9d70ca14788e25e34d49010ed00206ebaf761155), which is © Pimcore GmbH and licensed under GPLv3.
