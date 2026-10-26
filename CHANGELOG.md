@@ -3,6 +3,7 @@
 ## 1.1.0
 - [CHORE] Replace Codeception with Pest and `open-dxp/test-foundation`
 - [CHORE] Require `open-dxp/opendxp` ^1.5
+- [BUGFIX] Fix GraphQL schema build for classes with a Block field [#32](https://github.com/open-dxp/data-hub-bundle/pull/32)
 
 ## 1.0.8
 - [BUGFIX] Add _object_folder to relation and object property unions [#24](https://github.com/open-dxp/data-hub-bundle/pull/24)
