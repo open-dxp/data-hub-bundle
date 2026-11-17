@@ -49,8 +49,7 @@ trait ElementTagTrait
      */
     protected function setTags(string $element_type, int $id, $tags)
     {
-        $tag = new Tag;
-        $tag->getDao()->setTagsForElement($element_type, $id, $tags);
+        Tag::setTagsForElement($element_type, $id, $tags);
 
         return true;
     }
