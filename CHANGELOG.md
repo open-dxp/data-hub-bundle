@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.2
+- [BUGFIX] A GraphQL mutation that changes the tags of an element dispatches the tag events. OpenDXP dispatches them from 1.6 on
+
 ## 1.1.1
 - [BUGFIX] GraphQL endpoints build their schema again when a class has a Block field [#32](https://github.com/open-dxp/data-hub-bundle/pull/32)
 - [CHORE] Check dependencies, code and commits for security issues
